@@ -8,19 +8,95 @@
 <body>
     <div class="body_container">
         <div class="connetor_container">
-            <div class="side_title">Cable Connector</div>
+            <div class="side_title">Connectors</div>
             <input class="search" type="text" placeholder="Search..">
             <div class="filter_container">
-
+                <button type="button" class="left_btn">Request new connector</button>
+                <button type="button" class="left_btn">Filter connectors</button>
+            </div>
+            <div class="connector_selector_container">
+                <h1>Select what connector to edit</h1>
+                <div class="segment_connectors_container">
+                    <button class="left_btn">Output A</button>
+                    <button class="left_btn">Output B</button>
+                    <button class="left_btn">Input A</button>
+                    <button class="left_btn">Input B</button>
+                </div>
             </div>
             <div class="connetor_results_container">
-
-            </div>
-            <button type="button" class="left_btn">Request new connector</button>
+                <div class="connector_cell_container">
+                    <div class="connector_cell_type_1">
+                        <img draggable="false" src="img/TRS-6.35mm-3_Pole-male-side_view.svg" alt="">
+                        <div class="cell_text_type_1">
+                            <p>Category: Audio</p>
+                            <p>Name: TRS</p>
+                            <p>Size: 6.35mm</p>
+                            <p>Pin/Pole: 3</p>
+                            <p>Gender: Male</p>
+                        </div>
+                    </div>
+                    <div class="connector_cell_more_options">
+                        <button type="button">Add</button>
+                        <button type="button">Replace</button>
+                        <button type="button">Pinout</button>
+                    </div>
+                </div>
+                <div class="connector_cell_container">
+                    <div class="connector_cell_type_1">
+                        <img draggable="false" src="img/TRS-2.5mm-3_pole-male-side_view.svg" alt="">
+                        <div class="cell_text_type_1">
+                            <p>Category: Audio</p>
+                            <p>Name: TRS</p>
+                            <p>Size: 2.5mm</p>
+                            <p>Pin/Pole: 3</p>
+                            <p>Gender: Male</p>
+                        </div>
+                    </div>
+                    <div class="connector_cell_more_options">
+                        <button type="button">Add</button>
+                        <button type="button">Replace</button>
+                        <button type="button">Pinout</button>
+                    </div>
+                </div>  
+                <div class="connector_cell_container">
+                    <div class="connector_cell_type_1">
+                        <img draggable="false" src="img/TRRRS-4.4mm_4_pole-male_side_view.svg" alt="">
+                        <div class="cell_text_type_1">
+                            <p>Category: Audio</p>
+                            <p>Name: TRRRS</p>
+                            <p>Size: 4.4mm</p>
+                            <p>Pin/Pole: 5</p>
+                            <p>Gender: Male</p>
+                        </div>
+                    </div>
+                    <div class="connector_cell_more_options">
+                        <button type="button">Add</button>
+                        <button type="button">Replace</button>
+                        <button type="button">Pinout</button>
+                    </div>
+                </div>
+                <div class="connector_cell_container">
+                    <div class="connector_cell_type_1">
+                        <img draggable="false" src="img/XLR-standard-4_pin-female-side_view.svg" alt="">
+                        <div class="cell_text_type_1">
+                            <p>Category: Audio</p>
+                            <p>Name: XLR</p>
+                            <p>Size: Standard</p>
+                            <p>Pin/Pole: 4</p>
+                            <p>Gender: Female</p>
+                        </div>
+                    </div>
+                    <div class="connector_cell_more_options">
+                        <button type="button">Add</button>
+                        <button type="button">Replace</button>
+                        <button type="button">Pinout</button>
+                    </div>
+                </div>
+            </div>                          
         </div>
         <div class="cable_editor_container">
             <div class="title">Custom Cable Editor</div>
-            <button type="button" class="center_btn">Select preset cable configurations</button>
+            <button type="button" class="center_btn">Show quick preset cable configurations</button>
             <div class="pre-configs_container"></div>
             <div class="interactive_cable_editor_container"></div>
         </div>
