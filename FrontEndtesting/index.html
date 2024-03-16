@@ -8,8 +8,10 @@
 <body>
     <div class="body_container">
         <div class="connetor_container">
-            <div class="side_title">Connectors</div>
-            <input class="search" type="text" placeholder="Search..">
+            <div class="header_container">
+                <div class="side_title">Connectors</div>
+                <input class="search" type="text" placeholder="Search..">
+            </div>
             <div class="filter_container">
                 <button type="button" class="left_btn">Request new connector</button>
                 <button type="button" class="left_btn">Filter connectors</button>
@@ -17,10 +19,25 @@
             <div class="connector_selector_container">
                 <h1>Select what connector to edit</h1>
                 <div class="segment_connectors_container">
-                    <button class="left_btn">Output A</button>
-                    <button class="left_btn">Output B</button>
-                    <button class="left_btn">Input A</button>
-                    <button class="left_btn">Input B</button>
+                    <label class="connector_selector_radio_container">
+                        <input type="radio" name="connector_selector_radio_group" checked="checked"></input>
+                        <span class="connector_selector_radio">Output A</span>
+                    </label>
+                    
+                    <label class="connector_selector_radio_container">
+                        <input type="radio" name="connector_selector_radio_group"></input>
+                        <span class="connector_selector_radio">Output B</span>
+                    </label>
+                    
+                    <label class="connector_selector_radio_container">
+                        <input type="radio" name="connector_selector_radio_group"></input>
+                        <span class="connector_selector_radio">Input A</span>
+                    </label>
+
+                    <label class="connector_selector_radio_container">
+                        <input type="radio" name="connector_selector_radio_group"></input>
+                        <span class="connector_selector_radio">Input B</span>
+                    </label>
                 </div>
             </div>
             <div class="connetor_results_container">
