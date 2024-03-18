@@ -231,8 +231,32 @@ button:hover{
     color: white;
 }
 
+
+.cable_full{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
 .input_output{
     display: flex;
+    justify-content: space-between;
+}
+
+.connectors_output_segment{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.connectors_input_segment{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 9;
+    grid-row-end: 11;
 }
 
 .center{
