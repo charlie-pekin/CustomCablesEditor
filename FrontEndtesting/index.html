@@ -20,22 +20,22 @@
                 <h1>Select what connector to edit</h1>
                 <div class="segment_connectors_container">
                     <label class="connector_selector_radio_container">
-                        <input type="radio" name="connector_selector_radio_group" checked="checked"></input>
+                        <input type="radio" name="connector_selector_radio_group" checked="checked" value="output_A_bubble"></input>
                         <span class="connector_selector_radio">Output A</span>
                     </label>
                     
-                    <label class="connector_selector_radio_container">
-                        <input type="radio" name="connector_selector_radio_group"></input>
+                    <label class="hidden">
+                        <input type="radio" name="connector_selector_radio_group" value="output_B_bubble"></input>
                         <span class="connector_selector_radio">Output B</span>
                     </label>
                     
                     <label class="connector_selector_radio_container">
-                        <input type="radio" name="connector_selector_radio_group"></input>
+                        <input type="radio" name="connector_selector_radio_group" value="input_A_bubble"></input>
                         <span class="connector_selector_radio">Input A</span>
                     </label>
 
-                    <label class="connector_selector_radio_container">
-                        <input type="radio" name="connector_selector_radio_group"></input>
+                    <label class="hidden">
+                        <input type="radio" name="connector_selector_radio_group" value="input_B_bubble"></input>
                         <span class="connector_selector_radio">Input B</span>
                     </label>
                 </div>
@@ -53,9 +53,8 @@
                         </div>
                     </div>
                     <div class="connector_cell_more_options">
-                        <button type="button">Add</button>
-                        <button type="button">Replace</button>
-                        <button type="button">Pinout</button>
+                        <button type="button">Insert</button>
+                        <button type="button">Pinout details</button>
                     </div>
                 </div>
                 <div class="connector_cell_container">
@@ -115,7 +114,23 @@
             <div class="title">Custom Cable Editor</div>
             <button type="button" class="center_btn">Show quick preset cable configurations</button>
             <div class="pre-configs_container"></div>
-            <div class="interactive_cable_editor_container"></div>
+            <div class="interactive_cable_editor_container">
+                <div class="cable_full">
+                    <div class="input_output">
+                        <span class="connector_bubble connector_bubble_active" id="output_A_bubble"></span>
+                        <span class="connector_bubble" id="output_B_bubble"></span>
+                        <div class="add_bubble"></div>
+                    </div>
+                    <div class="center">
+    
+                    </div>
+                    <div class="input_output">
+                        <span class="connector_bubble" id="input_A_bubble"></span>
+                        <span class="connector_bubble" id="input_B_bubble"></span>
+                        <div class="add_bubble"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="cable_styling">
             <div class="side_title">Cable Styling </div>
