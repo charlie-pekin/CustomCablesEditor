@@ -7,7 +7,7 @@ body{
     height: 100%;
 }
 .hidden{
-    display: none;
+    display: none !important;
 }
 .connetor_container{
     height: auto;
@@ -242,7 +242,10 @@ button:hover{
 
 .input_output{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+}
+.io_double{
+    justify-content: space-between !important;
 }
 
 .connectors_output_segment{
@@ -250,6 +253,7 @@ button:hover{
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 3;
+    align-items: flex-start;
 }
 
 .connectors_input_segment{
@@ -257,6 +261,7 @@ button:hover{
     grid-column-end: 4;
     grid-row-start: 9;
     grid-row-end: 11;
+    align-items: flex-end;
 }
 
 .center{
@@ -264,7 +269,7 @@ button:hover{
 }
 
 .connector_bubble{
-    background-color: gray;
+    background-color: lightgray;
     border: 4px solid black;
     border-radius: 30%;
     height: 100px;
@@ -278,7 +283,62 @@ button:hover{
     box-shadow: 0px 0px 20px 0px blue;
 }
 
-.add_bubble{
 
+.connector_count_container{
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+}
+.connector_count_button{
+    display: block;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: lightgray;
+    cursor: pointer;
+    padding: 5px 7px 5px 7px;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.07rem;
+    font-weight: bold;
+    transition-duration: 0.3s;
+}
+.connector_count_button:hover{
+    background-color: gray;
+    color: white;
 }
 
+.add_btn{
+    border-color: red;
+}
+.remove_btn{
+    border-color: blue;
+}
+
+.add_output{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.remove_output{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.remove_input{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 10;
+    grid-row-end: 11;
+}
+
+.add_input{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 10;
+    grid-row-end: 11;
+}

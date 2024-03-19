@@ -20,22 +20,22 @@
                 <h1>Select what connector to edit</h1>
                 <div class="segment_connectors_container">
                     <label class="connector_selector_radio_container">
-                        <input type="radio" name="connector_selector_radio_group" checked="checked" value="output_A_bubble"></input>
+                        <input type="radio" name="connector_selector_radio_group" checked="checked" data-selector="output_a"></input>
                         <span class="connector_selector_radio">Output A</span>
                     </label>
                     
-                    <label class="hidden">
-                        <input type="radio" name="connector_selector_radio_group" value="output_B_bubble"></input>
+                    <label class="connector_selector_radio_container hidden">
+                        <input type="radio" name="connector_selector_radio_group" data-selector="output_b"></input>
                         <span class="connector_selector_radio">Output B</span>
                     </label>
                     
                     <label class="connector_selector_radio_container">
-                        <input type="radio" name="connector_selector_radio_group" value="input_A_bubble"></input>
+                        <input type="radio" name="connector_selector_radio_group" data-selector="input_a"></input>
                         <span class="connector_selector_radio">Input A</span>
                     </label>
 
-                    <label class="hidden">
-                        <input type="radio" name="connector_selector_radio_group" value="input_B_bubble"></input>
+                    <label class="connector_selector_radio_container hidden">
+                        <input type="radio" name="connector_selector_radio_group" data-selector="input_a"></input>
                         <span class="connector_selector_radio">Input B</span>
                     </label>
                 </div>
@@ -115,15 +115,27 @@
             <button type="button" class="center_btn">Show quick preset cable configurations</button>
             <div class="cable_full">
                 <div class="input_output connectors_output_segment">
-                    <span class="connector_bubble connector_bubble_active" id="output_A_bubble"></span>
-                    <span class="connector_bubble" id="output_B_bubble"></span>
+                    <span class="connector_bubble connector_bubble_active" data-bubble="output_a"></span>
+                    <span class="connector_bubble hidden" data-bubble="output_b"></span>
                 </div>
                 <div class="center">
 
                 </div>
                 <div class="input_output connectors_input_segment">
-                    <span class="connector_bubble" id="input_A_bubble"></span>
-                    <span class="connector_bubble" id="input_B_bubble"></span>
+                    <span class="connector_bubble" data-bubble="input_a"></span>
+                    <span class="connector_bubble hidden" data-bubble="input_b"></span>
+                </div>
+                <div class="connector_count_container remove_output">
+                    <div class="connector_count_button remove_btn" data-remove_connector="output_b">Remove<br>Connector</div>
+                </div>
+                <div class="connector_count_container add_output">
+                    <div class="connector_count_button add_btn" data-add_connector="output_b">Add<br>Connector</div>
+                </div>
+                <div class="connector_count_container remove_input">
+                    <div class="connector_count_button remove_btn" data-remove_connector="input_b">Remove<br>Connector</div>
+                </div>
+                <div class="connector_count_container add_input">
+                    <div class="connector_count_button add_btn" data-add_connector="input_b">Add<br>Connector</div>
                 </div>
             </div>
         </div>
