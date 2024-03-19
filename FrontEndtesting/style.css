@@ -283,7 +283,6 @@ button:hover{
     box-shadow: 0px 0px 20px 0px blue;
 }
 
-
 .connector_count_container{
     display: flex;
     align-items:flex-end;
@@ -291,8 +290,7 @@ button:hover{
 }
 .connector_count_button{
     display: block;
-    border-width: 3px;
-    border-style: solid;
+    border: 3px solid blue;
     border-radius: 20px;
     background-color: lightgray;
     cursor: pointer;
@@ -308,37 +306,16 @@ button:hover{
     color: white;
 }
 
-.add_btn{
-    border-color: red;
-}
-.remove_btn{
-    border-color: blue;
-}
-
-.add_output{
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-
-.remove_output{
+.count_output{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
 }
 
-.remove_input{
+.count_input{
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 10;
-    grid-row-end: 11;
-}
-
-.add_input{
-    grid-column-start: 4;
-    grid-column-end: 5;
     grid-row-start: 10;
     grid-row-end: 11;
 }

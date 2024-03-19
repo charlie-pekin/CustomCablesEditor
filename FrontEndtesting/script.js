@@ -26,4 +26,29 @@ for(selectBubble of connectorBubbles){
     });
 }
 
-let addConnectors = document.querySelectorAll("[data-add_connector]");
+let connectorCountButtons = document.getElementsByClassName("connector_count_button");
+let addText = "Add"
+let removeText = "Remove"
+var countText = addText;
+console.log(connectorCountButtons);
+for(countBtn of connectorCountButtons){
+    countBtn.addEventListener("click", function(e){
+        console.log("click");
+        console.log(e);
+        console.log(e.target);
+        let currentCountBtnID = e.currentTarget.getAttribute("data-count_connector");
+        console.log(currentCountBtnID);
+        if(countText == addText){
+            countText = removeText;
+        }
+        else{
+            countText = addText;
+        }
+        let selectorbox = document.querySelector(`[data-selector-container=${currentCountBtnID}]`);
+        selectorbox.classList.toggle("hidden");
+        let bubblebox = document.querySelector(`[data-bubble=${currentCountBtnID}]`);
+        bubblebox.classList.toggle("hidden");
+        let countTextbox = document.querySelector(`[data-connector_count-text=${currentCountBtnID}]`);
+        countTextbox.innerHTML= countText;
+    });
+};
