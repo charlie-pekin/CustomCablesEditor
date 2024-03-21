@@ -35,9 +35,6 @@ for(countBtn of connectorCountButtons){
         let countTextbox = document.querySelector(`[data-connector_count-text=${currentCountBtnID}]`);
         let selectorbox = document.querySelector(`[data-selector=${currentCountBtnID}]`)
         let selectorContainer = document.querySelector(`[data-selector-container=${currentCountBtnID}]`);
-        let bubblebox = document.querySelector(`[data-bubble=${currentCountBtnID}]`);
-        // let bubbleContainer = document.querySelector(`[data-bubble-container=${currentCountBtnID}]`);
-
         let leftBubblebox = document.querySelector(`[data-bubble=${segment[0]}_a]`);
         let rightBubblebox = document.querySelector(`[data-bubble=${segment[0]}_b]`);
 
@@ -71,8 +68,15 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
             };
         }
         console.log(currentActiveBubble);
-        activeBubbleConnectorSL = currentActiveBubble.getAttribute("[data-bubble]");
-        let segment = activeBubbleConnectorSL.split("_")
+        activeBubbleConnectorSL = currentActiveBubble.getAttribute("data-bubble");
+        console.log(activeBubbleConnectorSL);
+        let bubbleSegment = activeBubbleConnectorSL.split("_");
+        let cellID = e.target.getAttribute("data-cell-insert");
+        let bubbleImageElement = document.querySelector(`[data-bubble-image=${activeBubbleConnectorSL}]`);
+        let cellImageElement = document.querySelector(`[data-cell-image=${cellID}]`);
+        bubbleImageElement.src = cellImageElement.src;
+        
+
         //get all bubbles
         //get the active bubble
         //get active bubble connector segment and letter
