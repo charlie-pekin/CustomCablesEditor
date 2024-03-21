@@ -1,6 +1,7 @@
 
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
+let bubbleContainers = document.getElementsByClassName("main_bubble_container");
 let activeBubbleConnectorSL;
 
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
@@ -36,24 +37,31 @@ for(countBtn of connectorCountButtons){
         let selectorbox = document.querySelector(`[data-selector=${currentCountBtnID}]`)
         let selectorContainer = document.querySelector(`[data-selector-container=${currentCountBtnID}]`);
         let leftBubblebox = document.querySelector(`[data-bubble=${segment[0]}_a]`);
+        let leftBubbleContainer = document.querySelector(`[data-bubble-container=${segment[0]}_a]`);
         let rightBubblebox = document.querySelector(`[data-bubble=${segment[0]}_b]`);
+        let rightBubbleContainer = document.querySelector(`[data-bubble-container=${segment[0]}_b]`);
 
         if(countTextbox.innerHTML == addText){
             countTextbox.innerHTML = removeText;
+            console.log(selectorbox);
+            selectorbox.checked = true;
+            for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
+                bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
+            };
+            rightBubblebox.classList.add("connector_bubble_active");
         }
         else if(countTextbox.innerHTML == removeText){
             countTextbox.innerHTML = addText;
-            if(selectorbox.checked == true){
-                console.log("B is checked");
-                let newSelectorbox = document.querySelector(`[data-selector=${segment[0]}_a]`);
-                newSelectorbox.checked = true;
-                rightBubblebox.classList.remove("connector_bubble_active");
-                leftBubblebox.classList.add("connector_bubble_active");
-            }
+            let newSelectorbox = document.querySelector(`[data-selector=${segment[0]}_a]`);
+            newSelectorbox.checked = true;
+            for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
+            bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
+            };
+            leftBubblebox.classList.add("connector_bubble_active");
         }
         selectorContainer.classList.toggle("hidden");     
-        rightBubblebox.classList.toggle("right_io");
-        leftBubblebox.classList.toggle("left_io");      
+        rightBubbleContainer.classList.toggle("move_right_io");
+        leftBubbleContainer.classList.toggle("move_left_io");      
     });
 };
 

@@ -247,16 +247,18 @@ button:hover{
     display: flex;
     justify-content: center;
     position: relative;
+    container-type: inline-size;
+    box-sizing: border-box;
 }
 
-.right_io{
-    transform: translateX(63%);
+.move_right_io{
+    transform: translatex(calc(50cqw - 50%));
 }
-.left_io{
-    transform: translateX(-63%);
+.move_left_io{
+    transform: translatex(calc(-50cqw + 50%));
 }
-.right_io_hidden{
-    z-index: 1;
+.io_hidden{
+    z-index: -1;
 }
 .connectors_output_segment{
     grid-column-start: 3;
@@ -278,12 +280,25 @@ button:hover{
 
 }
 
+.main_bubble_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    height: 80%;
+    width: 40%;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    justify-content: center;
+    container-type: inline-size;
+}
+
 .connector_bubble{
     background-color: white;
     border: 4px solid black;
-    border-radius: 20%;
-    height: 100px;
-    width: 100px;
+    border-radius: 25px;
+    height: 75%;
+    width: 100%;
     display: block;
     margin: 2px;
     cursor: pointer;
@@ -292,7 +307,9 @@ button:hover{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    position: absolute;
+    position: relative;
+    padding: 0px 7px 3px 7px;
+    box-sizing: border-box;
 }
 .connector_bubble:hover{
     background-color: rgb(247, 247, 247);
@@ -304,9 +321,26 @@ button:hover{
 }
 
 .bubble_text{
-    margin-bottom: 2px;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 1px 7px 1px 7px;
+    background-color: white;
+    font-size: 1.2rem;
 }
 
+.main_bubble_container:hover .bubble_text{
+    transform: translatey(-50cqw);
+}
+.main_bubble_container:hover .bubble_details{
+    transform: translatey(50cqw);
+}
+.bubble_id_text{
+    margin: 0;
+    font-size: 1rem;
+}
 .bubble_img{
     max-width: 100%;
     min-height: 50%;
@@ -315,13 +349,15 @@ button:hover{
 
 
 .bubble_details{
-    transition-duration: 0.3s;
-    background-color: lightgray;
-    border: 2px solid blue;
+    position: absolute;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+    background-color: white;
+    border: 2px solid black;
     padding: 1px 7px 1px 7px;
     border-radius: 20px;
-    margin-top: 4px;
-    margin-bottom: 3px;
+    cursor: pointer;
+    font-size: 1.2rem;
 }
 
 .bubble_details:hover{
