@@ -41,6 +41,10 @@ for(countBtn of connectorCountButtons){
         let rightBubblebox = document.querySelector(`[data-bubble=${segment[0]}_b]`);
         let rightBubbleContainer = document.querySelector(`[data-bubble-container=${segment[0]}_b]`);
 
+        let bubbleImageElement = document.querySelector(`[data-bubble-image=${currentCountBtnID}]`);
+        let bubbleTextElement = document.querySelector(`[data-bubble-text=${currentCountBtnID}]`);
+        let bubbleDetailElement = document.querySelector(`[data-bubble-detail=${currentCountBtnID}]`);
+
         if(countTextbox.innerHTML == addText){
             countTextbox.innerHTML = removeText;
             console.log(selectorbox);
@@ -61,7 +65,13 @@ for(countBtn of connectorCountButtons){
         }
         selectorContainer.classList.toggle("hidden");     
         rightBubbleContainer.classList.toggle("move_right_io");
-        leftBubbleContainer.classList.toggle("move_left_io");      
+        leftBubbleContainer.classList.toggle("move_left_io");
+        
+        bubbleImageElement.src = "";
+        bubbleTextElement.innerHTML = "";
+        bubbleTextElement.classList.add("hidden");
+        bubbleDetailElement.getAttribute("data-bubble-connectorid").value = "";
+        bubbleDetailElement.classList.add("hidden");
     });
 };
 
@@ -80,14 +90,21 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
         console.log(activeBubbleConnectorSL);
         let bubbleSegment = activeBubbleConnectorSL.split("_");
         let cellID = e.target.getAttribute("data-cell-insert");
-        let bubbleImageElement = document.querySelector(`[data-bubble-image=${activeBubbleConnectorSL}]`);
-        let cellImageElement = document.querySelector(`[data-cell-image=${cellID}]`);
-        bubbleImageElement.src = cellImageElement.src;
-        
 
-        //get all bubbles
-        //get the active bubble
-        //get active bubble connector segment and letter
+        let bubbleImageElement = document.querySelector(`[data-bubble-image=${activeBubbleConnectorSL}]`);
+        let bubbleTextElement = document.querySelector(`[data-bubble-text=${activeBubbleConnectorSL}]`);
+        let bubbleDetailElement = document.querySelector(`[data-bubble-detail=${activeBubbleConnectorSL}]`);
+        console.log(`[data-bubble-text=${activeBubbleConnectorSL}]`);
+        let cellImageElement = document.querySelector(`[data-cell-image=${cellID}]`);
+        let cellValues = document.querySelectorAll(`[data-cell-cid=${cellID}`);
+        let cellValueName = cellValues[1].getAttributeNode("value").value;
+        let cellValueSize = cellValues[2].getAttributeNode("value").value;
+
+        bubbleImageElement.src = cellImageElement.src;
+        console.log(bubbleTextElement);
+        bubbleTextElement.innerHTML = cellValueName + ", " + cellValueSize;
+        bubbleTextElement.classList.remove("hidden");
+        bubbleDetailElement.classList.remove("hidden");
 
     });
 };
