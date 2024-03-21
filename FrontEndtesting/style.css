@@ -139,9 +139,6 @@ button:hover{
     gap: 5px;
 }
 
-.segment_connectors_container:hover{
-    /* background-color: red; */
-}
 
 .connector_selector_radio_container:hover input ~ .connector_selector_radio{
     background-color: rgb(151, 166, 251);
