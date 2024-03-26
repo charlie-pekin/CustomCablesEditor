@@ -295,7 +295,7 @@ button:hover{
 }
 
 .center{
-
+    display: flex;
 }
 
 .main_bubble_container{
