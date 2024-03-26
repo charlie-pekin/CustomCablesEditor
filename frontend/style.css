@@ -1,0 +1,427 @@
+body{
+    margin: 0px;
+}
+.body_container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.hidden{
+    display: none !important;
+}
+.connetor_container{
+    height: auto;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(230, 230, 230);
+    border-right: 5px solid blue;
+    align-items: center;
+    padding: 0.5%;
+}
+.cable_styling{
+    height: auto;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(230, 230, 230);
+    border-left: 5px solid red;
+    align-items: center;
+    padding: 0.5%;
+}
+.cable_editor_container{
+    display: flex;
+    height: auto;
+    width: 50%;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    padding: 0.5%;
+
+}
+
+.header_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.title{
+    font-size: 3rem;
+}
+.side_title{
+    font-size: 3rem;
+}
+.pre-config_header{
+    font-size: 1vw;
+}
+button{
+    border-radius: 50px;
+    padding: 10px 18px 10px 18px;
+    transition-duration: 0.3s;
+    font-size: 13px;
+    user-select: none;
+}
+button:hover{
+    cursor: pointer;
+}
+.center_btn{
+    background-color: rgb(247, 247, 247);
+    border: 2px solid rgb(0, 0, 0);
+}
+.center_btn:hover{
+    background-color: gray;
+    color: white;
+}
+.left_btn{
+    background-color: rgb(247, 247, 247);
+    border: 2px solid blue;
+}
+.left_btn:hover{
+    background-color: rgb(90, 90, 255);
+    color: white;
+}
+.right_btn{
+    background-color: rgb(247, 247, 247);
+    border: 2px solid red;
+}
+.right_btn:hover{
+    background-color: rgb(255, 90, 90);
+}
+.search{
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    width: 100%;
+    margin-left: 10px;
+}
+.search:active{
+    border: none;
+    outline: none;
+}
+.search:focus{
+    outline: none;
+}
+.filter_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    gap: 10px;
+}
+.filter_container button{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.connector_selector_container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.connector_selector_container h1{
+    display: block;
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.6rem;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+.segment_connectors_container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4px;
+    overflow: hidden;
+}
+
+
+.connector_selector_radio_container:hover input ~ .connector_selector_radio{
+    background-color: rgb(151, 166, 251);
+    transform: scale(1);
+}
+
+.connector_selector_radio_container{
+    cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 50%;
+    transition: all 0.6s ease-in-out;
+    transform: scale(1);
+    overflow: hidden;
+}
+
+.connector_selector_radio_container_hidden{
+    transform: scale(0);
+    flex: 0 1 0;
+    border-width: 0px;
+    padding: 0px;
+    
+}
+.hidden_output_B{
+    margin-left: -2px;
+
+}
+.hidden_input_B{
+    margin-left: -4px;
+}
+
+.connector_selector_radio_container input{
+    display: none;
+}
+.connector_selector_radio_container input:checked ~ .connector_selector_radio{
+    background-color: rgb(90, 90, 255);
+    color: white;
+}
+
+.connector_selector_radio{
+    border: 2px solid blue;
+    padding: 5px 7px 5px 7px;
+    border-radius: 50px;
+    flex-grow: 1;
+    text-align: center;
+    user-select: none;
+    transition: all 0.3s ease-in-out;
+    text-wrap: nowrap;
+}
+
+
+.connetor_results_container{
+    width: 100%;
+    flex-grow: 1;
+    background-color: rgb(151, 166, 251);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.connector_cell_container{
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid blue;
+}
+.connector_cell_type_1{
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 150px;
+}
+.connector_cell_type_1 img{
+    width: 55%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+.cell_text_type_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 10px;
+}
+.cell_text_type_1 p{
+    margin: 0px;
+}
+.connector_cell_more_options{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px;
+    gap: 5px;
+}
+.connector_cell_more_options button{
+    background-color: rgb(247, 247, 247);
+    border: 2px solid blue;
+    padding: 5px 7px 5px 7px;
+    margin-top: 5px;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.connector_cell_more_options button:hover{
+    background-color: rgb(90, 90, 255);
+    color: white;
+}
+
+
+.cable_full{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.input_output{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    container-type: inline-size;
+    box-sizing: border-box;
+}
+
+.move_right_io{
+    transform: translatex(calc(50cqw - 50%));
+}
+.move_left_io{
+    transform: translatex(calc(-50cqw + 50%));
+}
+.io_hidden{
+    z-index: -1;
+}
+.connectors_output_segment{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-items: flex-start;
+}
+
+.connectors_input_segment{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 9;
+    grid-row-end: 11;
+    align-items: flex-end;
+}
+
+.center{
+
+}
+
+.main_bubble_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    height: 80%;
+    width: 40%;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    justify-content: center;
+    container-type: inline-size;
+}
+
+.connector_bubble{
+    background-color: white;
+    border: 4px solid black;
+    border-radius: 25px;
+    height: 75%;
+    width: 100%;
+    display: block;
+    margin: 2px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0px 7px 3px 7px;
+    box-sizing: border-box;
+}
+.connector_bubble:hover{
+    background-color: rgb(247, 247, 247);
+}
+
+.connector_bubble_active{
+    border-color: blue;
+    box-shadow: 0px 0px 15px 0px blue;
+}
+
+.bubble_text{
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 1px 7px 1px 7px;
+    background-color: white;
+    font-size: 1.2rem;
+    text-wrap: nowrap;
+    transform: scaleX(0);
+}
+
+.main_bubble_container:hover .bubble_text{
+    transform: scaleX(1) translatey(-50cqw);
+}
+.main_bubble_container:hover .bubble_details{
+    transform: scaleX(1) translatey(50cqw);
+}
+.bubble_id_text{
+    margin: 0;
+    font-size: 1rem;
+}
+.bubble_img{
+    max-width: 100%;
+    min-height: 50%;
+    flex-grow: 1;
+}
+
+
+.bubble_details{
+    position: absolute;
+    z-index: -1;
+    transition: all 0.4s ease-in-out;
+    background-color: white;
+    border: 2px solid black;
+    padding: 1px 7px 1px 7px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transform: scaleX(0);
+}
+
+.bubble_details:hover{
+    background-color: rgb(151, 166, 251);
+}
+
+.connector_count_container{
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+}
+.connector_count_button{
+    display: block;
+    border: 3px solid blue;
+    border-radius: 20px;
+    background-color: lightgray;
+    cursor: pointer;
+    padding: 5px 7px 5px 7px;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.07rem;
+    font-weight: bold;
+    transition-duration: 0.3s;
+    user-select: none;
+    margin-right: 6px;
+}
+.connector_count_button:hover{
+    background-color: rgb(151, 166, 251);
+    /* color: white; */
+}
+
+.count_output{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-items: flex-end;
+}
+
+.count_input{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 10;
+    grid-row-end: 11;
+    align-items: flex-start;
+}
