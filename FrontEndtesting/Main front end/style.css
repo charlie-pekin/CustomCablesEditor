@@ -136,18 +136,39 @@ button:hover{
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
-    gap: 5px;
+    gap: 4px;
+    overflow: hidden;
 }
 
 
 .connector_selector_radio_container:hover input ~ .connector_selector_radio{
     background-color: rgb(151, 166, 251);
+    transform: scale(1);
 }
 
 .connector_selector_radio_container{
     cursor: pointer;
     display: flex;
     flex-grow: 1;
+    flex-basis: 50%;
+    transition: all 0.6s ease-in-out;
+    transform: scale(1);
+    overflow: hidden;
+}
+
+.connector_selector_radio_container_hidden{
+    transform: scale(0);
+    flex: 0 1 0;
+    border-width: 0px;
+    padding: 0px;
+    
+}
+.hidden_output_B{
+    margin-left: -2px;
+
+}
+.hidden_input_B{
+    margin-left: -4px;
 }
 
 .connector_selector_radio_container input{
@@ -165,6 +186,8 @@ button:hover{
     flex-grow: 1;
     text-align: center;
     user-select: none;
+    transition: all 0.3s ease-in-out;
+    text-wrap: nowrap;
 }
 
 

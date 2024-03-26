@@ -1,4 +1,5 @@
 
+
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
 let bubbleContainers = document.getElementsByClassName("main_bubble_container");
@@ -63,7 +64,7 @@ for(countBtn of connectorCountButtons){
             };
             leftBubblebox.classList.add("connector_bubble_active");
         }
-        selectorContainer.classList.toggle("hidden");     
+        selectorContainer.classList.toggle("connector_selector_radio_container_hidden");     
         rightBubbleContainer.classList.toggle("move_right_io");
         leftBubbleContainer.classList.toggle("move_left_io");
         
