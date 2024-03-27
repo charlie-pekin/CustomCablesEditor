@@ -241,10 +241,9 @@ button:hover{
 .connector_cell_more_options button{
     background-color: rgb(247, 247, 247);
     border: 2px solid blue;
-    padding: 5px 7px 5px 7px;
-    margin-top: 5px;
-    flex-grow: 1;
-    flex-basis: 0;
+    padding: 7px 0px 7px 0px;
+    flex-basis: 90%;
+    font-size: 1.15rem;
 }
 
 .connector_cell_more_options button:hover{
