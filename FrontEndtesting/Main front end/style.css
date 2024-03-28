@@ -295,6 +295,21 @@ button:hover{
 
 .center{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 3px solid red; */
+    box-sizing: border-box;
+
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 10;
+}
+
+.cable_SVG{
+    width: auto;
+    height: 91%;
 }
 
 .main_bubble_container{
@@ -325,7 +340,7 @@ button:hover{
     align-items: center;
     justify-content: space-between;
     position: relative;
-    padding: 0px 7px 3px 7px;
+    padding: 0px 7px 6px 7px;
     box-sizing: border-box;
 }
 .connector_bubble:hover{
