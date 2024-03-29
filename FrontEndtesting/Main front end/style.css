@@ -295,6 +295,7 @@ button:hover{
 
 .center{
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -307,9 +308,14 @@ button:hover{
     grid-row-end: 10;
 }
 
-.cable_SVG{
+.cable_SVG_center{
     width: auto;
     height: 91%;
+}
+.cable_SVG_left{
+    width: auto;
+    height: 91%;
+    position: absolute;
 }
 
 .main_bubble_container{
