@@ -13,11 +13,22 @@
         align-items: center;
         justify-content: center;
     }
-    input{
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .inputbox{
         width: 100%;
+        text-align: center;
     }
     .flex-box-parent{
-        width: 300px;
+        width: 350px;
         height: 600px;
         border: 3px solid black;
         box-sizing: border-box;
@@ -30,7 +41,7 @@
         flex-grow: 1;
         width: 50%;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         padding: 0px 15px 0px 15px;
         box-sizing: border-box;
         border-right: 3px solid black;
@@ -80,44 +91,139 @@
 </style>
 <body>
     <div class="flex-box-parent">
-        <div class="total_container">
-            <div>Total Inches</div>
-            <input data-total-inches="total" type="number" min="0" max="120" step="1" value="36">
+        <div class="total_container" data-segment-parent="total">
+            
+            <div>
+                <div>Output Inches</div>
+                <input class="inputbox" data-segment-inches="output" type="number" min="0" max="120" step="1" value="0">
+                <div>
+                    <input type="radio" id="outputFocus" name="focusRadios" data-radio="output">
+                    <label for="outputFocus">Lock</label>
+                </div>    
+            </div>
+
+            <div>
+                <div>Total Inches</div>
+                <input class="inputbox" data-total-inches="total" type="number" min="0" max="120" step="1" value="0">
+                <div>
+                    <input type="radio" id="totalFocus" name="focusRadios" checked="true" data-radio="total">
+                    <label for="totalFocus">Remove Lockes</label>
+                </div>             
+            </div>
+
+            <div>
+                <div>Input Inches</div>
+                <input class="inputbox" data-segment-inches="input" type="number" min="0" max="120" step="1" value="0">
+                <div>
+                    <input type="radio" id="inputFocus" name="focusRadios" data-radio="input">
+                    <label for="inputFocus">Lock</label>
+                </div> 
+            </div>
+            
             
         </div>
         <div class="segment_container">
-            <div class="segments output segment_25">
-                <div>Output Inches</div>
-                <input data-segment-inches="output" type="number" min="0" max="120" step="1" value="0">
+            <div class="segments output segment_25" data-segment-parent="output">
+                <!-- <div>Output Inches</div>
+                <input class="inputbox" data-segment-inches="output" type="number" min="0" max="120" step="1" value="0">
+                <div>
+                    <input type="radio" id="outputFocus" name="focusRadios" data-radio="output">
+                    <label for="outputFocus">Lock</label>
+                </div>               -->
             </div>
-            <div class="segments input segment_75">
-                <div>Input Inches</div>
-                <input data-segment-inches="input" type="number" min="0" max="120" step="1" value="0">
+            <div class="segments input segment_75" data-segment-parent="input">
+                <!-- <div>Input Inches</div>
+                <input class="inputbox" data-segment-inches="input" type="number" min="0" max="120" step="1" value="0">
+                <div>
+                    <input type="radio" id="inputFocus" name="focusRadios" data-radio="input">
+                    <label for="inputFocus">Lock</label>
+                </div>     -->
             </div>
         </div>
     </div>
 
     <script>
         let AllSegmentInputElements = document.querySelectorAll("[data-segment-inches]");
+        let OutputInputElement = document.querySelector("[data-segment-inches=output]");
+        let InputInputElement = document.querySelector("[data-segment-inches=input]");
         let TotalInputElement = document.querySelector("[data-total-inches]");
-        for(input of AllLengthInputElements){
+        //set defaults
+        const defaultTotal = 36;
+        TotalInputElement.value = defaultTotal;
+        OutputInputElement.value = getTotalRatios(defaultTotal)[1];//25%
+        InputInputElement.value = getTotalRatios(defaultTotal)[3];//75%
+
+        for(input of AllSegmentInputElements){
             input.addEventListener("change",function(e){
-                console.log(e.currentTarget.getAttribute("data-inches") + " " + e.currentTarget.value);
                 //input check
-                    //Find all the factions of the total
+                    const total = Math.round(TotalInputElement.value);//get total
+                    let updatedSegment = e.currentTarget; //get udpated segment
+                    let updatedSegmentType = updatedSegment.getAttribute("data-segment-inches"); //get udpated segement type (input or output)
+                    let updatedSegmentParent = document.querySelector(`[data-segment-parent=${updatedSegmentType}]`);
+                    let otherSegment;
+                    let othersegemntParent;
+
+                    if(updatedSegmentType == "input"){//get if the input or output segemnt is updated
+                        otherSegment = document.querySelector(`[data-segment-inches=${"output"}]`);//(`[data-bubble=${segment[0]}_a]`);
+                    }
+                    else if(updatedSegmentType == "output"){
+                        otherSegment = document.querySelector(`[data-segment-inches=${"input"}]`);//(`[data-bubble=${segment[0]}_a]`);
+                    }
+                    otherSegmentType = otherSegment.getAttribute("data-segment-inches"); //get other element segement
+                    otherSegmentParent = document.querySelector(`[data-segment-parent=${otherSegmentType}]`);
+
+                    console.log("updated segment = " + updatedSegmentType+ " | other segment = " + otherSegmentType);
+                    
+                    otherSegment.value = total - updatedSegment.value; //udpate the other segment value
+
+                    const segmentClassNames = ["segment_0", "segment_25", "segment_50", "segment_75", "segment_100"] //get all class names
+
+                    let totalRatios = getTotalRatios(total);//get all ratios
+    
+                    //update the radio box
+                    for(segmentClass of segmentClassNames){ //remove all "segment_" classes
+                        console.log("removing class = " + segmentClass);
+                        updatedSegmentParent.classList.remove(segmentClass);
+                        otherSegmentParent.classList.remove(segmentClass);
+                    };
+                    
+
+                    if(updatedSegment.value == totalRatios[0]){//0%
+                        updatedSegmentParent.classList.add(segmentClassNames[0]);
+                        otherSegmentParent.classList.add(segmentClassNames[4]);                       
+                    }
+                    else if(updatedSegment.value > totalRatios[0] && updatedSegment.value <= totalRatios[1]){//25%
+                        updatedSegmentParent.classList.add(segmentClassNames[1]);
+                        otherSegmentParent.classList.add(segmentClassNames[3]);
+                    }
+                    else if(updatedSegment.value > totalRatios[1] && updatedSegment.value <= totalRatios[2]){//50%
+                        updatedSegmentParent.classList.add(segmentClassNames[2]);
+                        otherSegmentParent.classList.add(segmentClassNames[2]);
+                    }
+                    else if(updatedSegment.value > totalRatios[3] || updatedSegment.value <= totalRatios[4]){//75%
+                        updatedSegmentParent.classList.add(segmentClassNames[3]);
+                        otherSegmentParent.classList.add(segmentClassNames[1]);
+                    }
+                    else if(updatedSegment == totalRatios[4]){
+                        updatedSegmentParent.classList.add(segmentClassNames[4]);
+                        otherSegmentParent.classList.add(segmentClassNames[0]);
+                    }
+                    
                     console.log(getTotalRatios(TotalInputElement.value));
                     
             });
         }
-        console.log(AllLengthInputElements);
+        console.log(AllSegmentInputElements);
 
         function getTotalRatios(total){
             const segments = [0,0,0,0,0];//0,25,50,75,100
+            rounedTotal = Math.round(total);
             segments[0] = 0;
-            segments[1] = Math.round(total * 0.25);
-            segments[2] = Math.round(total * 0.5);
-            segments[3] = Math.round(total * 0.75);
-            segments[4] = total;
+            segments[1] = Math.round(rounedTotal * 0.25);
+            segments[2] = Math.round(rounedTotal * 0.5);
+            segments[3] = Math.round(rounedTotal * 0.75);
+            segments[4] = rounedTotal;
+            return segments;
 
         }
     </script>

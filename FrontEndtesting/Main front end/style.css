@@ -266,6 +266,7 @@ button:hover{
     position: relative;
     container-type: inline-size;
     box-sizing: border-box;
+    z-index: 5;
 }
 
 .move_right_io{
