@@ -34,6 +34,7 @@
         padding: 0px 15px 0px 15px;
         box-sizing: border-box;
         border-right: 3px solid black;
+        background-color: lightgray;
     }
     .segment_container{
         display: flex;
@@ -74,23 +75,30 @@
 <body>
     <div class="flex-box-parent">
         <div class="total_container">
-            <div>Total Length</div>
-            <input type="text">
+            <div>Total Inches</div>
+            <input data-inches="total" type="number" min="0" max="120" step="1" value="0">
+            
         </div>
         <div class="segment_container">
             <div class="segments output segemnt_25">
-                <div>Output Length</div>
-                <input type="text">
+                <div>Output Inches</div>
+                <input data-inches="output" type="number" min="0" max="120" step="1" value="0">
             </div>
             <div class="segments input segemnt_75">
-                <div>Input Length</div>
-                <input type="text">
+                <div>Input Inches</div>
+                <input data-inches="input" type="number" min="0" max="120" step="1" value="0">
             </div>
         </div>
     </div>
 
     <script>
-
+        let AllLengthInputElements = document.querySelectorAll("[data-inches]");
+        for(input in AllLengthInputElements){
+            input.addEvenListner("change",function(e){
+                console.log(e.currentTarget);
+            });
+        }
+        console.log(AllLengthInputElements);
     </script>
 </body>
 </html>
