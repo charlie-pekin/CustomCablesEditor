@@ -62,43 +62,64 @@
     .input{
         background-color: lightcoral;
     }
-    .segemnt_25{
+    .segment_0{
+        height: 0%;
+    }
+    .segment_25{
         height: 25%;
     }
-    .segemnt_50{
+    .segment_50{
         height: 50%;
     }
-    .segemnt_75{
+    .segment_75{
         height: 75%;
+    }
+    .segment_100{
+        height: 85%;
     }
 </style>
 <body>
     <div class="flex-box-parent">
         <div class="total_container">
             <div>Total Inches</div>
-            <input data-inches="total" type="number" min="0" max="120" step="1" value="0">
+            <input data-total-inches="total" type="number" min="0" max="120" step="1" value="36">
             
         </div>
         <div class="segment_container">
-            <div class="segments output segemnt_25">
+            <div class="segments output segment_25">
                 <div>Output Inches</div>
-                <input data-inches="output" type="number" min="0" max="120" step="1" value="0">
+                <input data-segment-inches="output" type="number" min="0" max="120" step="1" value="0">
             </div>
-            <div class="segments input segemnt_75">
+            <div class="segments input segment_75">
                 <div>Input Inches</div>
-                <input data-inches="input" type="number" min="0" max="120" step="1" value="0">
+                <input data-segment-inches="input" type="number" min="0" max="120" step="1" value="0">
             </div>
         </div>
     </div>
 
     <script>
-        let AllLengthInputElements = document.querySelectorAll("[data-inches]");
-        for(input in AllLengthInputElements){
-            input.addEvenListner("change",function(e){
-                console.log(e.currentTarget);
+        let AllSegmentInputElements = document.querySelectorAll("[data-segment-inches]");
+        let TotalInputElement = document.querySelector("[data-total-inches]");
+        for(input of AllLengthInputElements){
+            input.addEventListener("change",function(e){
+                console.log(e.currentTarget.getAttribute("data-inches") + " " + e.currentTarget.value);
+                //input check
+                    //Find all the factions of the total
+                    console.log(getTotalRatios(TotalInputElement.value));
+                    
             });
         }
         console.log(AllLengthInputElements);
+
+        function getTotalRatios(total){
+            const segments = [0,0,0,0,0];//0,25,50,75,100
+            segments[0] = 0;
+            segments[1] = Math.round(total * 0.25);
+            segments[2] = Math.round(total * 0.5);
+            segments[3] = Math.round(total * 0.75);
+            segments[4] = total;
+
+        }
     </script>
 </body>
 </html>
