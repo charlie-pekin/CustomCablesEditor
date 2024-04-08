@@ -109,3 +109,13 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
 
     });
 };
+
+const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
+for(eachPadlockBtn of AllPadlockButtons){
+    eachPadlockBtn.addEventListener("click",function(e){
+        const btnClicked = e.currentTarget;
+        const btnPadlock = btnClicked.querySelector("[data-padlock-svg]");
+        btnPadlock.classList.toggle("active");
+
+    });
+}

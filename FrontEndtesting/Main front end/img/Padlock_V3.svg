@@ -1,0 +1,7 @@
+<svg width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Padlock">
+<path id="shackle" d="M24 5.5V32.5H19.5V7.99999C19.5 3.99999 8.5 3.99999 8.5 7.99999V14.5C8.5 16 4 16 4 14.5V5.49999C4 -0.500021 24 -0.500008 24 5.5Z" fill="white" stroke="black" stroke-width="2"/>
+<rect id="lock_body" x="1" y="21" width="26" height="26" rx="7" fill="white" stroke="black" stroke-width="2"/>
+<rect id="keyhole" x="11" y="28" width="6" height="12" rx="3" fill="black"/>
+</g>
+</svg>

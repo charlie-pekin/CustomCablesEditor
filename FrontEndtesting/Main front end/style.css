@@ -484,7 +484,7 @@ button:hover{
 }
 .padlock_btn{
     display: flex;
-    border: 2px solid black;
+    border: 2px solid red;
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -499,27 +499,36 @@ button:hover{
 .padlock_btn:hover{
     background-color: rgb(252, 145, 145);
 }
-#Padlock_svg{
+.Padlock_svg{
     position: relative;
-    width: 51%;
-    height: 71%;
-    top: 3px;
+    width: 52%;
+    height: 100%;
     overflow: visible;
 }
-#shackle{
+
+.shackle{
     transition: all 0.6s ease;
-}
-#keyhole{
-    transition: all 0.6s ease;
-    transform-origin: center 65%;
-}
-#keyhole .active{
-    transform: rotate();
-    rotate: 90deg;
-}
-#lock_body{
     fill: white;
 }
-#lock_body .active{
+
+.keyhole{
+    transition: all 0.6s ease;
+    transform-origin: center 71%;
+}
+
+.lock_body{
+    fill: white;
+}
+
+.active .shackle{
+    transform: translateY(8px);
+    fill: rgb(252, 31, 31);
+}
+
+.active .keyhole{
+    rotate: 90deg;
+}
+
+.active .lock_body{
     fill: rgb(252, 31, 31);
 }
