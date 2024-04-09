@@ -313,6 +313,7 @@ button:hover{
 .cable_SVG_center{
     width: auto;
     height: 91%;
+    position: absolute;
 }
 .cable_SVG_left{
     width: auto;
@@ -421,7 +422,7 @@ button:hover{
     padding: 5px 7px 5px 7px;
     flex-grow: 1;
     text-align: center;
-    font-size: 1.07rem;
+    font-size: 1vw;
     font-weight: bold;
     transition-duration: 0.3s;
     user-select: none;
@@ -458,6 +459,8 @@ button:hover{
     flex-grow: 1;
     background-color: lightcoral;
     padding: 5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .style_container{
@@ -471,23 +474,43 @@ button:hover{
 .style_container_header{
     font-size: 1.7rem;
 }
+.length_row_segment{
+    text-align: center;
+    text-wrap: nowrap;
+    font-weight: bold;
+    font-size: 1vw;
+    /* margin: 0px 2px; */
+}
 .length_row{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     min-height: 30px;
     box-sizing: border-box;
     padding: 5px;
     width: 100%;
     border-top: 1px solid lightgray;
+    gap: 0.2vw;
+}
+.btn_size{
+    width: 2vw;
+    height: 2vw;
 }
 .padlock_btn{
     display: flex;
     border: 2px solid red;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+.length_btn{
+    border: 2px solid red;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -495,6 +518,7 @@ button:hover{
     padding: 0px;
     position: relative;
     transition: all 0.3s ease-in-out;
+    font-size: 0.9vw;
 }
 .padlock_btn:hover{
     background-color: rgb(252, 145, 145);
@@ -531,4 +555,20 @@ button:hover{
 
 .active .lock_body{
     fill: rgb(252, 31, 31);
+}
+
+.length_number_parent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+.length_number{
+    text-align: center;
+    font-size: 1.4vw;
+}
+.length_unit{
+    text-align: center;
+    font-size: 1vw;
+    margin-left: 2px;
 }
