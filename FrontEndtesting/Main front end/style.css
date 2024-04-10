@@ -47,10 +47,10 @@ body{
     width: 100%;
 }
 .title{
-    font-size: 3rem;
+    font-size: 3vw;
 }
 .side_title{
-    font-size: 3rem;
+    font-size: 2.2vw;
 }
 .pre-config_header{
     font-size: 1vw;
@@ -156,13 +156,6 @@ button:hover{
     overflow: hidden;
 }
 
-.connector_selector_radio_container_hidden{
-    transform: scale(0);
-    flex: 0 1 0;
-    border-width: 0px;
-    padding: 0px;
-    
-}
 .hidden_output_B{
     margin-left: -2px;
 
@@ -382,7 +375,7 @@ button:hover{
 }
 .bubble_id_text{
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9vw;
 }
 .bubble_img{
     max-width: 100%;
@@ -457,7 +450,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    background-color: lightcoral;
+    background-color: rgb(250, 149, 149);
     padding: 5px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -470,6 +463,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 .style_container_header{
     font-size: 1.7rem;
@@ -519,6 +513,10 @@ button:hover{
     position: relative;
     transition: all 0.3s ease-in-out;
     font-size: 0.9vw;
+}
+
+.length_btn:hover{
+    background-color: rgb(252, 145, 145);
 }
 .padlock_btn:hover{
     background-color: rgb(252, 145, 145);
@@ -571,4 +569,19 @@ button:hover{
     text-align: center;
     font-size: 1vw;
     margin-left: 2px;
+}
+
+.length_row_gird{
+    width: 100%;
+    flex-basis: 100px;
+    display: grid;
+    transition: all 0.5s ease-in-out;
+    flex-grow: 1;
+}
+
+.flex_hide{
+    transform: scale(0);
+    flex: 0 1 0;
+    border-width: 0px;
+    padding: 0px;
 }

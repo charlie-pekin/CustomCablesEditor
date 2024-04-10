@@ -27,9 +27,11 @@ for(selectBubble of connectorBubbles){
     });
 }
 
-let connectorCountButtons = document.getElementsByClassName("connector_count_button");
-let addText = "Add";
-let removeText = "Remove";
+const connectorCountButtons = document.getElementsByClassName("connector_count_button");
+const addText = "Add";
+const removeText = "Remove";
+let outputB_connector_active = false;
+let inputB_connector_active = false;
 for(countBtn of connectorCountButtons){
     countBtn.addEventListener("click", function(e){
         let currentCountBtnID = e.currentTarget.getAttribute("data-count_connector");
@@ -64,7 +66,7 @@ for(countBtn of connectorCountButtons){
             };
             leftBubblebox.classList.add("connector_bubble_active");
         }
-        selectorContainer.classList.toggle("connector_selector_radio_container_hidden");     
+        selectorContainer.classList.toggle("flex_hide");     
         rightBubbleContainer.classList.toggle("move_right_io");
         leftBubbleContainer.classList.toggle("move_left_io");
         
