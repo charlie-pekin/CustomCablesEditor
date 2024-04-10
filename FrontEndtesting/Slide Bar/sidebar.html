@@ -71,7 +71,7 @@
     <div class="parent">
         <div class="test_title">Length Slider Test Page</div>
         <div class="total_title">Total Length = <input data-input="total" type="number" min="0" max="100" step="1"></div>
-        <input type="range" id="slidebar" name="slidebar" min="0" max="100" step="1">
+        <input type="range" id="slidebar" name="slidebar" min="0" max="100" step="1" value="0">
         <div class="values_container">
             <div class="value_wrapper">
                 <div class="value_title">left =</div>
@@ -119,9 +119,10 @@
 
             const currentTotal = this.value;
 
-            UpdateSteps();
-            UpdateValues();
             UpdateSliderMax(currentTotal);
+            UpdateSteps();
+            UpdateSliderValue();
+            UpdateValues();
             ShowConsoleLog();
         }
 
@@ -151,7 +152,11 @@
         }
 
         function UpdateSliderValue(){
-            const currentPos = 0;
+            let newValue = Math.round((previousRatio*totalInput.value)*2)/2;
+            slider.value = newValue;
+            console.log("New Value: expected = " + newValue + " actual = " + slider.value);
+
+
         }
 
         function HalfTotal(total){
