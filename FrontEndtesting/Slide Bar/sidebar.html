@@ -1,0 +1,186 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        background-color: rgb(46, 46, 46);
+        align-items: center;
+        justify-content: center;
+    }
+    .parent{
+        min-width: 500px;
+        min-height: 300px;
+        background-color: darkgray;
+        display: flex;
+        padding: 5px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 1vw;
+    }
+    #slidebar{
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 100%;
+        height: 25px;
+        background-color: red;
+        outline: none;
+    }
+    #slidebar::-webkit-slider-thumb{
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 20px;
+        height: 40px;
+        background-color: purple;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    #slidebar::-webkit-slider-thumb:hover{
+        box-shadow: 0px 0px 3px 1px rgb(43, 43, 43);
+    }
+    .test_title{
+        font-size: 1.5vw;
+        font-weight: bold;
+    }
+    .values_container{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+    .value_wrapper{
+        display: flex;
+        
+    }
+    #split_btn{
+        border: 2px solid purple;
+        background-color: red;
+        border-radius: 20px;
+        padding: 5px;
+        width: 25%;
+        color: white;
+        font-size: inherit;
+    }
+
+</style>
+<body>
+    <div class="parent">
+        <div class="test_title">Length Slider Test Page</div>
+        <div class="total_title">Total Length = <input data-input="total" type="number" min="0" max="100" step="1"></div>
+        <input type="range" id="slidebar" name="slidebar" min="0" max="100" step="1">
+        <div class="values_container">
+            <div class="value_wrapper">
+                <div class="value_title">left =</div>
+                <div class="value_number" id="left">0</div>
+            </div>
+            <button id="split_btn">Split 50%</button>
+            <div class="value_wrapper">
+                <div class="value_title">Right =</div>
+                <div class="value_number" id="right">0</div>
+            </div>           
+        </div>
+    </div>
+    <script>
+        const totalInput = document.querySelector("[data-input=total]");
+        const slider = document.getElementById("slidebar");
+        const leftNumber = document.getElementById("left");
+        const rightNumber = document.getElementById("right");
+        const splitButton = document.getElementById("split_btn");
+
+        const defaultTotal = 100;
+        const maxValue = 100;///inches
+        const minValue = 0;///inches
+        let previousRatio = 0;
+
+        totalInput.value = defaultTotal;//set the default value to the total
+        UpdateSliderMax(totalInput.value);
+        HalfTotal(totalInput.value);
+        //UpdateSliderValue();
+        UpdateValues();
+        ShowConsoleLog();
+
+        UpdateRatio(totalInput.value,slider.value);
+
+        // slider.addEventListener("change",function(e){
+        //     console.log("slider value = " + slider.value);
+        // });
+        totalInput.oninput = function(){
+            if(this.value <= minValue){
+                this.value = minValue;
+            }
+            else if(this.value >= maxValue){
+                this.value = maxValue;
+                
+            }
+
+            const currentTotal = this.value;
+
+            UpdateSteps();
+            UpdateValues();
+            UpdateSliderMax(currentTotal);
+            ShowConsoleLog();
+        }
+
+        slider.oninput = function(){
+            console.log("RAW slider value = " + slider.value);
+            slider.attributes.step.value = 1;
+            UpdateValues();
+            UpdateRatio(totalInput.value,slider.value);
+            ShowConsoleLog();
+        }
+
+        splitButton.onclick  = function(){
+            console.log("Split 50% Clicked");
+            HalfTotal(totalInput.value);
+            UpdateValues();
+            ShowConsoleLog();
+        }
+
+        function UpdateValues(){
+            const newRight = totalInput.value-slider.value;
+            leftNumber.innerHTML = slider.value;
+            rightNumber.innerHTML = newRight;
+        }
+
+        function UpdateSliderMax(newMax){
+            slider.attributes.max.value=newMax;
+        }
+
+        function UpdateSliderValue(){
+            const currentPos = 0;
+        }
+
+        function HalfTotal(total){
+            UpdateSteps();
+            const halfValue = total / 2;
+            slider.value = halfValue;
+        }
+        function UpdateSteps(){
+            if((totalInput.value % 2) == 1){
+                console.log(totalInput.value + " - Is Odd");
+                slider.attributes.step.value = 0.5;
+            }
+            else if((totalInput.value % 2) == 0){
+                console.log(totalInput.value + " - Is Even");
+                slider.attributes.step.value = 1;
+            }
+        }
+        function UpdateRatio(total, sliderVal){
+            previousRatio = sliderVal/total;
+        }
+        
+        function ShowConsoleLog(){
+            console.log("total value = " + totalInput.value);
+            console.log("slider max = " + slider.attributes.max.value);
+            console.log("slider % = " + (slider.value/totalInput.value)*100);
+            console.log("slider value = " + slider.value);
+            console.log("left = " + leftNumber.innerHTML);
+            console.log("right = " + rightNumber.innerHTML);
+        }
+    </script>
+</body>
+</html>
