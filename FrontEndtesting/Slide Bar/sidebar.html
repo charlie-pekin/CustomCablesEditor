@@ -65,12 +65,15 @@
         color: white;
         font-size: inherit;
     }
+    #input_total{
+        font-size: inherit;
+    }
 
 </style>
 <body>
     <div class="parent">
         <div class="test_title">Length Slider Test Page</div>
-        <div class="total_title">Total Length = <input data-input="total" type="number" min="0" max="100" step="1"></div>
+        <div class="total_title">Total Length = <input id="input_total" data-input="total" type="number" min="0" max="100" step="1"></div>
         <input type="range" id="slidebar" name="slidebar" min="0" max="100" step="1" value="0">
         <div class="values_container">
             <div class="value_wrapper">
@@ -104,21 +107,14 @@
         ShowConsoleLog();
 
         UpdateRatio(totalInput.value,slider.value);
-
-        // slider.addEventListener("change",function(e){
-        //     console.log("slider value = " + slider.value);
-        // });
         totalInput.oninput = function(){
             if(this.value <= minValue){
                 this.value = minValue;
             }
             else if(this.value >= maxValue){
-                this.value = maxValue;
-                
+                this.value = maxValue; 
             }
-
             const currentTotal = this.value;
-
             UpdateSliderMax(currentTotal);
             UpdateSteps();
             UpdateSliderValue();
@@ -155,15 +151,15 @@
             let newValue = Math.round((previousRatio*totalInput.value)*2)/2;
             slider.value = newValue;
             console.log("New Value: expected = " + newValue + " actual = " + slider.value);
-
-
         }
 
         function HalfTotal(total){
             UpdateSteps();
             const halfValue = total / 2;
             slider.value = halfValue;
+            UpdateRatio(total,total/2);
         }
+
         function UpdateSteps(){
             if((totalInput.value % 2) == 1){
                 console.log(totalInput.value + " - Is Odd");
@@ -174,6 +170,7 @@
                 slider.attributes.step.value = 1;
             }
         }
+
         function UpdateRatio(total, sliderVal){
             previousRatio = sliderVal/total;
         }
