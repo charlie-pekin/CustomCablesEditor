@@ -501,6 +501,7 @@ button:hover{
     padding: 0px;
     position: relative;
     transition: all 0.3s ease-in-out;
+    background-color: white;
 }
 .length_btn{
     border: 2px solid red;
@@ -513,6 +514,7 @@ button:hover{
     position: relative;
     transition: all 0.3s ease-in-out;
     font-size: 0.9vw;
+    background-color: white;
 }
 
 .length_btn:hover{
@@ -559,16 +561,10 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
+    flex-direction: column;
 }
-.length_number{
-    text-align: center;
-    font-size: 1.4vw;
-}
-.length_unit{
-    text-align: center;
-    font-size: 1vw;
-    margin-left: 2px;
+.number_wrapper{
+    display: flex;
 }
 
 .length_row_gird{

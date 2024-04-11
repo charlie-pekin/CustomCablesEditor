@@ -354,16 +354,14 @@
                             </svg>
                                 
                         </button>
-                        <div class="length_row_segment">Total Length</div>
-                        <button class="length_btn btn_size">-1ft</button>
-                        <button class="length_btn btn_size">-1in</button>
                         <div class="length_number_parent">
-                            <div class="length_number">000.0</div>
-                            <div class="length_unit">in</div> 
-                        </div>                  
-                        <button class="length_btn btn_size">+1in</button>
-                        <button class="length_btn btn_size">+1ft</button>
-                        
+                            <div class="length_row_segment">Total Cable Length - Inches</div>
+                            <div class="number_wrapper">
+                                <button class="length_btn btn_size">-1ft</button>
+                                <input class="length_number" id="input_total" data-input="total" type="number" min="0" max="100" step="1">                  
+                                <button class="length_btn btn_size">+1ft</button>
+                            </div>
+                        </div>   
                     </div>
                     <div class="length_row_gird" data-length-row="added_connector">
 
