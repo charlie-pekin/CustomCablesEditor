@@ -471,25 +471,25 @@ button:hover{
 .length_row_segment{
     text-align: center;
     text-wrap: nowrap;
-    font-weight: bold;
-    font-size: 1vw;
+    font-size: 1.6vw;
     /* margin: 0px 2px; */
 }
 .length_row{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     min-height: 30px;
     box-sizing: border-box;
     padding: 5px;
     width: 100%;
     border-top: 1px solid lightgray;
-    gap: 0.2vw;
+    border-bottom: 1px solid lightgray;
+    gap: 0.9vw;
+    position: relative;
 }
-.btn_size{
-    width: 2vw;
-    height: 2vw;
+.btn_round{
+    aspect-ratio: 1;
 }
 .padlock_btn{
     display: flex;
@@ -499,9 +499,9 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     padding: 0px;
-    position: relative;
     transition: all 0.3s ease-in-out;
     background-color: white;
+    width: 2.5vw;
 }
 .length_btn{
     border: 2px solid red;
@@ -513,8 +513,9 @@ button:hover{
     padding: 0px;
     position: relative;
     transition: all 0.3s ease-in-out;
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     background-color: white;
+    width: 2.2vw;
 }
 
 .length_btn:hover{
@@ -562,9 +563,21 @@ button:hover{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 3.5px;
+    /* flex-grow: 1; */
+}
+.length_number{
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.4vw;
+    padding: 0px;
+    margin: 0px;
 }
 .number_wrapper{
     display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
 }
 
 .length_row_gird{
