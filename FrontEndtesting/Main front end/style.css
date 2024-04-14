@@ -585,10 +585,26 @@ button:hover{
 
 .length_row_gird{
     width: 100%;
-    flex-basis: 100px;
+    flex-basis: 150px;
     display: grid;
     transition: all 0.5s ease-in-out;
     flex-grow: 1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+}
+
+#input_length_section{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#output_length_section{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .flex_hide{
