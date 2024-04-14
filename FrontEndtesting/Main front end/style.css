@@ -471,12 +471,12 @@ button:hover{
 .length_row_segment{
     text-align: center;
     text-wrap: nowrap;
-    font-size: 1.6vw;
+    font-size: inherit;
     /* margin: 0px 2px; */
 }
 .length_row{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     min-height: 30px;
@@ -485,7 +485,7 @@ button:hover{
     width: 100%;
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
-    gap: 0.9vw;
+    /* gap: 0.9vw; */
     position: relative;
 }
 .btn_round{
@@ -558,26 +558,29 @@ button:hover{
     fill: rgb(252, 31, 31);
 }
 
-.length_number_parent{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 3.5px;
-    /* flex-grow: 1; */
-}
 .length_number{
     flex-grow: 1;
     text-align: center;
-    font-size: 1.4vw;
+    font-size: inherit;
     padding: 0px;
     margin: 0px;
 }
 .number_wrapper{
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 75%;
     gap: 10px;
+}
+.title_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.9vw;
+}
+
+.total_length_font_size{
+    font-size: 1.6vw;
 }
 
 .length_row_gird{
