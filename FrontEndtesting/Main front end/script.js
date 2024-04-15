@@ -56,6 +56,13 @@ for(countBtn of connectorCountButtons){
                 bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
             };
             rightBubblebox.classList.add("connector_bubble_active");
+
+            if(segment[0] == "output"){
+                outputB_connector_active = true;
+            }
+            else if(segment[0] == "input"){
+                inputB_connector_active = true;
+            }
         }
         else if(countTextbox.innerHTML == removeText){
             countTextbox.innerHTML = addText;
@@ -65,7 +72,16 @@ for(countBtn of connectorCountButtons){
             bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
             };
             leftBubblebox.classList.add("connector_bubble_active");
+
+            if(segment[0] == "output"){
+                outputB_connector_active = false;
+            }
+            else if(segment[0] == "input"){
+                inputB_connector_active = false;
+            }
         }
+        console.log("Segment = " + segment[0]);
+        console.log("output B = " + outputB_connector_active + " --- input B = " + inputB_connector_active);
         selectorContainer.classList.toggle("flex_hide");     
         rightBubbleContainer.classList.toggle("move_right_io");
         leftBubbleContainer.classList.toggle("move_left_io");
@@ -75,6 +91,17 @@ for(countBtn of connectorCountButtons){
         bubbleTextElement.classList.add("hidden");
         bubbleDetailElement.getAttribute("data-bubble-connectorid").value = "";
         bubbleDetailElement.classList.add("hidden");
+
+        const lengthGrid = document.querySelector("[data-length-row=added_connector]");
+        const padlock = document.querySelector("[data-padlock=total]");
+        if(outputB_connector_active == true || inputB_connector_active == true){
+            padlock.classList.remove("flex_hide");
+            lengthGrid.classList.remove("flex_hide");
+        }
+        else{
+            padlock.classList.add("flex_hide");
+            lengthGrid.classList.add("flex_hide");
+        }
     });
 };
 
@@ -113,11 +140,22 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
 };
 
 const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
+const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
+const AllLengthNumbers = document.querySelectorAll("[data-input]");
 for(eachPadlockBtn of AllPadlockButtons){
     eachPadlockBtn.addEventListener("click",function(e){
         const btnClicked = e.currentTarget;
         const btnPadlock = btnClicked.querySelector("[data-padlock-svg]");
-        btnPadlock.classList.toggle("active");
-
+        const rowParent = btnClicked.parentNode.parentNode;
+        const number = rowParent.querySelector("[data-input]");
+        console.log(rowParent);
+        for(eachPadlockSVG of AllpadLockSVG){
+            eachPadlockSVG.classList.remove("active");
+        }
+        for(eachlengthNumber of AllLengthNumbers){
+            eachlengthNumber.classList.remove("active");
+        }
+        btnPadlock.classList.add("active");
+        number.classList.add("active");
     });
 }
