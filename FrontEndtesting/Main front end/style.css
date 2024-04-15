@@ -577,6 +577,8 @@ button:hover{
     margin: 0px;
     transition: all 0.4s ease;
     outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 .active.length_number{
     /* color: red; */
@@ -614,7 +616,7 @@ button:hover{
     font-size: 1vw;
 }
 .small.length_row .number_wrapper .padlock_btn{
-    width: 1.7vw;
+    width: 2vw;
 }
 .small.length_row .number_wrapper .length_btn{
     font-size: 0.8vw;
@@ -635,7 +637,7 @@ button:hover{
     transition: all 0.5s ease-in-out;
     flex-grow: 1;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
     overflow: hidden;
     padding: 0px 5px 5px 5px;
     box-sizing: border-box;
@@ -676,17 +678,19 @@ button:hover{
     appearance: none;
     width: 100%;
     height: 25px;
-    background-color: red;
+    background-color: rgb(252, 100, 100);
     outline: none;
     margin: 0px;
     border-radius: 20px;
+    box-sizing: border-box;
+    border: 2px solid red;
 }
 #slidebar::-webkit-slider-thumb{
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 20px;
     height: 40px;
-    background-color: purple;
+    background-color: red;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 10px;
@@ -698,3 +702,35 @@ button:hover{
 .triangle_btn{
     display: block;
 }
+
+.ratio_wrapper{
+    display: flex;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0.4vw;
+    box-sizing: border-box;
+    padding: 0px 0.5vw;
+}
+.ratio_btn{
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 20px;
+    margin: 0px;
+    padding: 0.1vh 0px;
+    font-size: 1.2vw;
+    flex-grow: 1;
+    flex-basis: 1vw;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+}
+
+.ratio_btn:hover{
+    background-color: rgb(252, 100, 100);
+    color: white;
+}
+
