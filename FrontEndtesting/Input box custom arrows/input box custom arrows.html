@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .input_container{
+        display: flex;
+        width: 15vw;
+        border: 2px solid;
+        aspect-ratio: 2 / 1;
+    }
+    
+    input{
+        width: 75%; 
+        height: 100%;
+        text-align: center;
+        margin: 0px;
+        padding: 0px;
+        outline: none;
+        border: none;
+        border-radius: 0px;
+        font-size: 4vw;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    .increment_wrapper{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 25%;
+        user-select: none;
+    }
+    .increment{
+        height: 50%;
+        width: 100%;
+        background-color: lightcoral;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5vw;
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+    .increment:hover{
+        background-color: red;
+        color: white;
+    }
+
+
+</style>
+<body>
+    <div class="input_container">
+        <input type="number" value="100.0">
+        <div class="increment_wrapper">
+            <div class="increment">+</div>
+            <div class="increment">-</div>
+        </div>
+    </div>
+</body>
+</html>
