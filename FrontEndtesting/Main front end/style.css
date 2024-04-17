@@ -632,7 +632,7 @@ button:hover{
 
 .length_row_gird{
     width: 100%;
-    flex-basis: 150px;
+    flex-basis: 16vh;
     display: grid;
     transition: all 0.5s ease-in-out;
     flex-grow: 1;
