@@ -362,8 +362,8 @@
                             <button class="length_btn btn_round">+1ft</button>
                         </div>
                     </div>
-                    <div class="length_row_gird flex_hide" data-length-row="added_connector">
-                         <div class="length_row small border_right" id="input_length_section"> <!--Input section -->
+                    <div class="length_section_wrapper">
+                        <div class="length_row small border_right" id="input_length_section"> <!--Input section -->
                             <div class="title_wrapper">
                                 <div class="length_row_segment">Input Length - Inches</div>
                             </div>
@@ -401,16 +401,17 @@
                                 <button class="length_btn btn_round">+1ft</button> -->
                             </div>
                         </div>
-                        <div class="slidebar_wrapper"> <!--Slider Bar-->
-                            <input type="range" id="slidebar" name="slidebar" min="0" max="36" step="1" value="0">
-                        </div>
-                        <div class="ratio_wrapper">
-                            <button class="ratio_btn" data-ratio_btn="0">0%</button>
-                            <button class="ratio_btn" data-ratio_btn="25">25%</button>
-                            <button class="ratio_btn" data-ratio_btn="50">50%</button>
-                            <button class="ratio_btn" data-ratio_btn="75">75%</button>
-                            <button class="ratio_btn" data-ratio_btn="100">100%</button>
-                        </div>
+                    </div>
+                    
+                    <div class="slidebar_wrapper border_top_bottom"> <!--Slider Bar-->
+                        <input type="range" id="slidebar" name="slidebar" min="0" max="36" step="1" value="0">
+                    </div>
+                    <div class="ratio_wrapper">
+                        <button class="ratio_btn" data-ratio_btn="0">0%</button>
+                        <button class="ratio_btn" data-ratio_btn="25">25%</button>
+                        <button class="ratio_btn" data-ratio_btn="50">50%</button>
+                        <button class="ratio_btn" data-ratio_btn="75">75%</button>
+                        <button class="ratio_btn" data-ratio_btn="100">100%</button>
                     </div>
                 </div>
 

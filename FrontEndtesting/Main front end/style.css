@@ -465,6 +465,7 @@ button:hover{
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    padding: 0.4vh 0.3vw;
 }
 .style_container_header{
     font-size: 1.7rem;
@@ -480,11 +481,10 @@ button:hover{
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    min-height: 30px;
     box-sizing: border-box;
     width: 100%;
     position: relative;
-    padding: 5px;
+    padding: 2px;
 }
 .border_top_bottom{
     border-top: 1px solid lightgray;
@@ -589,7 +589,7 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 75%;
+    width: 90%;
     gap: 0.4vw;
 }
 .title_wrapper{
@@ -629,32 +629,32 @@ button:hover{
     font-size: 1.1vw;
 }
 
-
-.length_row_gird{
+.length_row_3_connectors{
     width: 100%;
     flex-basis: 16vh;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     transition: all 0.5s ease-in-out;
     flex-grow: 1;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr;
     overflow: hidden;
     padding: 0px 5px 5px 5px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.length_section_wrapper{
+    display: flex;
+    width: 100%;
     box-sizing: border-box;
 }
 
 #input_length_section{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    
 }
 
 #output_length_section{
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
+
 }
 
 .flex_hide{
@@ -666,18 +666,17 @@ button:hover{
 
 .slidebar_wrapper{
     display: flex;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    width: 100%;
     z-index: 5;
     align-items: center;
+    justify-content: center;
+    flex-basis: 6vh;
 }
 #slidebar{
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 100%;
-    height: 25px;
+    height: 2.7vh;
     background-color: rgb(252, 100, 100);
     outline: none;
     margin: 0px;
@@ -688,7 +687,7 @@ button:hover{
 #slidebar::-webkit-slider-thumb{
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-    width: 20px;
+    width: 3vh;
     height: 40px;
     background-color: red;
     cursor: pointer;
@@ -706,15 +705,12 @@ button:hover{
 .ratio_wrapper{
     display: flex;
     width: 100%;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
     align-items: center;
     justify-content: space-evenly;
     gap: 0.4vw;
     box-sizing: border-box;
     padding: 0px 0.5vw;
+    flex-basis: 5vh;
 }
 .ratio_btn{
     background-color: white;
