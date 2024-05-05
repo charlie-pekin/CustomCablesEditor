@@ -343,7 +343,7 @@
             <div class="style_scroll">
                 <div class="style_container">
                     <div class="style_container_header">Cable Length - Inches</div>
-                    <div class="length_row large border_top_bottom" data-length-row="total">
+                    <div class="length_row large border_top" data-length-row="total">
                         <div class="title_wrapper">
                             <div class="length_row_segment">Total Cable Length</div>
                         </div>
@@ -358,8 +358,9 @@
                                 </svg>       
                             </button>
                             <button class="length_btn btn_round">-1ft</button>
-                            <div class="number_wrapper">
+                            <div class="number_wrapper active" data-number-wrapper>
                                 <input class="length_number active" id="input_total" data-input="total" type="number" min="0" max="100" step="1" value="36"> 
+                                <div class="length_inches">in</div>
                                 <div class="increment_wrapper">
                                     <div class="increment">+</div>
                                     <div class="increment">-</div>
@@ -369,9 +370,9 @@
                         </div>
                     </div>
 
-                    <div class="length_row large border_top_bottom flex_hide" data-length-row="output">
+                    <div class="length_row large border_top flex_hide" data-length-row="output">
                         <div class="title_wrapper">
-                            <div class="length_row_segment">Output Length</div>
+                            <div class="length_row_segment">Output Length - <span class="inline_ratio">100%</span></div>
                         </div>
                         <div class="input_wrapper">
                             <button class="padlock_btn btn_round" data-padlock="output">
@@ -384,8 +385,10 @@
                                 </svg>       
                             </button>
                             <button class="length_btn btn_round">-1ft</button>
-                            <div class="number_wrapper">
+                            <div class="number_wrapper" data-number-wrapper>
+                                <!-- <div class="length_feet">(10 ft)</div> -->
                                 <input class="length_number" id="input_output" data-input="output" type="number" min="0" max="100" step="1" value="36"> 
+                                <div class="length_inches">in</div>
                                 <div class="increment_wrapper">
                                     <div class="increment">+</div>
                                     <div class="increment">-</div>
@@ -395,9 +398,9 @@
                         </div>
                     </div>
 
-                    <div class="length_row large border_top_bottom flex_hide" data-length-row="center">
+                    <div class="length_row large border_top flex_hide" data-length-row="center">
                         <div class="title_wrapper">
-                            <div class="length_row_segment">Center Length</div>
+                            <div class="length_row_segment">Center Length - <span class="inline_ratio">1%</span></div>
                         </div>
                         <div class="input_wrapper">
                             <button class="padlock_btn btn_round" data-padlock="center">
@@ -410,8 +413,9 @@
                                 </svg>       
                             </button>
                             <button class="length_btn btn_round">-1ft</button>
-                            <div class="number_wrapper">
+                            <div class="number_wrapper" data-number-wrapper>
                                 <input class="length_number" id="input_center" data-input="center" type="number" min="0" max="100" step="1" value="36"> 
+                                <div class="length_inches">in</div>
                                 <div class="increment_wrapper">
                                     <div class="increment">+</div>
                                     <div class="increment">-</div>
@@ -421,7 +425,7 @@
                         </div>
                     </div>
 
-                    <div class="length_row large border_top_bottom flex_hide" data-length-row="input">
+                    <div class="length_row large border_top flex_hide" data-length-row="input">
                         <div class="title_wrapper">
                             <div class="length_row_segment">Input Length</div>
                         </div>
@@ -436,8 +440,9 @@
                                 </svg>       
                             </button>
                             <button class="length_btn btn_round">-1ft</button>
-                            <div class="number_wrapper">
+                            <div class="number_wrapper" data-number-wrapper>
                                 <input class="length_number" id="input_input" data-input="input" type="number" min="0" max="100" step="1" value="36"> 
+                                <div class="length_inches">in</div>
                                 <div class="increment_wrapper">
                                     <div class="increment">+</div>
                                     <div class="increment">-</div>
@@ -446,6 +451,7 @@
                             <button class="length_btn btn_round">+1ft</button>
                         </div>
                     </div>
+
                     <!-- <div class="length_section_wrapper">
                         <div class="length_row small border_right" id="input_length_section"> 
                             <div class="title_wrapper">

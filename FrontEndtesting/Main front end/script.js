@@ -152,13 +152,13 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
 
 const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
 const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
-const AllLengthNumbers = document.querySelectorAll("[data-input]");
+const AllLengthNumbers = document.querySelectorAll("[data-number-wrapper]");
 for(eachPadlockBtn of AllPadlockButtons){
     eachPadlockBtn.addEventListener("click",function(e){
         const btnClicked = e.currentTarget;
         const btnPadlock = btnClicked.querySelector("[data-padlock-svg]");
-        const rowParent = btnClicked.parentNode.parentNode;
-        const number = rowParent.querySelector("[data-input]");
+        const rowParent = btnClicked.parentNode;
+        const number = rowParent.querySelector("[data-number-wrapper]");
         console.log(rowParent);
         for(eachPadlockSVG of AllpadLockSVG){
             eachPadlockSVG.classList.remove("active");

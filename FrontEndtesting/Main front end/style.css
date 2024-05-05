@@ -476,6 +476,9 @@ button:hover{
     font-size: inherit;
     /* margin: 0px 2px; */
 }
+.inline_ratio{
+    color: red;
+}
 .length_row{
     display: flex;
     flex-direction: column;
@@ -487,6 +490,9 @@ button:hover{
     overflow: hidden;
     transition: all 0.4s ease-in-out;
     flex-basis: 6vw;
+}
+.border_top{
+    border-top: 1px solid lightgray;
 }
 .border_top_bottom{
     border-top: 1px solid lightgray;
@@ -573,7 +579,7 @@ button:hover{
 
 .length_number{
     flex-grow: 1;
-    text-align: center;
+    text-align: end;
     font-size: 1.9vw;
     padding: 0px;
     margin: 0px;
@@ -581,7 +587,8 @@ button:hover{
     outline: none;
     border-radius: 0px;
     border: 0px;
-    width: 75%;
+    width: 50%;
+    background-color: #ffffff00;
 }
 .length_number::-webkit-outer-spin-button,
 .length_number::-webkit-inner-spin-button {
@@ -591,7 +598,7 @@ button:hover{
 .length_number[type=number] {
     -moz-appearance: textfield;
 }
-.active.length_number{
+.active.number_wrapper{
     /* color: red; */
     background-color: lightgray;
     /* font-weight: bold; */
@@ -621,7 +628,6 @@ button:hover{
 .increment_wrapper{
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     width: 25%;
     user-select: none;
     font-size: 1.3vw;
@@ -778,5 +784,16 @@ button:hover{
 .ratio_btn:hover{
     background-color: rgb(252, 100, 100);
     color: white;
+}
+
+.length_feet{
+    font-size: 1vw;
+    color: black;
+}
+.length_inches{
+    align-self: center;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-left: 3px;
 }
 
