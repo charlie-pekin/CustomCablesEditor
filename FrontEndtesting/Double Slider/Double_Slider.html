@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        background-color: rgb(46, 46, 46);
+        align-items: center;
+        justify-content: center;
+    }
+    .parent{
+        min-width: 500px;
+        min-height: 300px;
+        background-color: darkgray;
+        display: flex;
+        padding: 5px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 1vw;
+    }
+</style>
+<body>
+    <div class="parent">
+        <div class="test_title">Length Slider Test Page</div>
+        <div class="total_title">Total Length = <input id="input_total" data-input="total" type="number" min="0" max="100" step="1"></div>
+        <input type="range" id="slidebar_1" name="slidebar" min="0" max="100" step="1" value="0">
+        <input type="range" id="slidebar_2" name="slidebar" min="0" max="100" step="1" value="0">
+    </div>
+</body>
+</html>

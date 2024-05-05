@@ -347,7 +347,7 @@
                         <div class="title_wrapper">
                             <div class="length_row_segment">Total Cable Length - Inches</div>
                         </div>
-                        <div class="number_wrapper">
+                        <div class="input_wrapper">
                             <button class="padlock_btn btn_round flex_hide" data-padlock="total">
                                 <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g data-padlock-svg="total" class="padlock active">
@@ -357,9 +357,15 @@
                                     </g>
                                 </svg>       
                             </button>
-                            <input class="length_number active" id="input_total" data-input="total" type="number" min="0" max="100" step="1" value="36">                  
-                            <button class="length_btn btn_round">-1ft</button>
-                            <button class="length_btn btn_round">+1ft</button>
+                            <div class="number_wrapper">
+                                <input class="length_number active" id="input_total" data-input="total" type="number" min="0" max="100" step="1" value="36"> 
+                                <div class="increment_wrapper">
+                                    <div class="increment">+</div>
+                                    <div class="increment">-</div>
+                                </div>
+                            </div>                                       
+                            <!-- <button class="length_btn btn_round">-1ft</button>
+                            <button class="length_btn btn_round">+1ft</button> -->
                         </div>
                     </div>
                     <div class="length_section_wrapper">
@@ -367,7 +373,7 @@
                             <div class="title_wrapper">
                                 <div class="length_row_segment">Input Length - Inches</div>
                             </div>
-                            <div class="number_wrapper">
+                            <div class="input_wrapper">
                                 <button class="padlock_btn btn_round" data-padlock="input">
                                     <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g data-padlock-svg="input" class="padlock">
@@ -386,7 +392,7 @@
                             <div class="title_wrapper">
                                 <div class="length_row_segment">Output Length - Inches</div>
                             </div>
-                            <div class="number_wrapper">
+                            <div class="input_wrapper">
                                 <button class="padlock_btn btn_round" data-padlock="output">
                                     <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g data-padlock-svg="output" class="padlock">

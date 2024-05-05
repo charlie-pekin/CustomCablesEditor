@@ -572,20 +572,29 @@ button:hover{
 .length_number{
     flex-grow: 1;
     text-align: center;
-    font-size: inherit;
+    font-size: 2.5vw;
     padding: 0px;
     margin: 0px;
     transition: all 0.4s ease;
     outline: none;
-    border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 0px;
+    border: 0px;
+    width: 75%;
+}
+.length_number::-webkit-outer-spin-button,
+.length_number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.length_number[type=number] {
+    -moz-appearance: textfield;
 }
 .active.length_number{
     /* color: red; */
     background-color: lightgray;
     /* font-weight: bold; */
 }
-.number_wrapper{
+.input_wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -598,15 +607,47 @@ button:hover{
     justify-content: center;
     width: 100%;
 }
+.number_wrapper{
+    display: flex;
+    width: 50%;
+    border: 2px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.increment_wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 25%;
+    user-select: none;
+    font-size: 1.3vw;
+}
+.increment{
+    height: 50%;
+    width: 100%;
+    background-color: lightcoral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    font-weight: bold;
+}
+.increment:hover{
+    background-color: red;
+    color: white;
+}
 
 .large.length_row{
     font-size: 1.6vw;
 }
-.large.length_row .number_wrapper .padlock_btn{
+.large.length_row .input_wrapper .padlock_btn{
     width: 2.5vw;
     flex-basis: 2.5vw;
 }
-.large.length_row .number_wrapper .length_btn{
+.large.length_row .input_wrapper .length_btn{
     font-size: 1.1vw;
     width: 2.2vw;
 }
@@ -615,10 +656,10 @@ button:hover{
 .small.length_row{
     font-size: 1vw;
 }
-.small.length_row .number_wrapper .padlock_btn{
+.small.length_row .input_wrapper .padlock_btn{
     width: 2vw;
 }
-.small.length_row .number_wrapper .length_btn{
+.small.length_row .iput_wrapper .length_btn{
     font-size: 0.8vw;
     width: 1.7vw;
 }
