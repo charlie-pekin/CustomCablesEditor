@@ -92,15 +92,26 @@ for(countBtn of connectorCountButtons){
         bubbleDetailElement.getAttribute("data-bubble-connectorid").value = "";
         bubbleDetailElement.classList.add("hidden");
 
-        const lengthGrid = document.querySelector("[data-length-row=added_connector]");
+        const lengthOutputRow = document.querySelector("[data-length-row=output]");
+        const lengthCenterRow = document.querySelector("[data-length-row=center]");
+        const lengthInputRow = document.querySelector("[data-length-row=input]");
         const padlock = document.querySelector("[data-padlock=total]");
         if(outputB_connector_active == true || inputB_connector_active == true){
             padlock.classList.remove("flex_hide");
-            lengthGrid.classList.remove("flex_hide");
+            lengthOutputRow.classList.remove("flex_hide");
+            lengthInputRow.classList.remove("flex_hide");
+            if(outputB_connector_active == true && inputB_connector_active == true){
+                lengthCenterRow.classList.remove("flex_hide");
+            }
+            else if(outputB_connector_active == false || inputB_connector_active == false){
+                lengthCenterRow.classList.add("flex_hide");
+            }
         }
         else{
             padlock.classList.add("flex_hide");
-            lengthGrid.classList.add("flex_hide");
+            lengthOutputRow.classList.add("flex_hide");
+            lengthCenterRow.classList.add("flex_hide");
+            lengthInputRow.classList.add("flex_hide");
         }
     });
 };
