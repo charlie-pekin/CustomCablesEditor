@@ -516,6 +516,8 @@ button:hover{
     background-color: white;
     flex-shrink: 0;
     overflow: hidden;
+    position: absolute;
+    left: -0.6vw;
 }
 
 .length_btn{
@@ -609,6 +611,7 @@ button:hover{
     justify-content: center;
     width: 90%;
     gap: 0.4vw;
+    position: relative;
 }
 .title_wrapper{
     display: flex;
@@ -618,7 +621,7 @@ button:hover{
 }
 .number_wrapper{
     display: flex;
-    width: 40%;
+    width: 46%;
     border: 2px solid black;
     border-radius: 20px;
     overflow: hidden;
