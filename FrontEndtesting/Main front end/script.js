@@ -5,6 +5,22 @@ let connectorBubbles = document.getElementsByClassName("connector_bubble");
 let bubbleContainers = document.getElementsByClassName("main_bubble_container");
 let activeBubbleConnectorSL;
 
+const connectorCountButtons = document.getElementsByClassName("connector_count_button");
+const addText = "Add";
+const removeText = "Remove";
+
+const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
+const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
+const AllLengthNumbers = document.querySelectorAll("[data-number-wrapper]");
+let ActivePadlock = "total";
+
+let connectorCellInsertBtn = document.querySelectorAll("[data-cell-insert]");
+
+let outputB_connector_active = false;
+let inputB_connector_active = false;
+
+let Bconfig = 0;
+
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
         for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
@@ -27,11 +43,7 @@ for(selectBubble of connectorBubbles){
     });
 }
 
-const connectorCountButtons = document.getElementsByClassName("connector_count_button");
-const addText = "Add";
-const removeText = "Remove";
-let outputB_connector_active = false;
-let inputB_connector_active = false;
+
 for(countBtn of connectorCountButtons){
     countBtn.addEventListener("click", function(e){
         let currentCountBtnID = e.currentTarget.getAttribute("data-count_connector");
@@ -59,9 +71,11 @@ for(countBtn of connectorCountButtons){
 
             if(segment[0] == "output"){
                 outputB_connector_active = true;
+                Bconfig++;
             }
             else if(segment[0] == "input"){
                 inputB_connector_active = true;
+                Bconfig++;
             }
         }
         else if(countTextbox.innerHTML == removeText){
@@ -75,13 +89,16 @@ for(countBtn of connectorCountButtons){
 
             if(segment[0] == "output"){
                 outputB_connector_active = false;
+                Bconfig--;
             }
             else if(segment[0] == "input"){
                 inputB_connector_active = false;
+                Bconfig--;
             }
         }
         console.log("Segment = " + segment[0]);
         console.log("output B = " + outputB_connector_active + " --- input B = " + inputB_connector_active);
+        console.log("B Config = " + Bconfig);
         selectorContainer.classList.toggle("flex_hide");     
         rightBubbleContainer.classList.toggle("move_right_io");
         leftBubbleContainer.classList.toggle("move_left_io");
@@ -95,28 +112,46 @@ for(countBtn of connectorCountButtons){
         const lengthOutputRow = document.querySelector("[data-length-row=output]");
         const lengthCenterRow = document.querySelector("[data-length-row=center]");
         const lengthInputRow = document.querySelector("[data-length-row=input]");
-        const padlock = document.querySelector("[data-padlock=total]");
+        const totalPadlockBTN = document.querySelector("[data-padlock=total]");
+        const totalPadlockSVG = document.querySelector("[data-padlock-svg=total");
+        const totalNumberWrapper = document.querySelector("[data-number-wrapper=total]");
+
+        const YRatioRow = document.querySelector("[data-radio-row=Y]");
+        const XRatioRow = document.querySelector("[data-radio-row=X]");
         if(outputB_connector_active == true || inputB_connector_active == true){
-            padlock.classList.remove("flex_hide");
+            totalPadlockBTN.classList.remove("flex_hide");
             lengthOutputRow.classList.remove("flex_hide");
             lengthInputRow.classList.remove("flex_hide");
+            YRatioRow.classList.remove("flex_hide");
             if(outputB_connector_active == true && inputB_connector_active == true){
                 lengthCenterRow.classList.remove("flex_hide");
+                XRatioRow.classList.remove("flex_hide");
+                YRatioRow.classList.add("flex_hide");
             }
             else if(outputB_connector_active == false || inputB_connector_active == false){
                 lengthCenterRow.classList.add("flex_hide");
+                XRatioRow.classList.add("flex_hide");
+                if(ActivePadlock=="center"){
+                    removeActivePadlocks();
+                    totalPadlockSVG.classList.add("active");
+                    totalNumberWrapper.classList.add("active");
+                }
             }
         }
         else{
-            padlock.classList.add("flex_hide");
+            totalPadlockBTN.classList.add("flex_hide");
             lengthOutputRow.classList.add("flex_hide");
             lengthCenterRow.classList.add("flex_hide");
             lengthInputRow.classList.add("flex_hide");
+            removeActivePadlocks();
+            totalPadlockSVG.classList.add("active");
+            totalNumberWrapper.classList.add("active");
+            YRatioRow.classList.add("flex_hide");
         }
     });
 };
 
-let connectorCellInsertBtn = document.querySelectorAll("[data-cell-insert]");
+
 for(eachCellInsertBtn of connectorCellInsertBtn){
     let currentActiveBubble;
     eachCellInsertBtn.addEventListener("click", function(e){
@@ -150,9 +185,7 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
     });
 };
 
-const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
-const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
-const AllLengthNumbers = document.querySelectorAll("[data-number-wrapper]");
+
 for(eachPadlockBtn of AllPadlockButtons){
     eachPadlockBtn.addEventListener("click",function(e){
         const btnClicked = e.currentTarget;
@@ -160,13 +193,36 @@ for(eachPadlockBtn of AllPadlockButtons){
         const rowParent = btnClicked.parentNode;
         const number = rowParent.querySelector("[data-number-wrapper]");
         console.log(rowParent);
-        for(eachPadlockSVG of AllpadLockSVG){
-            eachPadlockSVG.classList.remove("active");
-        }
-        for(eachlengthNumber of AllLengthNumbers){
-            eachlengthNumber.classList.remove("active");
-        }
+        removeActivePadlocks();
         btnPadlock.classList.add("active");
         number.classList.add("active");
+        ActivePadlock=btnPadlock.getAttribute("data-padlock-svg");
+        console.log(ActivePadlock);
     });
+}
+function removeActivePadlocks(){
+    for(eachPadlockSVG of AllpadLockSVG){
+        eachPadlockSVG.classList.remove("active");
+    }
+    for(eachlengthNumber of AllLengthNumbers){
+        eachlengthNumber.classList.remove("active");
+    }
+}
+
+function InchToFeet(inch){
+    let raw = inch/12;
+    // return Math.round(raw*1000)/1000;
+    return CustomRound(raw,0.001);
+}
+
+function InchToMeter(inch){
+    let raw = inch/39.37;
+    // return Math.round(raw*1000)/1000;
+    return CustomRound(raw,0.0001);
+}
+
+function CustomRound(value, steps){
+    steps || (steps = 1);
+    var inv = 1.0 / steps;
+    return Math.round(value * inv)/inv;
 }
