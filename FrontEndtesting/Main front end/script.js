@@ -16,10 +16,12 @@ let ActivePadlock = "total";
 
 let connectorCellInsertBtn = document.querySelectorAll("[data-cell-insert]");
 
-let outputB_connector_active = false;
-let inputB_connector_active = false;
-
 let Bconfig = 0;
+
+let totalLength = document.querySelector("[data-input=total]");
+let inputLength = document.querySelector("[data-input=input]");
+let outputLength = document.querySelector("[data-input=output]");
+let centerLength = document.querySelector("[data-input=center]");
 
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
@@ -70,11 +72,9 @@ for(countBtn of connectorCountButtons){
             rightBubblebox.classList.add("connector_bubble_active");
 
             if(segment[0] == "output"){
-                outputB_connector_active = true;
                 Bconfig++;
             }
             else if(segment[0] == "input"){
-                inputB_connector_active = true;
                 Bconfig++;
             }
         }
@@ -88,16 +88,13 @@ for(countBtn of connectorCountButtons){
             leftBubblebox.classList.add("connector_bubble_active");
 
             if(segment[0] == "output"){
-                outputB_connector_active = false;
                 Bconfig--;
             }
             else if(segment[0] == "input"){
-                inputB_connector_active = false;
                 Bconfig--;
             }
         }
         console.log("Segment = " + segment[0]);
-        console.log("output B = " + outputB_connector_active + " --- input B = " + inputB_connector_active);
         console.log("B Config = " + Bconfig);
         selectorContainer.classList.toggle("flex_hide");     
         rightBubbleContainer.classList.toggle("move_right_io");
@@ -118,35 +115,39 @@ for(countBtn of connectorCountButtons){
 
         const YRatioRow = document.querySelector("[data-radio-row=Y]");
         const XRatioRow = document.querySelector("[data-radio-row=X]");
-        if(outputB_connector_active == true || inputB_connector_active == true){
-            totalPadlockBTN.classList.remove("flex_hide");
-            lengthOutputRow.classList.remove("flex_hide");
-            lengthInputRow.classList.remove("flex_hide");
-            YRatioRow.classList.remove("flex_hide");
-            if(outputB_connector_active == true && inputB_connector_active == true){
-                lengthCenterRow.classList.remove("flex_hide");
-                XRatioRow.classList.remove("flex_hide");
-                YRatioRow.classList.add("flex_hide");
-            }
-            else if(outputB_connector_active == false || inputB_connector_active == false){
+
+        switch(Bconfig){
+            case 0: //Straight Cable (B0)
+                totalPadlockBTN.classList.add("flex_hide");
+                lengthOutputRow.classList.add("flex_hide");
                 lengthCenterRow.classList.add("flex_hide");
+                lengthInputRow.classList.add("flex_hide");
+                removeActivePadlocks();
+                totalPadlockSVG.classList.add("active");
+                totalNumberWrapper.classList.add("active");
+                YRatioRow.classList.add("flex_hide");
+                break;
+            case 1: //Y Cable (B1)
+                totalPadlockBTN.classList.remove("flex_hide");
+                lengthOutputRow.classList.remove("flex_hide");
+                lengthInputRow.classList.remove("flex_hide");
+                lengthCenterRow.classList.add("flex_hide");
+                YRatioRow.classList.remove("flex_hide");
                 XRatioRow.classList.add("flex_hide");
                 if(ActivePadlock=="center"){
                     removeActivePadlocks();
                     totalPadlockSVG.classList.add("active");
                     totalNumberWrapper.classList.add("active");
                 }
-            }
-        }
-        else{
-            totalPadlockBTN.classList.add("flex_hide");
-            lengthOutputRow.classList.add("flex_hide");
-            lengthCenterRow.classList.add("flex_hide");
-            lengthInputRow.classList.add("flex_hide");
-            removeActivePadlocks();
-            totalPadlockSVG.classList.add("active");
-            totalNumberWrapper.classList.add("active");
-            YRatioRow.classList.add("flex_hide");
+                break;
+            case 2: //X Cable (B2)
+                totalPadlockBTN.classList.remove("flex_hide");
+                lengthOutputRow.classList.remove("flex_hide");
+                lengthInputRow.classList.remove("flex_hide");
+                lengthCenterRow.classList.remove("flex_hide");
+                XRatioRow.classList.remove("flex_hide");
+                YRatioRow.classList.add("flex_hide");
+                break;
         }
     });
 };
@@ -225,4 +226,22 @@ function CustomRound(value, steps){
     steps || (steps = 1);
     var inv = 1.0 / steps;
     return Math.round(value * inv)/inv;
+}
+
+function AddLength(){
+    let totalMaxLength = 120;
+    let totalMinLength = 3;
+    switch(Bconfig){
+        case 0: //Straight Cable (B0)
+            if
+        case 1: //Y Cable (B1)
+
+            break;
+        case 2: //X Cable (B2)
+
+            break;
+    }
+}
+function RemoveLength(){
+
 }
