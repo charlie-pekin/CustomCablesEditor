@@ -228,12 +228,14 @@ function CustomRound(value, steps){
     return Math.round(value * inv)/inv;
 }
 
-function AddLength(){
+function AddLength(TARGET){
     let totalMaxLength = 120;
     let totalMinLength = 3;
     switch(Bconfig){
         case 0: //Straight Cable (B0)
-            if
+            if(TARGET.value){
+
+            }
         case 1: //Y Cable (B1)
 
             break;
