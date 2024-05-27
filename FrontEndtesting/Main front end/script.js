@@ -23,6 +23,9 @@ let inputLength = document.querySelector("[data-input=input]");
 let outputLength = document.querySelector("[data-input=output]");
 let centerLength = document.querySelector("[data-input=center]");
 
+let allIncrementButtons = document.querySelectorAll("[data-increment]");
+let allDecrementButtons = document.querySelectorAll("[data-decrement]");
+
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
         for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
@@ -229,17 +232,23 @@ function CustomRound(value, steps){
 }
 
 function AddLength(TARGET){
+    // console.log(TARGET);
+    // console.log(Bconfig);
     let totalMaxLength = 120;
     let totalMinLength = 3;
     switch(Bconfig){
         case 0: //Straight Cable (B0)
+            TARGET.value++;
             if(TARGET.value){
 
             }
+            break;
         case 1: //Y Cable (B1)
+            
 
             break;
         case 2: //X Cable (B2)
+            
 
             break;
     }
@@ -247,3 +256,13 @@ function AddLength(TARGET){
 function RemoveLength(){
 
 }
+
+for (eachIncrementBTN of allIncrementButtons){
+    eachIncrementBTN.addEventListener("click",function(e){
+        let incBTN = e.currentTarget;
+        let incWrapper = incBTN.parentNode;
+        let numWrapper = incWrapper.parentNode;
+        let target = numWrapper.querySelector("[data-input]");
+        AddLength(target);
+    }
+)};

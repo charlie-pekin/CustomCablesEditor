@@ -649,6 +649,10 @@ button:hover{
     cursor: pointer;
     font-weight: bold;
 }
+.increment.disable{
+    background-color: gray;
+    cursor: not-allowed;
+}
 .increment:first-child{
     align-items: flex-start;
 }
