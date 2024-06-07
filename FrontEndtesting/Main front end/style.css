@@ -592,6 +592,7 @@ button:hover{
     border: 0px;
     width: 50%;
     background-color: #ffffff00;
+    color: inherit;
 }
 .length_number::-webkit-outer-spin-button,
 .length_number::-webkit-inner-spin-button {
@@ -606,6 +607,17 @@ button:hover{
     background-color: lightgray;
     /* font-weight: bold; */
 }
+.error.number_wrapper{
+    background-color: red !important;
+    color: white;
+}
+.change.number_wrapper{
+    background-color: orange !important;
+    color: black;
+}
+/* .error.number_wrapper .length_number, .error.number_wrapper .length_inches{
+    color: white;
+} */
 .input_wrapper{
     display: flex;
     align-items: center;
@@ -637,6 +649,22 @@ button:hover{
     user-select: none;
     font-size: 1.3vw;
 }
+.error.increment_wrapper .increment{
+    cursor: not-allowed;
+    background-color: grey;
+    
+    /* pointer-events: none; */
+}
+.limit.increment{
+    background-color: gray;
+    opacity: 0.5;
+}
+.limit.increment:hover{
+    cursor: not-allowed;
+    background-color: gray;
+    color: black;
+    
+}
 .increment{
     height: 50%;
     width: 100%;
@@ -648,11 +676,9 @@ button:hover{
     transition: all 0.4s ease;
     cursor: pointer;
     font-weight: bold;
+    color: black;
 }
-.increment.disable{
-    background-color: gray;
-    cursor: not-allowed;
-}
+
 .increment:first-child{
     align-items: flex-start;
 }

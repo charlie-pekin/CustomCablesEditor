@@ -11,17 +11,18 @@ const removeText = "Remove";
 
 const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
 const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
-const AllLengthNumbers = document.querySelectorAll("[data-number-wrapper]");
+const AllLengthWrappers = document.querySelectorAll("[data-number-wrapper]");
 let ActivePadlock = "total";
 
 let connectorCellInsertBtn = document.querySelectorAll("[data-cell-insert]");
 
 let Bconfig = 0;
 
-let totalLength = document.querySelector("[data-input=total]");
-let inputLength = document.querySelector("[data-input=input]");
-let outputLength = document.querySelector("[data-input=output]");
-let centerLength = document.querySelector("[data-input=center]");
+const AllLengthNumbers = document.querySelectorAll("[data-input]");
+const totalLength = document.querySelector("[data-input=total]");
+const inputLength = document.querySelector("[data-input=input]");
+const outputLength = document.querySelector("[data-input=output]");
+const centerLength = document.querySelector("[data-input=center]");
 
 let allIncrementButtons = document.querySelectorAll("[data-increment]");
 let allDecrementButtons = document.querySelectorAll("[data-decrement]");
@@ -208,7 +209,7 @@ function removeActivePadlocks(){
     for(eachPadlockSVG of AllpadLockSVG){
         eachPadlockSVG.classList.remove("active");
     }
-    for(eachlengthNumber of AllLengthNumbers){
+    for(eachlengthNumber of AllLengthWrappers){
         eachlengthNumber.classList.remove("active");
     }
 }
@@ -231,17 +232,46 @@ function CustomRound(value, steps){
     return Math.round(value * inv)/inv;
 }
 
-function AddLength(TARGET){
+function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the button element that was pressed
     // console.log(TARGET);
     // console.log(Bconfig);
-    let totalMaxLength = 120;
-    let totalMinLength = 3;
+    let wasBtnClicked = false;
+    let lengthChangeDirection = "NONE";
+    let lengthChangeAmount = 0;
+    // console.log(arguments);
+    if (arguments.length >= 2){
+        wasBtnClicked = true;
+        let BUTTON = arguments[1];
+        if(BUTTON.getAttribute("data-length-direction") == "increment"){
+            lengthChangeDirection = "increment";
+        }
+        else if(BUTTON.getAttribute("data-length-direction") == "decrement"){
+            lengthChangeDirection = "decrement";
+        }
+        else {console.log("Button direction not found!")};
+        console.log(lengthChangeDirection);
+        lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
+        console.log(`Button change amount = ${lengthChangeAmount}`);
+    }
+    else  {wasBtnClicked = false;};
     switch(Bconfig){
         case 0: //Straight Cable (B0)
-            TARGET.value++;
-            if(TARGET.value){
+            let totalMaxLength = 120;
+            let totalMinLength = 3;
+            if (wasBtnClicked == true){
+                if(lengthChangeDirection == "increment"){
 
+                    TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                    console.log("after adding = " + TARGET.value);
+                    // TARGET.value = TARGET.value + lengthChangeAmount;
+                }
+                else if(lengthChangeDirection == "decrement"){
+                    TARGET.value-=lengthChangeAmount;
+                    console.log("after sub = " + TARGET.value);
+                    // TARGET.value = TARGET.value - lengthChangeAmount;
+                }
             }
+            CorrectLengthNum(TARGET,totalMaxLength,totalMinLength);
             break;
         case 1: //Y Cable (B1)
             
@@ -252,10 +282,32 @@ function AddLength(TARGET){
 
             break;
     }
-}
-function RemoveLength(){
+};
 
+function inputcheck(numberInputTarget,Max,Min){
+    if (numberInputTarget.value <= Min){
+        return false;
+    }
+    else if (numberInputTarget.value >= Max){
+        return false;
+    }
+    else if (numberInputTarget.value < Min && numberInputTarget.value > Max){
+        return true;
+    }
+};
+
+function CorrectLengthNum(numberInputTarget,Max,Min){
+    if (numberInputTarget.value < Min){
+        numberInputTarget.value = Min;
+    }
+    else if (numberInputTarget.value > Max){
+        numberInputTarget.value = Max;
+    }
 }
+
+function GetLenNumElement(TARGET){
+
+};
 
 for (eachIncrementBTN of allIncrementButtons){
     eachIncrementBTN.addEventListener("click",function(e){
@@ -263,6 +315,41 @@ for (eachIncrementBTN of allIncrementButtons){
         let incWrapper = incBTN.parentNode;
         let numWrapper = incWrapper.parentNode;
         let target = numWrapper.querySelector("[data-input]");
-        AddLength(target);
+        ChangeLength(target, incBTN);
+        // console.log(target.value);
     }
 )};
+
+for (eachDecrementBTN of allDecrementButtons){
+    eachDecrementBTN.addEventListener("click",function(e){
+        let decBTN = e.currentTarget;
+        let decWrapper = decBTN.parentNode;
+        let numWrapper = decWrapper.parentNode;
+        let target = numWrapper.querySelector("[data-input]");
+        ChangeLength(target, decBTN);
+        // console.log(target.value);
+    }
+)};
+
+for (eachlengthNumberinput of AllLengthNumbers){
+    eachlengthNumberinput.addEventListener("input",function(e){
+        let currentnumWrapper = e.currentTarget.parentNode;
+        console.log(currentnumWrapper);
+        currentnumWrapper.classList.add("change");
+        console.log("INPUT trigger | " + e.currentTarget.value);
+        // ChangeLength(e.currentTarget);
+
+    }
+)};
+
+for (eachlengthNumberinput of AllLengthNumbers){
+    eachlengthNumberinput.addEventListener("change",function(e){
+        let currentnumWrapper = e.currentTarget.parentNode;
+        console.log(currentnumWrapper);
+        currentnumWrapper.classList.remove("change");
+        console.log("CHANGE trigger | " +e.currentTarget.value);
+        ChangeLength(e.currentTarget);
+    }
+)};
+
+
