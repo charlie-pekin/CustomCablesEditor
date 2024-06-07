@@ -284,17 +284,29 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
     }
 };
 
-function inputcheck(numberInputTarget,Max,Min){
+function LengthLimitReached(numberInputTarget,Max,Min){
     if (numberInputTarget.value <= Min){
-        return false;
-    }
-    else if (numberInputTarget.value >= Max){
-        return false;
-    }
-    else if (numberInputTarget.value < Min && numberInputTarget.value > Max){
         return true;
     }
+    else if (numberInputTarget.value >= Max){
+        return true;
+    }
+    else if (numberInputTarget.value < Min && numberInputTarget.value > Max){
+        return false;
+    }
+    else{console.log("Limit ERROR")}
 };
+
+function DisableLengthBTNs(numberInputTarget,DIRECTION){
+    let currentnumWrapper = numberInputTarget.parentNode;
+    if(DIRECTION == "increment"){
+        
+    }
+    else if(DIRECTION == "decrement"){
+
+    }
+    else{console.log("ERROR - No direction to disable ")}
+}
 
 function CorrectLengthNum(numberInputTarget,Max,Min){
     if (numberInputTarget.value < Min){
