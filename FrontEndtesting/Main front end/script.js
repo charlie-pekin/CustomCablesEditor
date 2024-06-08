@@ -215,14 +215,19 @@ function removeActivePadlocks(){
 
 function InchToFeet(inch){
     let raw = inch/12;
-    // return Math.round(raw*1000)/1000;
     return CustomRound(raw,0.001);
 }
 
 function InchToMeter(inch){
     let raw = inch/39.37;
-    // return Math.round(raw*1000)/1000;
     return CustomRound(raw,0.0001);
+}
+
+function UpdateAltLengths(numberInputTarget){
+    let altFeetElement = numberInputTarget.parentNode.parentNode.parentNode.querySelector("[data-alt_length-feet]");
+    let altMeterElement = numberInputTarget.parentNode.parentNode.parentNode.querySelector("[data-alt_length-meters]");
+    altFeetElement.innerHTML = InchToFeet(numberInputTarget.value);
+    altMeterElement.innerHTML = InchToMeter(numberInputTarget.value);
 }
 
 function CustomRound(value, steps){
@@ -237,6 +242,8 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
     let wasBtnClicked = false;
     let lengthChangeDirection = "NONE";
     let lengthChangeAmount = 0;
+    let sectiontarget = TARGET.getAttribute("data-input");
+    console.log(sectiontarget);
     // console.log(arguments);
     if (arguments.length >= 2){
         wasBtnClicked = true;
@@ -258,19 +265,31 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
             let totalMaxLength = 120;
             let totalMinLength = 3;
             if (wasBtnClicked == true){
-                if(lengthChangeDirection == "increment"){
-
-                    TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                    console.log("after adding = " + TARGET.value);
-                    // TARGET.value = TARGET.value + lengthChangeAmount;
+                if(lengthChangeDirection == "increment"){ 
+                    if(lengthChangeAmount<=1){
+                        TARGET.value = Math.floor(Number(TARGET.value));
+                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                    }
+                    else{
+                        TARGET.value = Math.floor(Number(TARGET.value)); 
+                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                    }                
+                    console.log("after adding = " + TARGET.value);             
                 }
                 else if(lengthChangeDirection == "decrement"){
-                    TARGET.value-=lengthChangeAmount;
+                    if(lengthChangeAmount<=1){
+                        TARGET.value = Math.ceil(Number(TARGET.value)); 
+                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                    }
+                    else{
+                        TARGET.value = Math.floor(Number(TARGET.value)); 
+                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                    }
                     console.log("after sub = " + TARGET.value);
-                    // TARGET.value = TARGET.value - lengthChangeAmount;
                 }
             }
             CorrectLengthNum(TARGET,totalMaxLength,totalMinLength);
+            UpdateAltLengths(TARGET);
             break;
         case 1: //Y Cable (B1)
             
@@ -282,37 +301,50 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
             break;
     }
 };
+// function RemoveFloat(TARGET,CHANGEAMOUNT){
+//     if(CHANGEAMOUNT >= 1){
+//         TARGET.value = Math.ceil(Number(TARGET.value));
+//     }
+//     else {
 
-function LengthLimitReached(numberInputTarget,Max,Min){
-    if (numberInputTarget.value <= Min){
-        return true;
-    }
-    else if (numberInputTarget.value >= Max){
-        return true;
-    }
-    else if (numberInputTarget.value < Min && numberInputTarget.value > Max){
-        return false;
-    }
-    else{console.log("Limit ERROR")}
-};
-
-function DisableLengthBTNs(numberInputTarget,DIRECTION){
-    let currentnumWrapper = numberInputTarget.parentNode;
-    if(DIRECTION == "increment"){
-
-    }
-    else if(DIRECTION == "decrement"){
-
-    }
-    else{console.log("ERROR - No direction to disable ")}
-}
+//     }
+// };
+// function LengthLimitReached(numberInputTarget,Max,Min){
+//     if (numberInputTarget.value <= Min){
+//         return true;
+//     }
+//     else if (numberInputTarget.value >= Max){
+//         return true;
+//     }
+//     else if (numberInputTarget.value < Min && numberInputTarget.value > Max){
+//         return false;
+//     }
+//     else{console.log("Limit ERROR")}
+// };
 
 function CorrectLengthNum(numberInputTarget,Max,Min){
-    if (numberInputTarget.value < Min){
+    let incrementBtNs = numberInputTarget.parentNode.parentNode.querySelectorAll("[data-length-direction=increment]");
+    let decrementBTNS = numberInputTarget.parentNode.parentNode.querySelectorAll("[data-length-direction=decrement]");
+    if (numberInputTarget.value <= Min){
         numberInputTarget.value = Min;
+        for(decbtn of decrementBTNS){
+            decbtn.classList.add("limit");
+        };
     }
-    else if (numberInputTarget.value > Max){
+    else if (numberInputTarget.value >= Max){
         numberInputTarget.value = Max;
+        for(incbtn of incrementBtNs){
+            incbtn.classList.add("limit");
+        };
+    }
+    else{
+        for(decbtn of decrementBTNS){
+            decbtn.classList.remove("limit");
+        };
+        for(incbtn of incrementBtNs){
+            incbtn.classList.remove("limit");
+        }
+
     }
 }
 
@@ -334,9 +366,9 @@ for (eachIncrementBTN of allLenghtChangeBTNs){
 for (eachlengthNumberinput of AllLengthNumbers){
     eachlengthNumberinput.addEventListener("input",function(e){
         let currentnumWrapper = e.currentTarget.parentNode;
-        console.log(currentnumWrapper);
+        // console.log(currentnumWrapper);
         currentnumWrapper.classList.add("change");
-        console.log("INPUT trigger | " + e.currentTarget.value);
+        // console.log("INPUT trigger | " + e.currentTarget.value);
         // ChangeLength(e.currentTarget);
 
     }
@@ -345,9 +377,10 @@ for (eachlengthNumberinput of AllLengthNumbers){
 for (eachlengthNumberinput of AllLengthNumbers){
     eachlengthNumberinput.addEventListener("change",function(e){
         let currentnumWrapper = e.currentTarget.parentNode;
-        console.log(currentnumWrapper);
+        // console.log(currentnumWrapper);
         currentnumWrapper.classList.remove("change");
-        console.log("CHANGE trigger | " +e.currentTarget.value);
+        // console.log("CHANGE trigger | " +e.currentTarget.value);
+        e.currentTarget.value = CustomRound(e.currentTarget.value,0.5);
         ChangeLength(e.currentTarget);
     }
 )};

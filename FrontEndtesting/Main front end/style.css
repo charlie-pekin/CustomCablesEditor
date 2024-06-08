@@ -655,16 +655,16 @@ button:hover{
     
     /* pointer-events: none; */
 }
-.limit.increment{
+.limit.increment, .limit.length_btn{
     background-color: gray;
     opacity: 0.5;
+    pointer-events: none;
 }
-.limit.increment:hover{
+/* .limit.increment:hover{
     cursor: not-allowed;
     background-color: gray;
-    color: black;
-    
-}
+    color: black;  
+} */
 .increment{
     height: 50%;
     width: 100%;
