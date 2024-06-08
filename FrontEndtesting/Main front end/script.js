@@ -24,8 +24,7 @@ const inputLength = document.querySelector("[data-input=input]");
 const outputLength = document.querySelector("[data-input=output]");
 const centerLength = document.querySelector("[data-input=center]");
 
-let allIncrementButtons = document.querySelectorAll("[data-increment]");
-let allDecrementButtons = document.querySelectorAll("[data-decrement]");
+let allLenghtChangeBTNs = document.querySelectorAll("[data-length_change]");
 
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
@@ -300,7 +299,7 @@ function LengthLimitReached(numberInputTarget,Max,Min){
 function DisableLengthBTNs(numberInputTarget,DIRECTION){
     let currentnumWrapper = numberInputTarget.parentNode;
     if(DIRECTION == "increment"){
-        
+
     }
     else if(DIRECTION == "decrement"){
 
@@ -321,24 +320,13 @@ function GetLenNumElement(TARGET){
 
 };
 
-for (eachIncrementBTN of allIncrementButtons){
+for (eachIncrementBTN of allLenghtChangeBTNs){
     eachIncrementBTN.addEventListener("click",function(e){
         let incBTN = e.currentTarget;
         let incWrapper = incBTN.parentNode;
         let numWrapper = incWrapper.parentNode;
         let target = numWrapper.querySelector("[data-input]");
         ChangeLength(target, incBTN);
-        // console.log(target.value);
-    }
-)};
-
-for (eachDecrementBTN of allDecrementButtons){
-    eachDecrementBTN.addEventListener("click",function(e){
-        let decBTN = e.currentTarget;
-        let decWrapper = decBTN.parentNode;
-        let numWrapper = decWrapper.parentNode;
-        let target = numWrapper.querySelector("[data-input]");
-        ChangeLength(target, decBTN);
         // console.log(target.value);
     }
 )};
