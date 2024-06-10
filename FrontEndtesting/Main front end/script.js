@@ -26,6 +26,18 @@ const centerLength = document.querySelector("[data-input=center]");
 
 let allLenghtChangeBTNs = document.querySelectorAll("[data-length_change]");
 
+let totalMaxLength = 120;
+let totalMinLength = 3;
+
+let outputMaxLength = 0;
+let outputMinLength = 3;
+
+let centerMaxLength = 0;
+let centerMinLength = 3;
+
+let inputMaxLength = 0;
+let inputMinLegth = 3;
+
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
         for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
@@ -262,8 +274,8 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
     else  {wasBtnClicked = false;};
     switch(Bconfig){
         case 0: //Straight Cable (B0)
-            let totalMaxLength = 120;
-            let totalMinLength = 3;
+            totalMaxLength = 120;
+            totalMinLength = 3;
             if (wasBtnClicked == true){
                 if(lengthChangeDirection == "increment"){ 
                     if(lengthChangeAmount<=1){
@@ -292,8 +304,34 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
             UpdateAltLengths(TARGET);
             break;
         case 1: //Y Cable (B1)
-            
-
+            totalMaxLength = 120;
+            totalMinLength = 6;
+            if (wasBtnClicked == true){
+                if(lengthChangeDirection == "increment"){ 
+                    if(lengthChangeAmount<=1){
+                        TARGET.value = Math.floor(Number(TARGET.value));
+                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                    }
+                    else{
+                        TARGET.value = Math.floor(Number(TARGET.value)); 
+                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                    }                
+                    console.log("after adding = " + TARGET.value);             
+                }
+                else if(lengthChangeDirection == "decrement"){
+                    if(lengthChangeAmount<=1){
+                        TARGET.value = Math.ceil(Number(TARGET.value)); 
+                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                    }
+                    else{
+                        TARGET.value = Math.floor(Number(TARGET.value)); 
+                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                    }
+                    console.log("after sub = " + TARGET.value);
+                }
+            }
+            CorrectLengthNum(TARGET,totalMaxLength,totalMinLength);
+            UpdateAltLengths(TARGET);
             break;
         case 2: //X Cable (B2)
             
