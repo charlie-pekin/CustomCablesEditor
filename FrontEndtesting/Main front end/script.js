@@ -38,6 +38,8 @@ let centerMinLength = 3;
 let inputMaxLength = 0;
 let inputMinLegth = 3;
 
+let currentTotalLength = 0;
+
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
         for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
@@ -281,6 +283,7 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
                     if(lengthChangeAmount<=1){
                         TARGET.value = Math.floor(Number(TARGET.value));
                         TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                        
                     }
                     else{
                         TARGET.value = Math.floor(Number(TARGET.value)); 
@@ -306,59 +309,158 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
         case 1: //Y Cable (B1)
             totalMaxLength = 120;
             totalMinLength = 6;
-            if (wasBtnClicked == true){
-                if(lengthChangeDirection == "increment"){ 
-                    if(lengthChangeAmount<=1){
-                        TARGET.value = Math.floor(Number(TARGET.value));
-                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                    }
-                    else{
-                        TARGET.value = Math.floor(Number(TARGET.value)); 
-                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                    }                
-                    console.log("after adding = " + TARGET.value);             
+            currentTotalLength = Number(outputLength.value) + Number(inputLength.value);
+                switch (sectiontarget){
+                    case "output":
+                        // console.log("Y cable OUTPUT button pressed");
+                        if (wasBtnClicked == true){
+                            if(lengthChangeDirection == "increment"){ 
+                                // TARGET.value = Math.floor(Number(TARGET.value));
+                                if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                                    break;
+                                };
+                                TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                                totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
+                                console.log("after adding = " + TARGET.value);             
+                            }
+                            else if(lengthChangeDirection == "decrement"){
+                                // TARGET.value = Math.ceil(Number(TARGET.value)); 
+                                if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                                    break;
+                                };
+                                TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                                totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
+                                console.log("after sub = " + TARGET.value);
+                            }
+                        }
+                        else {
+
+                        }
+                    break;
+                    case "input":
+                        // console.log("Y cable INPUT button pressed");
+                        if (wasBtnClicked == true){
+                            if(lengthChangeDirection == "increment"){ 
+                                // TARGET.value = Math.floor(Number(TARGET.value));
+                                if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                                    break;
+                                };
+                                TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                                totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
+                                console.log("after adding = " + TARGET.value);             
+                            }
+                            else if(lengthChangeDirection == "decrement"){
+                                // TARGET.value = Math.ceil(Number(TARGET.value)); 
+                                if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                                    break;
+                                };
+                                TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                                totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
+                                console.log("after sub = " + TARGET.value);
+                            }
+                        }
+                        else {
+
+                        }
+                    break;
                 }
-                else if(lengthChangeDirection == "decrement"){
-                    if(lengthChangeAmount<=1){
-                        TARGET.value = Math.ceil(Number(TARGET.value)); 
-                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                    }
-                    else{
-                        TARGET.value = Math.floor(Number(TARGET.value)); 
-                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                    }
-                    console.log("after sub = " + TARGET.value);
-                }
-            }
-            CorrectLengthNum(TARGET,totalMaxLength,totalMinLength);
+            CorrectLengthNum(totalLength,totalMaxLength,totalMinLength);
+            CorrectLengthNum(outputLength,totalMaxLength,totalMinLength);
+            CorrectLengthNum(inputLength,totalMaxLength,totalMinLength);
             UpdateAltLengths(TARGET);
             break;
         case 2: //X Cable (B2)
-            
+        totalMaxLength = 120;
+        totalMinLength = 8;
+        currentTotalLength = Number(outputLength.value) + Number(inputLength.value) + Number(centerLength.value);
+            switch (sectiontarget){
+                case "output":
+                    // console.log("Y cable OUTPUT button pressed");
+                    if (wasBtnClicked == true){
+                        if(lengthChangeDirection == "increment"){ 
+                            // TARGET.value = Math.floor(Number(TARGET.value));
+                            if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                                break;
+                            };
+                            TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                            totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
+                            console.log("after adding = " + TARGET.value);             
+                        }
+                        else if(lengthChangeDirection == "decrement"){
+                            // TARGET.value = Math.ceil(Number(TARGET.value)); 
+                            if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                                break;
+                            };
+                            TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                            totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
+                            console.log("after sub = " + TARGET.value);
+                        }
+                    }
+                    else {
+
+                    }
+                break;
+                case "center":
+                    // console.log("Y cable OUTPUT button pressed");
+                    if (wasBtnClicked == true){
+                        if(lengthChangeDirection == "increment"){ 
+                            // TARGET.value = Math.floor(Number(TARGET.value));
+                            if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                                break;
+                            };
+                            TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                            totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
+                            console.log("after adding = " + TARGET.value);             
+                        }
+                        else if(lengthChangeDirection == "decrement"){
+                            // TARGET.value = Math.ceil(Number(TARGET.value)); 
+                            if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                                break;
+                            };
+                            TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                            totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
+                            console.log("after sub = " + TARGET.value);
+                        }
+                    }
+                    else {
+
+                    }
+                break;
+                case "input":
+                    // console.log("Y cable INPUT button pressed");
+                    if (wasBtnClicked == true){
+                        if(lengthChangeDirection == "increment"){ 
+                            // TARGET.value = Math.floor(Number(TARGET.value));
+                            if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                                break;
+                            };
+                            TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                            totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
+                            console.log("after adding = " + TARGET.value);             
+                        }
+                        else if(lengthChangeDirection == "decrement"){
+                            // TARGET.value = Math.ceil(Number(TARGET.value)); 
+                            if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                                break;
+                            };
+                            TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                            totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
+                            console.log("after sub = " + TARGET.value);
+                        }
+                    }
+                    else {
+
+                    }
+                break;
+            }
+        CorrectLengthNum(totalLength,totalMaxLength,totalMinLength);
+        CorrectLengthNum(outputLength,totalMaxLength,totalMinLength);
+        CorrectLengthNum(inputLength,totalMaxLength,totalMinLength);
+        UpdateAltLengths(TARGET);
 
             break;
     }
 };
-// function RemoveFloat(TARGET,CHANGEAMOUNT){
-//     if(CHANGEAMOUNT >= 1){
-//         TARGET.value = Math.ceil(Number(TARGET.value));
-//     }
-//     else {
-
-//     }
-// };
-// function LengthLimitReached(numberInputTarget,Max,Min){
-//     if (numberInputTarget.value <= Min){
-//         return true;
-//     }
-//     else if (numberInputTarget.value >= Max){
-//         return true;
-//     }
-//     else if (numberInputTarget.value < Min && numberInputTarget.value > Max){
-//         return false;
-//     }
-//     else{console.log("Limit ERROR")}
-// };
 
 function CorrectLengthNum(numberInputTarget,Max,Min){
     let incrementBtNs = numberInputTarget.parentNode.parentNode.querySelectorAll("[data-length-direction=increment]");
@@ -368,11 +470,17 @@ function CorrectLengthNum(numberInputTarget,Max,Min){
         for(decbtn of decrementBTNS){
             decbtn.classList.add("limit");
         };
+        for(incbtn of incrementBtNs){
+            incbtn.classList.remove("limit");
+        };
     }
     else if (numberInputTarget.value >= Max){
         numberInputTarget.value = Max;
         for(incbtn of incrementBtNs){
             incbtn.classList.add("limit");
+        };
+        for(decbtn of decrementBTNS){
+            decbtn.classList.remove("limit");
         };
     }
     else{
@@ -381,10 +489,10 @@ function CorrectLengthNum(numberInputTarget,Max,Min){
         };
         for(incbtn of incrementBtNs){
             incbtn.classList.remove("limit");
-        }
+        };
 
     }
-}
+};
 
 function GetLenNumElement(TARGET){
 
