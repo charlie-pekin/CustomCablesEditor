@@ -29,6 +29,10 @@ let allLenghtChangeBTNs = document.querySelectorAll("[data-length_change]");
 let CableMaxLength = 120;
 let segmentMinLength = 3;
 
+
+let YsegmentMinLength = segmentMinLength;
+let YsegmentMaxLength = CableMaxLength - YsegmentMinLength;
+
 let totalMinLength = 0;
 
 let segmentMaxLength = 0;
@@ -277,8 +281,6 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
             break;
         case 1: //Y Cable (B1)
             totalMinLength = segmentMinLength * 2;
-            let YsegmentMinLength = segmentMinLength;
-            let YsegmentMaxLength = CableMaxLength - YsegmentMinLength;
             // console.log(`Y segment Max length = ${YsegmentMaxLength}`);
             currentTotalLength = GetSumOfTotalLength(outputLength.value, inputLength.value);
             // console.log(currentTotalLength);
@@ -440,8 +442,8 @@ function CorrectLengthNum(numberInputTarget,Max,Min){
 };
 
 function YSegmentChangeLength(TARGET, BUTTON){
-    let lengthChangeAmount = 0;
-    let lengthChangeDirection = Number(BUTTON.getAttribute("data-change_amount"));
+    let lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
+    let lengthChangeDirection = BUTTON.getAttribute("data-length-direction");
     let OPPOSITE = "none";
     if(BUTTON.getAttribute("data-length-direction") == "increment"){
         lengthChangeDirection = "increment";
@@ -457,33 +459,55 @@ function YSegmentChangeLength(TARGET, BUTTON){
     else {
         OPPOSITE = outputLength;
     }
+    console.log(`Change Amount = ${lengthChangeAmount} | Change Dir = ${lengthChangeDirection}`);
+    console.log(`Current Total = ${currentTotalLength} | Total MAX = ${CableMaxLength} | Total MIN = ${totalMinLength}`)
+    console.log(`Y MAX = ${YsegmentMaxLength} | Y MIN = ${YsegmentMinLength}`);
+
     if(lengthChangeDirection == "increment"){
         if (Number(TARGET.value) + lengthChangeAmount <= YsegmentMaxLength){
+            console.log(`Target will not go OVER ${YsegmentMaxLength}`);
            if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
                TARGET.value = Number(TARGET.value) + lengthChangeAmount;
            }
-           else {
+           else if(Number(OPPOSITE.value) - lengthChangeAmount >= YsegmentMinLength){
                 OPPOSITE.value = Number(OPPOSITE.value) - lengthChangeAmount;
-               TARGET.value = Number(TARGET.value) + lengthChangeAmount;
+                TARGET.value = Number(TARGET.value) + lengthChangeAmount;
+           }
+           else{
+                OPPOSITE.value = YsegmentMinLength;
+                TARGET.value = YsegmentMaxLength;
            }
         }
-        else if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
+        else {
+            console.log(`Target WILL go OVER ${YsegmentMaxLength}`);
             TARGET.value = YsegmentMaxLength;
-        }          
+        }
+        // else if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
+        //     TARGET.value = YsegmentMaxLength;
+        // }          
    }
    else if(lengthChangeDirection == "decrement"){ 
        if (Number(TARGET.value) - lengthChangeAmount >= YsegmentMinLength){
+        console.log(`Target will not go UNDER ${YsegmentMinLength}`);
            if (currentTotalLength - lengthChangeAmount >= totalMinLength){
                TARGET.value = Number(TARGET.value) - lengthChangeAmount;
            }
-           else {
+           else if(Number(OPPOSITE.value) + lengthChangeAmount <= YsegmentMaxLength){
                 OPPOSITE.value = Number(OPPOSITE.value) + lengthChangeAmount;
                TARGET.value = Number(TARGET.value) - lengthChangeAmount;
            }
+           else {
+                OPPOSITE.value = YsegmentMaxLength;
+                TARGET.value = YsegmentMinLength;
+           }
         }
-        else if (currentTotalLength - lengthChangeAmount >= totalMinLength){
-           TARGET.value = YsegmentMinLength;
+        else {
+            console.log(`Target WILL go UNDER ${YsegmentMinLength}`);
+            TARGET.value = YsegmentMinLength;
         }
+        // else if (currentTotalLength - lengthChangeAmount >= totalMinLength){
+        //    TARGET.value = YsegmentMinLength;
+        // }
    }
 }
 function SplitTotal(){
