@@ -9,10 +9,10 @@ const connectorCountButtons = document.getElementsByClassName("connector_count_b
 const addText = "Add";
 const removeText = "Remove";
 
-const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
-const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
+// const AllPadlockButtons = document.querySelectorAll("[data-padlock]");
+// const AllpadLockSVG = document.querySelectorAll("[data-padlock-svg]");
 const AllLengthWrappers = document.querySelectorAll("[data-number-wrapper]");
-let ActivePadlock = "total";
+// let ActivePadlock = "total";
 
 let connectorCellInsertBtn = document.querySelectorAll("[data-cell-insert]");
 
@@ -26,17 +26,12 @@ const centerLength = document.querySelector("[data-input=center]");
 
 let allLenghtChangeBTNs = document.querySelectorAll("[data-length_change]");
 
-let totalMaxLength = 120;
-let totalMinLength = 3;
+let CableMaxLength = 120;
+let segmentMinLength = 3;
 
-let outputMaxLength = 0;
-let outputMinLength = 3;
+let totalMinLength = 0;
 
-let centerMaxLength = 0;
-let centerMinLength = 3;
-
-let inputMaxLength = 0;
-let inputMinLegth = 3;
+let segmentMaxLength = 0;
 
 let currentTotalLength = 0;
 
@@ -126,44 +121,49 @@ for(countBtn of connectorCountButtons){
         const lengthOutputRow = document.querySelector("[data-length-row=output]");
         const lengthCenterRow = document.querySelector("[data-length-row=center]");
         const lengthInputRow = document.querySelector("[data-length-row=input]");
-        const totalPadlockBTN = document.querySelector("[data-padlock=total]");
-        const totalPadlockSVG = document.querySelector("[data-padlock-svg=total");
-        const totalNumberWrapper = document.querySelector("[data-number-wrapper=total]");
+        // const totalPadlockBTN = document.querySelector("[data-padlock=total]");
+        // const totalPadlockSVG = document.querySelector("[data-padlock-svg=total");
+        // const totalNumberWrapper = document.querySelector("[data-number-wrapper=total]");
 
-        const YRatioRow = document.querySelector("[data-radio-row=Y]");
-        const XRatioRow = document.querySelector("[data-radio-row=X]");
+        // const YRatioRow = document.querySelector("[data-radio-row=Y]");
+        // const XRatioRow = document.querySelector("[data-radio-row=X]");
 
         switch(Bconfig){
             case 0: //Straight Cable (B0)
-                totalPadlockBTN.classList.add("flex_hide");
+            totalLength.parentNode.parentNode.classList.remove("disable");
+                // totalPadlockBTN.classList.add("flex_hide");
                 lengthOutputRow.classList.add("flex_hide");
                 lengthCenterRow.classList.add("flex_hide");
                 lengthInputRow.classList.add("flex_hide");
-                removeActivePadlocks();
-                totalPadlockSVG.classList.add("active");
-                totalNumberWrapper.classList.add("active");
-                YRatioRow.classList.add("flex_hide");
+                // removeActivePadlocks();
+                // totalPadlockSVG.classList.add("active");
+                // totalNumberWrapper.classList.add("active");
+                // YRatioRow.classList.add("flex_hide");
                 break;
             case 1: //Y Cable (B1)
-                totalPadlockBTN.classList.remove("flex_hide");
+                totalLength.parentNode.parentNode.classList.add("disable");
+                // totalPadlockBTN.classList.remove("flex_hide");
                 lengthOutputRow.classList.remove("flex_hide");
                 lengthInputRow.classList.remove("flex_hide");
                 lengthCenterRow.classList.add("flex_hide");
-                YRatioRow.classList.remove("flex_hide");
-                XRatioRow.classList.add("flex_hide");
-                if(ActivePadlock=="center"){
-                    removeActivePadlocks();
-                    totalPadlockSVG.classList.add("active");
-                    totalNumberWrapper.classList.add("active");
-                }
+                // YRatioRow.classList.remove("flex_hide");
+                // XRatioRow.classList.add("flex_hide");
+                // if(ActivePadlock=="center"){
+                //     removeActivePadlocks();
+                //     totalPadlockSVG.classList.add("active");
+                //     totalNumberWrapper.classList.add("active");
+                // }
+                SplitTotal();
                 break;
             case 2: //X Cable (B2)
-                totalPadlockBTN.classList.remove("flex_hide");
+                totalLength.parentNode.parentNode.classList.add("disable");
+                // totalPadlockBTN.classList.remove("flex_hide");
                 lengthOutputRow.classList.remove("flex_hide");
                 lengthInputRow.classList.remove("flex_hide");
                 lengthCenterRow.classList.remove("flex_hide");
-                XRatioRow.classList.remove("flex_hide");
-                YRatioRow.classList.add("flex_hide");
+                // XRatioRow.classList.remove("flex_hide");
+                // YRatioRow.classList.add("flex_hide");
+                SplitTotal();
                 break;
         }
     });
@@ -204,28 +204,28 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
 };
 
 
-for(eachPadlockBtn of AllPadlockButtons){
-    eachPadlockBtn.addEventListener("click",function(e){
-        const btnClicked = e.currentTarget;
-        const btnPadlock = btnClicked.querySelector("[data-padlock-svg]");
-        const rowParent = btnClicked.parentNode;
-        const number = rowParent.querySelector("[data-number-wrapper]");
-        console.log(rowParent);
-        removeActivePadlocks();
-        btnPadlock.classList.add("active");
-        number.classList.add("active");
-        ActivePadlock=btnPadlock.getAttribute("data-padlock-svg");
-        console.log(ActivePadlock);
-    });
-}
-function removeActivePadlocks(){
-    for(eachPadlockSVG of AllpadLockSVG){
-        eachPadlockSVG.classList.remove("active");
-    }
-    for(eachlengthNumber of AllLengthWrappers){
-        eachlengthNumber.classList.remove("active");
-    }
-}
+// for(eachPadlockBtn of AllPadlockButtons){
+//     eachPadlockBtn.addEventListener("click",function(e){
+//         const btnClicked = e.currentTarget;
+//         const btnPadlock = btnClicked.querySelector("[data-padlock-svg]");
+//         const rowParent = btnClicked.parentNode;
+//         const number = rowParent.querySelector("[data-number-wrapper]");
+//         console.log(rowParent);
+//         removeActivePadlocks();
+//         btnPadlock.classList.add("active");
+//         number.classList.add("active");
+//         ActivePadlock=btnPadlock.getAttribute("data-padlock-svg");
+//         console.log(ActivePadlock);
+//     });
+// }
+// function removeActivePadlocks(){
+//     for(eachPadlockSVG of AllpadLockSVG){
+//         eachPadlockSVG.classList.remove("active");
+//     }
+//     for(eachlengthNumber of AllLengthWrappers){
+//         eachlengthNumber.classList.remove("active");
+//     }
+// }
 
 function InchToFeet(inch){
     let raw = inch/12;
@@ -251,127 +251,72 @@ function CustomRound(value, steps){
 }
 
 function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the button element that was pressed
-    // console.log(TARGET);
-    // console.log(Bconfig);
     let wasBtnClicked = false;
-    let lengthChangeDirection = "NONE";
     let lengthChangeAmount = 0;
     let sectiontarget = TARGET.getAttribute("data-input");
-    console.log(sectiontarget);
-    // console.log(arguments);
+    let BUTTON = "none";
     if (arguments.length >= 2){
         wasBtnClicked = true;
-        let BUTTON = arguments[1];
-        if(BUTTON.getAttribute("data-length-direction") == "increment"){
-            lengthChangeDirection = "increment";
-        }
-        else if(BUTTON.getAttribute("data-length-direction") == "decrement"){
-            lengthChangeDirection = "decrement";
-        }
-        else {console.log("Button direction not found!")};
-        console.log(lengthChangeDirection);
-        lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
-        console.log(`Button change amount = ${lengthChangeAmount}`);
+        BUTTON = arguments[1];
     }
     else  {wasBtnClicked = false;};
     switch(Bconfig){
         case 0: //Straight Cable (B0)
-            totalMaxLength = 120;
-            totalMinLength = 3;
+            totalMinLength = segmentMinLength;
+            TARGET.value = CustomRound(TARGET.value, 1);
             if (wasBtnClicked == true){
                 if(lengthChangeDirection == "increment"){ 
-                    if(lengthChangeAmount<=1){
-                        TARGET.value = Math.floor(Number(TARGET.value));
-                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                        
-                    }
-                    else{
-                        TARGET.value = Math.floor(Number(TARGET.value)); 
                         TARGET.value= Number(TARGET.value)+lengthChangeAmount;
                     }                
-                    console.log("after adding = " + TARGET.value);             
-                }
                 else if(lengthChangeDirection == "decrement"){
-                    if(lengthChangeAmount<=1){
-                        TARGET.value = Math.ceil(Number(TARGET.value)); 
                         TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                    }
-                    else{
-                        TARGET.value = Math.floor(Number(TARGET.value)); 
-                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                    }
-                    console.log("after sub = " + TARGET.value);
                 }
-            }
-            CorrectLengthNum(TARGET,totalMaxLength,totalMinLength);
+            };
+            CorrectLengthNum(TARGET,CableMaxLength,totalMinLength);
             UpdateAltLengths(TARGET);
             break;
         case 1: //Y Cable (B1)
-            totalMaxLength = 120;
-            totalMinLength = 6;
-            currentTotalLength = Number(outputLength.value) + Number(inputLength.value);
+            totalMinLength = segmentMinLength * 2;
+            let YsegmentMinLength = segmentMinLength;
+            let YsegmentMaxLength = CableMaxLength - YsegmentMinLength;
+            // console.log(`Y segment Max length = ${YsegmentMaxLength}`);
+            currentTotalLength = GetSumOfTotalLength(outputLength.value, inputLength.value);
+            // console.log(currentTotalLength);
                 switch (sectiontarget){
+                    case "total":
+                        totalLength.value = currentTotalLength;
+                    break;              
                     case "output":
-                        // console.log("Y cable OUTPUT button pressed");
                         if (wasBtnClicked == true){
-                            if(lengthChangeDirection == "increment"){ 
-                                // TARGET.value = Math.floor(Number(TARGET.value));
-                                if (currentTotalLength+lengthChangeAmount>totalMaxLength){
-                                    break;
-                                };
-                                TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                                totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
-                                console.log("after adding = " + TARGET.value);             
-                            }
-                            else if(lengthChangeDirection == "decrement"){
-                                // TARGET.value = Math.ceil(Number(TARGET.value)); 
-                                if (currentTotalLength-lengthChangeAmount<totalMinLength){
-                                    break;
-                                };
-                                TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                                totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
-                                console.log("after sub = " + TARGET.value);
-                            }
+                            YSegmentChangeLength(outputLength,BUTTON);
                         }
                         else {
 
                         }
                     break;
                     case "input":
-                        // console.log("Y cable INPUT button pressed");
                         if (wasBtnClicked == true){
-                            if(lengthChangeDirection == "increment"){ 
-                                // TARGET.value = Math.floor(Number(TARGET.value));
-                                if (currentTotalLength+lengthChangeAmount>totalMaxLength){
-                                    break;
-                                };
-                                TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                                totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
-                                console.log("after adding = " + TARGET.value);             
-                            }
-                            else if(lengthChangeDirection == "decrement"){
-                                // TARGET.value = Math.ceil(Number(TARGET.value)); 
-                                if (currentTotalLength-lengthChangeAmount<totalMinLength){
-                                    break;
-                                };
-                                TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                                totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
-                                console.log("after sub = " + TARGET.value);
-                            }
+                            YSegmentChangeLength(inputLength,BUTTON);
                         }
                         else {
 
                         }
                     break;
                 }
-            CorrectLengthNum(totalLength,totalMaxLength,totalMinLength);
-            CorrectLengthNum(outputLength,totalMaxLength,totalMinLength);
-            CorrectLengthNum(inputLength,totalMaxLength,totalMinLength);
-            UpdateAltLengths(TARGET);
+            // CorrectLengthNum(totalLength,CableMaxLength,totalMinLength);
+            // CorrectLengthNum(outputLength,YsegmentMaxLength,YsegmentMinLength);
+            // CorrectLengthNum(inputLength,YsegmentMaxLength,YsegmentMinLength);
+            
+            totalLength.value = GetSumOfTotalLength(inputLength.value,outputLength.value);
+            UpdateAltLengths(totalLength);
+            UpdateAltLengths(outputLength);
+            UpdateAltLengths(inputLength);
+            console.log(`Final Total Sum Check = ${GetSumOfTotalLength(inputLength.value,outputLength.value)}`);
             break;
         case 2: //X Cable (B2)
         totalMaxLength = 120;
         totalMinLength = 8;
+        se
         currentTotalLength = Number(outputLength.value) + Number(inputLength.value) + Number(centerLength.value);
             switch (sectiontarget){
                 case "output":
@@ -494,8 +439,80 @@ function CorrectLengthNum(numberInputTarget,Max,Min){
     }
 };
 
-function GetLenNumElement(TARGET){
+function YSegmentChangeLength(TARGET, BUTTON){
+    let lengthChangeAmount = 0;
+    let lengthChangeDirection = Number(BUTTON.getAttribute("data-change_amount"));
+    let OPPOSITE = "none";
+    if(BUTTON.getAttribute("data-length-direction") == "increment"){
+        lengthChangeDirection = "increment";
+    }
+    else if(BUTTON.getAttribute("data-length-direction") == "decrement"){
+        lengthChangeDirection = "decrement";
+    }
+    else {console.log("Button direction not found!")};
+    
+    if(TARGET.getAttribute("data-input") == "output"){
+        OPPOSITE = inputLength;
+    }
+    else {
+        OPPOSITE = outputLength;
+    }
+    if(lengthChangeDirection == "increment"){
+        if (Number(TARGET.value) + lengthChangeAmount <= YsegmentMaxLength){
+           if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
+               TARGET.value = Number(TARGET.value) + lengthChangeAmount;
+           }
+           else {
+                OPPOSITE.value = Number(OPPOSITE.value) - lengthChangeAmount;
+               TARGET.value = Number(TARGET.value) + lengthChangeAmount;
+           }
+        }
+        else if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
+            TARGET.value = YsegmentMaxLength;
+        }          
+   }
+   else if(lengthChangeDirection == "decrement"){ 
+       if (Number(TARGET.value) - lengthChangeAmount >= YsegmentMinLength){
+           if (currentTotalLength - lengthChangeAmount >= totalMinLength){
+               TARGET.value = Number(TARGET.value) - lengthChangeAmount;
+           }
+           else {
+                OPPOSITE.value = Number(OPPOSITE.value) + lengthChangeAmount;
+               TARGET.value = Number(TARGET.value) - lengthChangeAmount;
+           }
+        }
+        else if (currentTotalLength - lengthChangeAmount >= totalMinLength){
+           TARGET.value = YsegmentMinLength;
+        }
+   }
+}
+function SplitTotal(){
+    let totalHalf = Number(totalLength.value)/2;
+    let totalThird = Number(totalLength.value)/3;
+    switch (Bconfig){
+        case 0:
 
+        break;
+        case 1:
+            outputLength.value = Math.floor(totalHalf);
+            console.log(`Split  Total - OUTOUT = ${Math.floor(totalHalf)}`);
+            inputLength.value = Math.ceil(totalHalf);
+            console.log(`Split  Total - INPUT = ${Math.ceil(totalHalf)}`);
+        break;
+        case 2:
+            outputLength.value = Math.floor(totalThird);
+            centerLength.value = Number(totalLength.value) - (Math.floor(totalThird)*2);
+            inputLength.value = Math.floor(totalThird);
+        break;
+    };
+};
+
+function GetSumOfTotalLength(...args){
+    let sum = 0;
+    for (let arg of args){
+        sum = sum + Number(arg);     
+    };
+    return sum;
 };
 
 for (eachIncrementBTN of allLenghtChangeBTNs){
@@ -526,7 +543,7 @@ for (eachlengthNumberinput of AllLengthNumbers){
         // console.log(currentnumWrapper);
         currentnumWrapper.classList.remove("change");
         // console.log("CHANGE trigger | " +e.currentTarget.value);
-        e.currentTarget.value = CustomRound(e.currentTarget.value,0.5);
+        // e.currentTarget.value = CustomRound(e.currentTarget.value,0.5);
         ChangeLength(e.currentTarget);
     }
 )};

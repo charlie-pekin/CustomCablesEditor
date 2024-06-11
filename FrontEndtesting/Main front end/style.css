@@ -627,6 +627,15 @@ button:hover{
     position: relative;
     padding-top: 0.3vw;
 }
+.disable.input_wrapper {
+    pointer-events: none;
+}
+.disable.input_wrapper .length_btn{
+    opacity: 0;
+}
+.disable.input_wrapper .number_wrapper .increment_wrapper{
+    opacity: 0;
+}
 .title_wrapper{
     display: flex;
     align-items: center;
@@ -648,6 +657,7 @@ button:hover{
     width: 25%;
     user-select: none;
     font-size: 1.3vw;
+    transition: all 0.3s ease-in-out;
 }
 .error.increment_wrapper .increment{
     cursor: not-allowed;
