@@ -276,6 +276,7 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
         case 1: //Y Cable (B1)
             totalMinLength = segmentMinLength * 2;
             totalMaxLength = 120;
+            centerLength.value = 0
             // console.log(`Y segment Max length = ${YsegmentMaxLength}`);
             SectionValueChange(TARGET, wasBtnClicked, BUTTON)
             
@@ -310,8 +311,20 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
                 console.log("Buttn was clilkced")
                 if(lengthChangeDirection == "increment"){ 
                     // TARGET.value = Math.floor(Number(TARGET.value));
+                    if (currentTotalLength==totalMaxLength && Number(inputLength.value) - lengthChangeAmount >= segmentMinLength){
+                        TARGET.value = Number(TARGET.value) + lengthChangeAmount
+                        inputLength.value = Number(inputLength.value) - lengthChangeAmount              
+                        break;
+                    };
+                    if (currentTotalLength==totalMaxLength && Number(inputLength.value) - lengthChangeAmount < segmentMinLength){
+                        TARGET.value = totalMaxLength - segmentMinLength
+                        inputLength.value = segmentMinLength            
+                        break;
+                    };
                     if (currentTotalLength+lengthChangeAmount>totalMaxLength){
-                        console.log("break");
+                        lengthChangeAmount = totalMaxLength - currentTotalLength
+                        currentTotalLength = totalMaxLength
+                        TARGET.value = Number(TARGET.value) + lengthChangeAmount              
                         break;
                     };
                     TARGET.value= Number(TARGET.value)+lengthChangeAmount;
@@ -321,8 +334,24 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
                 else if(lengthChangeDirection == "decrement"){
                     // TARGET.value = Math.ceil(Number(TARGET.value)); 
                     if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                        lengthChangeAmount = totalMinLength - currentTotalLength
+                        currentTotalLength = totalMinLength
+                        TARGET.value = Number(TARGET.value) + lengthChangeAmount    
                         break;
                     };
+                    if (TARGET.value-lengthChangeAmount<segmentMinLength){
+                        break;
+                    };
+                    // if (currentTotalLength==totalMinLength && Number(outputLength.value) - lengthChangeAmount >= segmentMinLength){
+                    //     TARGET.value = Number(TARGET.value) + lengthChangeAmount
+                    //     inputLength.value = Number(inputLength.value) - lengthChangeAmount              
+                    //     break;
+                    // };
+                    // if (currentTotalLength==totalMaxLength && Number(inputLength.value) - lengthChangeAmount < segmentMinLength){
+                    //     TARGET.value = totalMaxLength - segmentMinLength
+                    //     inputLength.value = segmentMinLength            
+                    //     break;
+                    // };
                     TARGET.value= Number(TARGET.value)-lengthChangeAmount;
                     totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
                     console.log("after sub = " + TARGET.value);
@@ -338,6 +367,9 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
                 if(lengthChangeDirection == "increment"){ 
                     // TARGET.value = Math.floor(Number(TARGET.value));
                     if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                        lengthChangeAmount = totalMaxLength - currentTotalLength
+                        currentTotalLength = totalMaxLength
+                        TARGET.value = Number(TARGET.value) + lengthChangeAmount              
                         break;
                     };
                     TARGET.value= Number(TARGET.value)+lengthChangeAmount;
@@ -347,6 +379,9 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
                 else if(lengthChangeDirection == "decrement"){
                     // TARGET.value = Math.ceil(Number(TARGET.value)); 
                     if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                        break;
+                    };
+                    if (TARGET.value-lengthChangeAmount<segmentMinLength){
                         break;
                     };
                     TARGET.value= Number(TARGET.value)-lengthChangeAmount;
@@ -364,6 +399,9 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
                 if(lengthChangeDirection == "increment"){ 
                     // TARGET.value = Math.floor(Number(TARGET.value));
                     if (currentTotalLength+lengthChangeAmount>totalMaxLength){
+                        lengthChangeAmount = totalMaxLength - currentTotalLength
+                        currentTotalLength = totalMaxLength
+                        TARGET.value = Number(TARGET.value) + lengthChangeAmount              
                         break;
                     };
                     TARGET.value= Number(TARGET.value)+lengthChangeAmount;
@@ -373,6 +411,9 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
                 else if(lengthChangeDirection == "decrement"){
                     // TARGET.value = Math.ceil(Number(TARGET.value)); 
                     if (currentTotalLength-lengthChangeAmount<totalMinLength){
+                        break;
+                    };
+                    if (TARGET.value-lengthChangeAmount<segmentMinLength){
                         break;
                     };
                     TARGET.value= Number(TARGET.value)-lengthChangeAmount;
@@ -388,10 +429,10 @@ function SectionValueChange(TARGET, wasBtnClicked, BUTTON) {
             currentTotalLength = TARGET.value
             if (wasBtnClicked == true){
                 if(lengthChangeDirection == "increment"){ 
-                        TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                    }                
+                    TARGET.value= Number(TARGET.value)+lengthChangeAmount;
+                }                
                 else if(lengthChangeDirection == "decrement"){
-                        TARGET.value= Number(TARGET.value)-lengthChangeAmount;
+                    TARGET.value= Number(TARGET.value)-lengthChangeAmount;
                 }
             }
             else {
