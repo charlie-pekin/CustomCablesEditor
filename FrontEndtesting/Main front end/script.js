@@ -38,6 +38,8 @@ let totalMinLength = 0;
 let segmentMaxLength = 0;
 
 let currentTotalLength = 0;
+let lengthChangeAmount = 0;
+let lengthChangeDirection = 0;
 
 for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
@@ -262,13 +264,29 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
     if (arguments.length >= 2){
         wasBtnClicked = true;
         BUTTON = arguments[1];
+        if(BUTTON.getAttribute("data-length-direction") == "increment"){
+            lengthChangeDirection = "increment";
+        }
+        else if(BUTTON.getAttribute("data-length-direction") == "decrement"){
+            lengthChangeDirection = "decrement";
+        }
+        else {console.log("Button direction not found!")};
+
+        lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
+        lengthChangeDirection = BUTTON.getAttribute("data-length-direction");
     }
+
+    
     else  {wasBtnClicked = false;};
+    console.log(`Change Amount = ${lengthChangeAmount} | Change Dir = ${lengthChangeDirection}`);
+    console.log(`Current Total = ${currentTotalLength} | Total MAX = ${CableMaxLength} | Total MIN = ${totalMinLength}`)
+    console.log(`Y MAX = ${YsegmentMaxLength} | Y MIN = ${YsegmentMinLength}`);
     switch(Bconfig){
         case 0: //Straight Cable (B0)
             totalMinLength = segmentMinLength;
             TARGET.value = CustomRound(TARGET.value, 1);
             if (wasBtnClicked == true){
+                console.log(`BTN was clicked = ${wasBtnClicked}`);
                 if(lengthChangeDirection == "increment"){ 
                         TARGET.value= Number(TARGET.value)+lengthChangeAmount;
                     }                
@@ -281,30 +299,14 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
             break;
         case 1: //Y Cable (B1)
             totalMinLength = segmentMinLength * 2;
-            // console.log(`Y segment Max length = ${YsegmentMaxLength}`);
-            currentTotalLength = GetSumOfTotalLength(outputLength.value, inputLength.value);
-            // console.log(currentTotalLength);
-                switch (sectiontarget){
-                    case "total":
-                        totalLength.value = currentTotalLength;
-                    break;              
-                    case "output":
-                        if (wasBtnClicked == true){
-                            YSegmentChangeLength(outputLength,BUTTON);
-                        }
-                        else {
-
-                        }
-                    break;
-                    case "input":
-                        if (wasBtnClicked == true){
-                            YSegmentChangeLength(inputLength,BUTTON);
-                        }
-                        else {
-
-                        }
-                    break;
+            if(sectiontarget == "total"){
+                totalLength.value = currentTotalLength;
+            }
+            else{
+                if(wasBtnClicked == true){
+                    YSegmentChangeLength(TARGET,BUTTON);
                 }
+            }
             // CorrectLengthNum(totalLength,CableMaxLength,totalMinLength);
             // CorrectLengthNum(outputLength,YsegmentMaxLength,YsegmentMinLength);
             // CorrectLengthNum(inputLength,YsegmentMaxLength,YsegmentMinLength);
@@ -316,96 +318,9 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
             console.log(`Final Total Sum Check = ${GetSumOfTotalLength(inputLength.value,outputLength.value)}`);
             break;
         case 2: //X Cable (B2)
-        totalMaxLength = 120;
-        totalMinLength = 8;
-        se
-        currentTotalLength = Number(outputLength.value) + Number(inputLength.value) + Number(centerLength.value);
-            switch (sectiontarget){
-                case "output":
-                    // console.log("Y cable OUTPUT button pressed");
-                    if (wasBtnClicked == true){
-                        if(lengthChangeDirection == "increment"){ 
-                            // TARGET.value = Math.floor(Number(TARGET.value));
-                            if (currentTotalLength+lengthChangeAmount>totalMaxLength){
-                                break;
-                            };
-                            TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                            totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
-                            console.log("after adding = " + TARGET.value);             
-                        }
-                        else if(lengthChangeDirection == "decrement"){
-                            // TARGET.value = Math.ceil(Number(TARGET.value)); 
-                            if (currentTotalLength-lengthChangeAmount<totalMinLength){
-                                break;
-                            };
-                            TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                            totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
-                            console.log("after sub = " + TARGET.value);
-                        }
-                    }
-                    else {
+        
 
-                    }
-                break;
-                case "center":
-                    // console.log("Y cable OUTPUT button pressed");
-                    if (wasBtnClicked == true){
-                        if(lengthChangeDirection == "increment"){ 
-                            // TARGET.value = Math.floor(Number(TARGET.value));
-                            if (currentTotalLength+lengthChangeAmount>totalMaxLength){
-                                break;
-                            };
-                            TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                            totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
-                            console.log("after adding = " + TARGET.value);             
-                        }
-                        else if(lengthChangeDirection == "decrement"){
-                            // TARGET.value = Math.ceil(Number(TARGET.value)); 
-                            if (currentTotalLength-lengthChangeAmount<totalMinLength){
-                                break;
-                            };
-                            TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                            totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
-                            console.log("after sub = " + TARGET.value);
-                        }
-                    }
-                    else {
-
-                    }
-                break;
-                case "input":
-                    // console.log("Y cable INPUT button pressed");
-                    if (wasBtnClicked == true){
-                        if(lengthChangeDirection == "increment"){ 
-                            // TARGET.value = Math.floor(Number(TARGET.value));
-                            if (currentTotalLength+lengthChangeAmount>totalMaxLength){
-                                break;
-                            };
-                            TARGET.value= Number(TARGET.value)+lengthChangeAmount;
-                            totalLength.value = Number(currentTotalLength)+lengthChangeAmount;             
-                            console.log("after adding = " + TARGET.value);             
-                        }
-                        else if(lengthChangeDirection == "decrement"){
-                            // TARGET.value = Math.ceil(Number(TARGET.value)); 
-                            if (currentTotalLength-lengthChangeAmount<totalMinLength){
-                                break;
-                            };
-                            TARGET.value= Number(TARGET.value)-lengthChangeAmount;
-                            totalLength.value = Number(currentTotalLength)-lengthChangeAmount; 
-                            console.log("after sub = " + TARGET.value);
-                        }
-                    }
-                    else {
-
-                    }
-                break;
-            }
-        CorrectLengthNum(totalLength,totalMaxLength,totalMinLength);
-        CorrectLengthNum(outputLength,totalMaxLength,totalMinLength);
-        CorrectLengthNum(inputLength,totalMaxLength,totalMinLength);
-        UpdateAltLengths(TARGET);
-
-            break;
+        break;
     }
 };
 
@@ -442,16 +357,11 @@ function CorrectLengthNum(numberInputTarget,Max,Min){
 };
 
 function YSegmentChangeLength(TARGET, BUTTON){
-    let lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
-    let lengthChangeDirection = BUTTON.getAttribute("data-length-direction");
+    console.log("----------------------------");
+    lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
+    lengthChangeDirection = BUTTON.getAttribute("data-length-direction");
+    currentTotalLength = GetSumOfTotalLength(outputLength.value, inputLength.value);
     let OPPOSITE = "none";
-    if(BUTTON.getAttribute("data-length-direction") == "increment"){
-        lengthChangeDirection = "increment";
-    }
-    else if(BUTTON.getAttribute("data-length-direction") == "decrement"){
-        lengthChangeDirection = "decrement";
-    }
-    else {console.log("Button direction not found!")};
     
     if(TARGET.getAttribute("data-input") == "output"){
         OPPOSITE = inputLength;
@@ -459,55 +369,86 @@ function YSegmentChangeLength(TARGET, BUTTON){
     else {
         OPPOSITE = outputLength;
     }
+    console.log("TARGET = vvv");
+    console.log(TARGET);
+    console.log("OPPOSITE = vvv");
+    console.log(OPPOSITE);
     console.log(`Change Amount = ${lengthChangeAmount} | Change Dir = ${lengthChangeDirection}`);
     console.log(`Current Total = ${currentTotalLength} | Total MAX = ${CableMaxLength} | Total MIN = ${totalMinLength}`)
     console.log(`Y MAX = ${YsegmentMaxLength} | Y MIN = ${YsegmentMinLength}`);
 
     if(lengthChangeDirection == "increment"){
-        if (Number(TARGET.value) + lengthChangeAmount <= YsegmentMaxLength){
+        if (Number(TARGET.value) + lengthChangeAmount <= YsegmentMaxLength){//////////////////////////////////////////////////////Check 1
             console.log(`Target will not go OVER ${YsegmentMaxLength}`);
-           if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
-               TARGET.value = Number(TARGET.value) + lengthChangeAmount;
-           }
-           else if(Number(OPPOSITE.value) - lengthChangeAmount >= YsegmentMinLength){
-                OPPOSITE.value = Number(OPPOSITE.value) - lengthChangeAmount;
+           if (currentTotalLength + lengthChangeAmount <= CableMaxLength){////////////////////////////////////////////////////////Check 2
+                console.log(`Target will not go OVER ${YsegmentMaxLength} AND Total will not go OVER ${CableMaxLength}`);
                 TARGET.value = Number(TARGET.value) + lengthChangeAmount;
            }
-           else{
+           else if (currentTotalLength + lengthChangeAmount > CableMaxLength){/////////////////////////////////////////////////////Check 3
+                console.log(`Target will not go OVER ${YsegmentMaxLength} and Total WILL go OVER ${CableMaxLength}`);
+                if(currentTotalLength == CableMaxLength){//////////////////////////////////////////////////////////////////////////Check 4
+                    console.log(`Target will not go OVER ${YsegmentMaxLength} and Total EQUELS ${CableMaxLength}`);
+                    OPPOSITE.value = Number(OPPOSITE.value) - lengthChangeAmount;
+                    TARGET.value = Number(TARGET.value) + lengthChangeAmount;
+                }
+                else if (currentTotalLength < CableMaxLength){/////////////////////////////////////////////////////////////////////Check 5
+                    console.log(`Target will not go OVER ${YsegmentMaxLength} and Total is LESS THAN ${CableMaxLength}`);
+                    OPPOSITE.value = YsegmentMinLength;
+                    TARGET.value = YsegmentMaxLength;
+                }
+           }
+        }
+        else {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Check 6
+            console.log(`Target WILL go OVER ${YsegmentMaxLength}`);
+            if(currentTotalLength == CableMaxLength){/////////////////////////////////////////////////////////////////////////////Check 7
+                console.log(`Target WILL go OVER ${YsegmentMaxLength} and Total EQUELS ${CableMaxLength}`);
                 OPPOSITE.value = YsegmentMinLength;
                 TARGET.value = YsegmentMaxLength;
-           }
-        }
-        else {
-            console.log(`Target WILL go OVER ${YsegmentMaxLength}`);
-            TARGET.value = YsegmentMaxLength;
-        }
-        // else if (currentTotalLength + lengthChangeAmount <= CableMaxLength){
-        //     TARGET.value = YsegmentMaxLength;
-        // }          
+            }
+            else if (currentTotalLength < CableMaxLength){////////////////////////////////////////////////////////////////////////Check 8
+                console.log(`Target WILL go OVER ${YsegmentMaxLength} and Total is LESS THAN ${CableMaxLength}`);
+                //OPPOSITE.value = YsegmentMinLength;
+                TARGET.value = YsegmentMaxLength;
+            }
+            // 
+        }       
    }
    else if(lengthChangeDirection == "decrement"){ 
-       if (Number(TARGET.value) - lengthChangeAmount >= YsegmentMinLength){
+       if (Number(TARGET.value) - lengthChangeAmount >= YsegmentMinLength){//////////////////////////////////////////////////////Check 1
         console.log(`Target will not go UNDER ${YsegmentMinLength}`);
-           if (currentTotalLength - lengthChangeAmount >= totalMinLength){
+           if (currentTotalLength - lengthChangeAmount >= totalMinLength){///////////////////////////////////////////////////////Check 2
+                console.log(`Target will not go UNDER ${YsegmentMinLength} AND Total will not go UNDER ${CableMaxLength}`);
                TARGET.value = Number(TARGET.value) - lengthChangeAmount;
+               
            }
-           else if(Number(OPPOSITE.value) + lengthChangeAmount <= YsegmentMaxLength){
-                OPPOSITE.value = Number(OPPOSITE.value) + lengthChangeAmount;
-               TARGET.value = Number(TARGET.value) - lengthChangeAmount;
-           }
-           else {
-                OPPOSITE.value = YsegmentMaxLength;
-                TARGET.value = YsegmentMinLength;
+           else if(currentTotalLength - lengthChangeAmount < totalMinLength){////////////////////////////////////////////////////Check 3
+                console.log(`Target will not go UNDER ${YsegmentMinLength} and Total WILL go UNDER ${totalMinLength}`);
+                if(currentTotalLength == totalMinLength){////////////////////////////////////////////////////////////////////////Check 4
+                    console.log(`Target will not go UNDER ${YsegmentMinLength} and Total EQUELS ${totalMinLength}`);
+                }
+                else if(currentTotalLength > totalMinLength){////////////////////////////////////////////////////////////////////Check 5
+                    console.log(`Target will not go UNDER ${YsegmentMinLength} and Total is GREATER THAN ${totalMinLength}`);
+                    OPPOSITE.value = YsegmentMaxLength;
+                    TARGET.value = YsegmentMinLength;
+                }
+
+                // OPPOSITE.value = Number(OPPOSITE.value) + lengthChangeAmount;
+                // TARGET.value = Number(TARGET.value) - lengthChangeAmount;
            }
         }
-        else {
+        else {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////Check 6
             console.log(`Target WILL go UNDER ${YsegmentMinLength}`);
-            TARGET.value = YsegmentMinLength;
+            if(currentTotalLength == totalMinLength){////////////////////////////////////////////////////////////////////////////Check 7
+                console.log(`Target WILL go UNDER ${YsegmentMinLength} and Total EQUELS ${totalMinLength}`);
+            }
+            else if(currentTotalLength > totalMinLength){////////////////////////////////////////////////////////////////////////Check 8
+                console.log(`Target WILL go UNDER ${YsegmentMinLength} and Total is GREATER THAN ${totalMinLength}`);
+                //OPPOSITE.value = YsegmentMaxLength
+                TARGET.value = YsegmentMinLength
+            }
+            // OPPOSITE.value = YsegmentMaxLength;
+            // TARGET.value = YsegmentMinLength;
         }
-        // else if (currentTotalLength - lengthChangeAmount >= totalMinLength){
-        //    TARGET.value = YsegmentMinLength;
-        // }
    }
 }
 function SplitTotal(){
