@@ -533,6 +533,7 @@ button:hover{
     transition: all 0.3s ease-in-out;
     background-color: white;
     flex-shrink: 0;
+    user-select: none;
 }
 
 .length_btn:hover{

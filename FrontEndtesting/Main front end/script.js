@@ -275,12 +275,9 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
         lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
         lengthChangeDirection = BUTTON.getAttribute("data-length-direction");
     }
-
-    
-    else  {wasBtnClicked = false;};
-    console.log(`Change Amount = ${lengthChangeAmount} | Change Dir = ${lengthChangeDirection}`);
-    console.log(`Current Total = ${currentTotalLength} | Total MAX = ${CableMaxLength} | Total MIN = ${totalMinLength}`)
-    console.log(`Y MAX = ${YsegmentMaxLength} | Y MIN = ${YsegmentMinLength}`);
+    else  {
+        wasBtnClicked = false;
+    };
     switch(Bconfig){
         case 0: //Straight Cable (B0)
             totalMinLength = segmentMinLength;
@@ -452,22 +449,43 @@ function YSegmentChangeLength(TARGET, BUTTON){
    }
 }
 function SplitTotal(){
-    let totalHalf = Number(totalLength.value)/2;
-    let totalThird = Number(totalLength.value)/3;
+    console.log("----------------------------");
+    totalHalf = 0; 
+    totalThird = 0; 
     switch (Bconfig){
         case 0:
 
         break;
         case 1:
+            currentTotalLength = GetSumOfTotalLength(totalLength.value);
+            totalMinLength = segmentMinLength * 2;
+            console.log(`Current Total = ${currentTotalLength} | Total Min = ${totalMinLength}`);
+            if(currentTotalLength < totalMinLength){
+                console.log(`SPLIT funcion - change total length to ${totalMinLength}`);
+                totalLength.value = totalMinLength;
+            }
+            totalHalf = Number(totalLength.value)/2;
             outputLength.value = Math.floor(totalHalf);
-            console.log(`Split  Total - OUTOUT = ${Math.floor(totalHalf)}`);
             inputLength.value = Math.ceil(totalHalf);
-            console.log(`Split  Total - INPUT = ${Math.ceil(totalHalf)}`);
+            console.log(`Split Total - OUTOUT = ${outputLength.value}`);
+            console.log(`Split Total - INPUT = ${inputLength.value}`);
         break;
         case 2:
+            currentTotalLength = GetSumOfTotalLength(outputLength.value,inputLength.value);
+            totalMinLength = segmentMinLength * 3;
+            console.log(`Current Total = ${currentTotalLength} | Total Min = ${totalMinLength}`);
+            if(currentTotalLength < totalMinLength){
+                console.log(`SPLIT funcion - change total length to ${totalMinLength}`);
+                totalLength.value = totalMinLength;
+            }
+            totalThird = Number(totalLength.value)/3;
             outputLength.value = Math.floor(totalThird);
             centerLength.value = Number(totalLength.value) - (Math.floor(totalThird)*2);
             inputLength.value = Math.floor(totalThird);
+
+            console.log(`Split Total - OUTOUT = ${outputLength.value}`);
+            console.log(`Split Total - CENTER = ${centerLength.value}`);
+            console.log(`Split Total - INPUT = ${inputLength.value}`);
         break;
     };
 };
