@@ -366,85 +366,79 @@ function YSegmentChangeLength(TARGET, BUTTON){
     else {
         OPPOSITE = outputLength;
     }
-    console.log("TARGET = vvv");
-    console.log(TARGET);
-    console.log("OPPOSITE = vvv");
-    console.log(OPPOSITE);
+    // console.log("TARGET = vvv");
+    // console.log(TARGET);
+    // console.log("OPPOSITE = vvv");
+    // console.log(OPPOSITE);
     console.log(`Change Amount = ${lengthChangeAmount} | Change Dir = ${lengthChangeDirection}`);
     console.log(`Current Total = ${currentTotalLength} | Total MAX = ${CableMaxLength} | Total MIN = ${totalMinLength}`)
     console.log(`Y MAX = ${YsegmentMaxLength} | Y MIN = ${YsegmentMinLength}`);
 
     if(lengthChangeDirection == "increment"){
-        if (Number(TARGET.value) + lengthChangeAmount <= YsegmentMaxLength){//////////////////////////////////////////////////////Check 1
-            console.log(`Target will not go OVER ${YsegmentMaxLength}`);
-           if (currentTotalLength + lengthChangeAmount <= CableMaxLength){////////////////////////////////////////////////////////Check 2
-                console.log(`Target will not go OVER ${YsegmentMaxLength} AND Total will not go OVER ${CableMaxLength}`);
+        if (Number(TARGET.value) + lengthChangeAmount <= YsegmentMaxLength){//////////////////////////////////////////////////////Check 1.1
+            console.log(`CHECK 1.1 --- Target will not go OVER ${YsegmentMaxLength}`);
+           if (currentTotalLength + lengthChangeAmount <= CableMaxLength){////////////////////////////////////////////////////////Check 1.2
+                console.log(`CHECK 1.2 --- Target will not go OVER ${YsegmentMaxLength} AND Total will not go OVER ${CableMaxLength}`);
                 TARGET.value = Number(TARGET.value) + lengthChangeAmount;
            }
-           else if (currentTotalLength + lengthChangeAmount > CableMaxLength){/////////////////////////////////////////////////////Check 3
-                console.log(`Target will not go OVER ${YsegmentMaxLength} and Total WILL go OVER ${CableMaxLength}`);
-                if(currentTotalLength == CableMaxLength){//////////////////////////////////////////////////////////////////////////Check 4
-                    console.log(`Target will not go OVER ${YsegmentMaxLength} and Total EQUELS ${CableMaxLength}`);
+           else if (currentTotalLength + lengthChangeAmount > CableMaxLength){/////////////////////////////////////////////////////Check 1.3
+                console.log(`CHECK 1.3 --- Target will not go OVER ${YsegmentMaxLength} and Total WILL go OVER ${CableMaxLength}`);
+                if(currentTotalLength == CableMaxLength){//////////////////////////////////////////////////////////////////////////Check 1.4
+                    console.log(`CHECK 1.4 --- Target will not go OVER ${YsegmentMaxLength} and Total EQUELS ${CableMaxLength}`);
                     OPPOSITE.value = Number(OPPOSITE.value) - lengthChangeAmount;
                     TARGET.value = Number(TARGET.value) + lengthChangeAmount;
                 }
-                else if (currentTotalLength < CableMaxLength){/////////////////////////////////////////////////////////////////////Check 5
-                    console.log(`Target will not go OVER ${YsegmentMaxLength} and Total is LESS THAN ${CableMaxLength}`);
+                else if (currentTotalLength < CableMaxLength){/////////////////////////////////////////////////////////////////////Check 1.5
+                    console.log(`CHECK 1.5 --- Target will not go OVER ${YsegmentMaxLength} and Total is LESS THAN ${CableMaxLength}`);
                     OPPOSITE.value = YsegmentMinLength;
                     TARGET.value = YsegmentMaxLength;
                 }
            }
         }
-        else {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Check 6
-            console.log(`Target WILL go OVER ${YsegmentMaxLength}`);
-            if(currentTotalLength == CableMaxLength){/////////////////////////////////////////////////////////////////////////////Check 7
-                console.log(`Target WILL go OVER ${YsegmentMaxLength} and Total EQUELS ${CableMaxLength}`);
+        else {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Check 1.6
+            console.log(`CHECK 1.6 --- Target WILL go OVER ${YsegmentMaxLength}`);
+            if(currentTotalLength == CableMaxLength){/////////////////////////////////////////////////////////////////////////////Check 1.7
+                console.log(`CHECK 1.7 --- Target WILL go OVER ${YsegmentMaxLength} and Total EQUELS ${CableMaxLength}`);
                 OPPOSITE.value = YsegmentMinLength;
                 TARGET.value = YsegmentMaxLength;
             }
-            else if (currentTotalLength < CableMaxLength){////////////////////////////////////////////////////////////////////////Check 8
-                console.log(`Target WILL go OVER ${YsegmentMaxLength} and Total is LESS THAN ${CableMaxLength}`);
-                //OPPOSITE.value = YsegmentMinLength;
+            else if (currentTotalLength < CableMaxLength){////////////////////////////////////////////////////////////////////////Check 1.8
+                console.log(`CHECK 1.8 --- Target WILL go OVER ${YsegmentMaxLength} and Total is LESS THAN ${CableMaxLength}`);
+                OPPOSITE.value = YsegmentMinLength;
                 TARGET.value = YsegmentMaxLength;
             }
-            // 
         }       
    }
    else if(lengthChangeDirection == "decrement"){ 
-       if (Number(TARGET.value) - lengthChangeAmount >= YsegmentMinLength){//////////////////////////////////////////////////////Check 1
-        console.log(`Target will not go UNDER ${YsegmentMinLength}`);
-           if (currentTotalLength - lengthChangeAmount >= totalMinLength){///////////////////////////////////////////////////////Check 2
-                console.log(`Target will not go UNDER ${YsegmentMinLength} AND Total will not go UNDER ${CableMaxLength}`);
+       if (Number(TARGET.value) - lengthChangeAmount >= YsegmentMinLength){//////////////////////////////////////////////////////Check 2.1
+        console.log(`CHECK 2.1 --- Target will not go UNDER ${YsegmentMinLength}`);
+           if (currentTotalLength - lengthChangeAmount >= totalMinLength){///////////////////////////////////////////////////////Check 2.2
+                console.log(`CHECK 2.2 --- Target will not go UNDER ${YsegmentMinLength} AND Total will not go UNDER ${CableMaxLength}`);
                TARGET.value = Number(TARGET.value) - lengthChangeAmount;
                
            }
-           else if(currentTotalLength - lengthChangeAmount < totalMinLength){////////////////////////////////////////////////////Check 3
-                console.log(`Target will not go UNDER ${YsegmentMinLength} and Total WILL go UNDER ${totalMinLength}`);
-                if(currentTotalLength == totalMinLength){////////////////////////////////////////////////////////////////////////Check 4
-                    console.log(`Target will not go UNDER ${YsegmentMinLength} and Total EQUELS ${totalMinLength}`);
+           else if(currentTotalLength - lengthChangeAmount < totalMinLength){////////////////////////////////////////////////////Check 2.3
+                console.log(`CHECK 2.3 --- Target will not go UNDER ${YsegmentMinLength} and Total WILL go UNDER ${totalMinLength}`);
+                if(currentTotalLength == totalMinLength){////////////////////////////////////////////////////////////////////////Check 2.4
+                    console.log(`CHECK 2.4 --- Target will not go UNDER ${YsegmentMinLength} and Total EQUELS ${totalMinLength}`);
                 }
-                else if(currentTotalLength > totalMinLength){////////////////////////////////////////////////////////////////////Check 5
-                    console.log(`Target will not go UNDER ${YsegmentMinLength} and Total is GREATER THAN ${totalMinLength}`);
-                    OPPOSITE.value = YsegmentMaxLength;
-                    TARGET.value = YsegmentMinLength;
+                else if(currentTotalLength > totalMinLength){////////////////////////////////////////////////////////////////////Check 2.5
+                    console.log(`CHECK 2.5 --- Target will not go UNDER ${YsegmentMinLength} and Total is GREATER THAN ${totalMinLength}`);
+                    //OPPOSITE.value = YsegmentMaxLength;
+                    //TARGET.value = YsegmentMinLength;
                 }
-
-                // OPPOSITE.value = Number(OPPOSITE.value) + lengthChangeAmount;
-                // TARGET.value = Number(TARGET.value) - lengthChangeAmount;
            }
         }
-        else {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////Check 6
-            console.log(`Target WILL go UNDER ${YsegmentMinLength}`);
-            if(currentTotalLength == totalMinLength){////////////////////////////////////////////////////////////////////////////Check 7
-                console.log(`Target WILL go UNDER ${YsegmentMinLength} and Total EQUELS ${totalMinLength}`);
+        else {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////Check 2.6
+            console.log(`CHECK 2.6 --- Target WILL go UNDER ${YsegmentMinLength}`);
+            if(currentTotalLength == totalMinLength){////////////////////////////////////////////////////////////////////////////Check 2.7
+                console.log(`CHECK 2.7 --- Target WILL go UNDER ${YsegmentMinLength} and Total EQUELS ${totalMinLength}`);
             }
-            else if(currentTotalLength > totalMinLength){////////////////////////////////////////////////////////////////////////Check 8
-                console.log(`Target WILL go UNDER ${YsegmentMinLength} and Total is GREATER THAN ${totalMinLength}`);
+            else if(currentTotalLength > totalMinLength){////////////////////////////////////////////////////////////////////////Check 2.8
+                console.log(`CHECK 2.8 --- Target WILL go UNDER ${YsegmentMinLength} and Total is GREATER THAN ${totalMinLength}`);
                 //OPPOSITE.value = YsegmentMaxLength
-                TARGET.value = YsegmentMinLength
+                TARGET.value = YsegmentMinLength;
             }
-            // OPPOSITE.value = YsegmentMaxLength;
-            // TARGET.value = YsegmentMinLength;
         }
    }
 }
