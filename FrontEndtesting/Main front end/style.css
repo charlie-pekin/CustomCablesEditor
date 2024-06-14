@@ -628,7 +628,7 @@ button:hover{
     position: relative;
     padding-top: 0.3vw;
 }
-.disable.input_wrapper {
+.disable.input_wrapper, .disable.input_wrapper .length_number{
     pointer-events: none;
 }
 .disable.input_wrapper .length_btn{
