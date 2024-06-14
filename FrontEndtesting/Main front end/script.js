@@ -295,10 +295,10 @@ function LengthButtons(TARGET,BUTTON){
 
     console.log(`BTN was clicked = ${wasBtnClicked}`);
 }
+
 function CorrectLengths(TARGET){
     console.log("------------Correct Length--------------");
     let op = GetOpposite(TARGET);
-    let opChange = false;
     let section = TARGET.getAttribute("data-input");
     console.log(`Target section = ${section}`);
     TARGET.value = CustomRound(TARGET.value, 1);
@@ -312,84 +312,71 @@ function CorrectLengths(TARGET){
             LimitLength(TARGET,segmentMaxLength,segmentMinLength);
             currentTotalLength = GetSumOfTotalLength(outputLength.value, inputLength.value);
             if(currentTotalLength > CableMaxLength){
-                opChange = true;
                 op.value = CableMaxLength - Number(TARGET.value);
             }
             totalLength.value = GetSumOfTotalLength(inputLength.value,outputLength.value);
-            console.log(`Do other lengths need to changed? = ${opChange}`);
         break;
         case 2:
             currentTotalLength = GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value);
             LimitLength(TARGET,segmentMaxLength,segmentMinLength);
 
-            if(currentTotalLength > CableMaxLength){
-                let remainder = CableMaxLength - Number(TARGET.value);
-                let OV = Number(outputLength.value);
-                let CV = Number(centerLength.value);
-                let IV = Number(inputLength.value);
-                let targetRemainder = GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value) - CableMaxLength;
-                opChange = true;
+            if(currentTotalLength > CableMaxLength){            
                 console.log("need to change other lengths");
-                console.log(`Target remainder = ${targetRemainder}`);
+                
                 switch(section){
                     case "output":
-                        if (CV > IV){
-                            console.log(`center ${CV} is greater than input ${IV}`);
-                            if((CV - targetRemainder) < segmentMinLength){//check if sub will go below min
-                                console.log("EDGE CASE!!!")
-                                centerLength.value = segmentMinLength;
-                                inputLength.value = IV - (GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value) - CableMaxLength);
-                            }
-                            else{
-                                centerLength.value = CV - targetRemainder;
-                            }
-                        }
-                        else if(CV < IV){
-                            console.log(`input ${IV} is greater than center ${CV}`);
-                             inputLength.value = IV - targetRemainder;
-                        }
-                        else{
-                            console.log(`center ${CV} and input ${IV} are EQUEL`)
-                            centerLength.value = Math.ceil(remainder/2);
-                            inputLength.value = Math.floor(remainder/2);
-                        }              
+                        XLengthUpdate(TARGET,centerLength,inputLength);             
                     break;
                     case "center":
-                        if (OV > IV){
-                            console.log(`output ${OV} is greater than input ${IV}`);
-                            outputLength.value = OV - targetRemainder;
-                        }
-                        else if(OV < IV){
-                            console.log(`input ${IV} is greater than output ${OV}`);
-                            inputLength.value = IV - targetRemainder;
-                        }
-                        else{
-                            console.log(`output ${OV} and input ${IV} are EQUEL`);
-                            outputLength.value = Math.ceil(remainder/2);
-                            inputLength.value = Math.floor(remainder/2);
-                        }
+                        XLengthUpdate(TARGET,outputLength,inputLength);
                     break;
                     case "input":
-                        if (CV > OV){
-                            console.log(`center ${CV} is greater than output ${OV}`);
-                            centerLength.value = CV - targetRemainder;
-                        }
-                        else if(CV < OV){
-                            console.log(`output ${OV} is greater than center ${CV}`);
-                            outputLength.value = OV - targetRemainder;
-                        }
-                        else{
-                            console.log(`center ${CV} and output ${OV} are EQUEL`);
-                            centerLength.value = Math.ceil(remainder/2);
-                            outputLength.value = Math.floor(remainder/2);
-                        }
+                        XLengthUpdate(TARGET,centerLength,outputLength);
                     break;
                 }
             }
             totalLength.value = GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value);
         break;
     }
+};
+function XLengthUpdate(TARGET,element1,element2){
+    let E1 = Number(element1.value);
+    let E2 = Number(element2.value);
+
+    let remainder = CableMaxLength - Number(TARGET.value);
+    let targetRemainder = GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value) - CableMaxLength;
+
+    console.log(`Target remainder = ${targetRemainder}`);
+
+    if (E1 > E2){
+        console.log(`center ${E1} is greater than input ${E2}`);
+        if((E1 - targetRemainder) < segmentMinLength){//check if sub will go below min
+            console.log("EDGE CASE - center is too LOW!");
+            element1.value = segmentMinLength;
+            element2.value = E2 - (GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value) - CableMaxLength);
+        }
+        else{
+            element1.value = E1 - targetRemainder;
+        }
+    }
+    else if(E1 < E2){
+        console.log(`input ${E2} is greater than center ${E1}`);
+        if((E2 - targetRemainder) < segmentMinLength){
+            console.log(`EDGE CASE - input ${E2} is too LOW!`);
+            element2.value = segmentMinLength;
+            element1.value = E1 - (GetSumOfTotalLength(inputLength.value,centerLength.value,outputLength.value) - CableMaxLength);
+        }
+        else{
+            element2.value = E2 - targetRemainder;
+        }
+    }
+    else{
+        console.log(`center ${E1} and input ${E2} are EQUEL`)
+        element1.value = Math.ceil(remainder/2);
+        element2.value = Math.floor(remainder/2);
+    }    
 }
+
 function LimitLength(numberInputTarget,Max,Min){
     if (numberInputTarget.value <= Min){
         numberInputTarget.value = Min;
