@@ -465,6 +465,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 1.4vw;
     /* overflow: hidden; */
     /* padding: 0.4vh 0.3vw; */
 }
@@ -491,6 +492,7 @@ button:hover{
     overflow: hidden;
     transition: all 0.4s ease-in-out;
     flex-basis: 7.5vw;
+    font-size: 1.6vw;
 }
 .border_top{
     border-top: 1px solid lightgray;
@@ -502,9 +504,7 @@ button:hover{
 .border_right{
     border-right: 1px solid lightgray;
 }
-.btn_round{
-    aspect-ratio: 1;
-}
+
 .padlock_btn{
     display: flex;
     border: 2px solid red;
@@ -522,23 +522,13 @@ button:hover{
 }
 
 .length_btn{
-    border: 2px solid red;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0px;
-    position: relative;
-    transition: all 0.3s ease-in-out;
-    background-color: white;
-    flex-shrink: 0;
-    user-select: none;
+    aspect-ratio: 1;
+    font-size: 1.1vw;
+    width: 2.2vw;
 }
 
-.length_btn:hover{
-    background-color: rgb(252, 145, 145);
-}
+
 
 .large_length_btn{
     width: 2.2vw;
@@ -701,36 +691,6 @@ button:hover{
     color: white;
 }
 
-.large.length_row{
-    font-size: 1.6vw;
-}
-.large.length_row .input_wrapper .padlock_btn{
-    width: 2.5vw;
-    flex-basis: 2.5vw;
-}
-.large.length_row .input_wrapper .length_btn{
-    font-size: 1.1vw;
-    width: 2.2vw;
-}
-
-
-.small.length_row{
-    font-size: 1vw;
-}
-.small.length_row .input_wrapper .padlock_btn{
-    width: 2vw;
-}
-.small.length_row .iput_wrapper .length_btn{
-    font-size: 0.8vw;
-    width: 1.7vw;
-}
-.small.length_row .title_wrapper{
-    gap: 0.2vw;
-}
-.small.length_row .length_number{
-    font-size: 1.1vw;
-}
-
 .length_row_3_connectors{
     width: 100%;
     flex-basis: 16vh;
@@ -760,10 +720,11 @@ button:hover{
 }
 
 .flex_hide{
-    transform: scale(0);
+    transform: scale(0) !important;
     flex: 0 1 0 !important;
     border-width: 0px;
     padding: 0px;
+    margin: 0px;
 }
 
 .alt_length{
@@ -799,5 +760,92 @@ button:hover{
     text-align: center;
     color: red;
     font-size: 1.1vw;
+}
+
+.style_row{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+.style_sub_row{
+    width: 100%;
+    display: flex;
+    gap: 0.6vw;
+    align-items: center;
+}
+.style_sub_row_header{
+
+}
+.style_sub_row_content{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1vw;
+    height: 100%;
+}
+.strands_btn_wrapper{
+    
+}
+.strand_btn{
+    border-radius: 50%;
+    aspect-ratio: 1;
+    font-size: 1.1vw;
+    width: 1.5vw;
+}
+.style_button{
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+    user-select: none;
+}
+.style_button:hover{
+    background-color: rgb(252, 145, 145);
+}
+.style_drop{
+    text-align: center;
+    font-size: inherit;
+    border-radius: 20px;
+    border: 2px solid red;
+    outline: none;
+}
+
+.color_selected_box{
+    display: flex;
+    border: 2px solid black;
+    background-color: white;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vw;
+    border-radius: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+.color_list_square{
+    width: 1vw;
+    aspect-ratio: 1;
+    background-color: black;
+}
+
+.select_btn{
+    border-radius: 20px;
+    font-size: 1.2vw;
+    padding: 0px 0.5vw 0px 0.5vw;
+    text-overflow: unset;
+}
+.color_change_btn{
+    font-size: 0.9vw;
+    padding: 0px 0.5vw 0px 0.5vw;
+    border-radius: 20px;
 }
 

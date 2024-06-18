@@ -343,21 +343,12 @@
             <div class="style_scroll">
                 <div class="style_container">
                     <div class="style_container_header">Cable Length - Inches</div>
-                    <div class="length_row large border_top" data-length-row="total">
+                    <div class="length_row border_top" data-length-row="total">
                         <div class="title_wrapper">
                             <div class="length_row_segment">Total Cable Length</div>
                         </div>
                         <div class="input_wrapper">
-                            <!-- <button class="padlock_btn btn_round flex_hide" data-padlock="total" label="Lock Button">
-                                <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g data-padlock-svg="total" class="padlock active">
-                                    <path class="shackle" d="M24 5.5V32.5H19.5V7.99999C19.5 3.99999 8.5 3.99999 8.5 7.99999V14.5C8.5 16 4 16 4 14.5V5.49999C4 -0.500021 24 -0.500008 24 5.5Z" stroke="black" stroke-width="2"/>
-                                    <rect class="lock_body" x="1" y="21" width="26" height="26" rx="7" stroke="black" stroke-width="2"/>
-                                    <rect class="keyhole" x="11" y="28" width="6" height="12" rx="3" fill="black"/>
-                                    </g>
-                                </svg>       
-                            </button> -->
-                            <button class="length_btn btn_round" data-length_change="total" data-length-direction="decrement" data-change_amount="12">-1ft</button>
+                            <button class="length_btn style_button" data-length_change="total" data-length-direction="decrement" data-change_amount="12">-1ft</button>
                             <div class="number_wrapper active" data-number-wrapper="total">
                                 <input class="length_number" id="input_total" data-input="total" type="number" min="0" max="100" step="1" value="36"> 
                                 <div class="length_inches">in</div>
@@ -366,26 +357,17 @@
                                     <div class="increment" data-length_change="total" data-length-direction="decrement" data-change_amount="1">-</div>
                                 </div>
                             </div>                                       
-                            <button class="length_btn btn_round" data-length_change="total" data-length-direction="increment" data-change_amount="12">+1ft</button>
+                            <button class="length_btn style_button" data-length_change="total" data-length-direction="increment" data-change_amount="12">+1ft</button>
                         </div>
                         <div class="alt_length">Feet: <span class="length_feet" data-alt_length-feet="total">10</span> ft | Meters: <span class="length_meters" data-alt_length-meters="total">3.05</span> M</div>
                     </div>
 
-                    <div class="length_row large border_top flex_hide" data-length-row="output">
+                    <div class="length_row border_top flex_hide" data-length-row="output">
                         <div class="title_wrapper">
                             <div class="length_row_segment">Output Length - <span class="inline_ratio" data-inline_ratio="output">100%</span></div>
                         </div>
                         <div class="input_wrapper">
-                            <!-- <button class="padlock_btn btn_round" data-padlock="output">
-                                <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g data-padlock-svg="output" class="padlock">
-                                    <path class="shackle" d="M24 5.5V32.5H19.5V7.99999C19.5 3.99999 8.5 3.99999 8.5 7.99999V14.5C8.5 16 4 16 4 14.5V5.49999C4 -0.500021 24 -0.500008 24 5.5Z" stroke="black" stroke-width="2"/>
-                                    <rect class="lock_body" x="1" y="21" width="26" height="26" rx="7" stroke="black" stroke-width="2"/>
-                                    <rect class="keyhole" x="11" y="28" width="6" height="12" rx="3" fill="black"/>
-                                    </g>
-                                </svg>       
-                            </button> -->
-                            <button class="length_btn btn_round" data-length_change="output" data-length-direction="decrement" data-change_amount="12">-1ft</button>
+                            <button class="length_btn style_button" data-length_change="output" data-length-direction="decrement" data-change_amount="12">-1ft</button>
                             <div class="number_wrapper" data-number-wrapper>
                                 <input class="length_number" id="input_output" data-input="output" type="number" min="0" max="100" step="1" value="36"> 
                                 <div class="length_inches">in</div>
@@ -394,26 +376,17 @@
                                     <div class="increment" data-length_change="outptu" data-length-direction="decrement" data-change_amount="1">-</div>
                                 </div>
                             </div>                                       
-                            <button class="length_btn btn_round" data-length_change="output" data-length-direction="increment" data-change_amount="12">+1ft</button>
+                            <button class="length_btn style_button" data-length_change="output" data-length-direction="increment" data-change_amount="12">+1ft</button>
                         </div>
                         <div class="alt_length">Feet: <span class="length_feet" data-alt_length-feet="output">10</span> ft | Meters: <span class="length_meters" data-alt_length-meters="output">3.05</span> M</div>
                     </div>
 
-                    <div class="length_row large border_top flex_hide" data-length-row="center">
+                    <div class="length_row border_top flex_hide" data-length-row="center">
                         <div class="title_wrapper">
                             <div class="length_row_segment">Center Length - <span class="inline_ratio" data-inline_ratio="center">100%</span></div>
                         </div>
                         <div class="input_wrapper">
-                            <!-- <button class="padlock_btn btn_round" data-padlock="center">
-                                <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g data-padlock-svg="center" class="padlock">
-                                    <path class="shackle" d="M24 5.5V32.5H19.5V7.99999C19.5 3.99999 8.5 3.99999 8.5 7.99999V14.5C8.5 16 4 16 4 14.5V5.49999C4 -0.500021 24 -0.500008 24 5.5Z" stroke="black" stroke-width="2"/>
-                                    <rect class="lock_body" x="1" y="21" width="26" height="26" rx="7" stroke="black" stroke-width="2"/>
-                                    <rect class="keyhole" x="11" y="28" width="6" height="12" rx="3" fill="black"/>
-                                    </g>
-                                </svg>       
-                            </button> -->
-                            <button class="length_btn btn_round" data-length_change="center" data-length-direction="decrement" data-change_amount="12">-1ft</button>
+                            <button class="length_btn style_button" data-length_change="center" data-length-direction="decrement" data-change_amount="12">-1ft</button>
                             <div class="number_wrapper" data-number-wrapper>
                                 <input class="length_number" id="input_center" data-input="center" type="number" min="0" max="100" step="1" value="36"> 
                                 <div class="length_inches">in</div>
@@ -422,26 +395,17 @@
                                     <div class="increment" data-length_change="center" data-length-direction="decrement" data-change_amount="1">-</div>
                                 </div>
                             </div>                                       
-                            <button class="length_btn btn_round" data-length_change="center" data-length-direction="increment" data-change_amount="12">+1ft</button>
+                            <button class="length_btn style_button" data-length_change="center" data-length-direction="increment" data-change_amount="12">+1ft</button>
                         </div>
                         <div class="alt_length">Feet: <span class="length_feet" data-alt_length-feet="center">10</span> ft | Meters: <span class="length_meters" data-alt_length-meters="center">3.05</span> M</div>
                     </div>
 
-                    <div class="length_row large border_top flex_hide" data-length-row="input">
+                    <div class="length_row border_top flex_hide" data-length-row="input">
                         <div class="title_wrapper">
                             <div class="length_row_segment">Input Length - <span class="inline_ratio" data-inline_ratio="input">100%</span></div>
                         </div>
                         <div class="input_wrapper">
-                            <!-- <button class="padlock_btn btn_round" data-padlock="input">
-                                <svg class="Padlock_svg" width="28" height="48" viewBox="0 0 28 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g data-padlock-svg="input" class="padlock">
-                                    <path class="shackle" d="M24 5.5V32.5H19.5V7.99999C19.5 3.99999 8.5 3.99999 8.5 7.99999V14.5C8.5 16 4 16 4 14.5V5.49999C4 -0.500021 24 -0.500008 24 5.5Z" stroke="black" stroke-width="2"/>
-                                    <rect class="lock_body" x="1" y="21" width="26" height="26" rx="7" stroke="black" stroke-width="2"/>
-                                    <rect class="keyhole" x="11" y="28" width="6" height="12" rx="3" fill="black"/>
-                                    </g>
-                                </svg>       
-                            </button> -->
-                            <button class="length_btn btn_round" data-length_change="input" data-length-direction="decrement" data-change_amount="12">-1ft</button>
+                            <button class="length_btn style_button" data-length_change="input" data-length-direction="decrement" data-change_amount="12">-1ft</button>
                             <div class="number_wrapper" data-number-wrapper>
                                 <input class="length_number" id="input_input" data-input="input" type="number" min="0" max="100" step="1" value="36"> 
                                 <div class="length_inches">in</div>
@@ -450,51 +414,63 @@
                                     <div class="increment" data-length_change="input" data-length-direction="decrement" data-change_amount="1">-</div>
                                 </div>
                             </div>                                       
-                            <button class="length_btn btn_round" data-length_change="input" data-length-direction="increment" data-change_amount="12">+1ft</button>
+                            <button class="length_btn style_button" data-length_change="input" data-length-direction="increment" data-change_amount="12">+1ft</button>
                         </div>
                         <div class="alt_length">Feet: <span class="length_feet" data-alt_length-feet="input">10</span> ft | Meters: <span class="length_meters" data-alt_length-meters="input">3.05</span> M</div>
                     </div>
-
-                    <div class="radio_row border_top flex_hide" data-radio-row="Y">
-                        <div  class="radio_header">Optionally, you can set a fixed ratio for each length.</div>
-                        <div class="radio_segments">Output - Input</div>
-                        <select name="ratio" id="Ycable" class="radio_selector">
-                            <option value="none">None</option>
-                            <option value="0-100">0% - 100%</option>
-                            <option value="25-75">25% - 75%</option>
-                            <option value="50-50">50% - 50%</option>
-                            <option value="75-25">75% - 25%</option>
-                            <option value="100-0">100% - 0%</option>
-                        </select>
-                    </div>
-                    <div class="radio_row border_top flex_hide" data-radio-row="X">
-                        <div  class="radio_header">Optionally, you can set a fixed ratio for each length.</div>
-                        <div class="radio_segments">Output - Center - Input</div>
-                        <select name="ratio" id="Ycable" class="radio_selector">
-                            <option value="none">None</option>
-                            <option value="Min-Min-Max">Min - Min - Max</option>
-                            <option value="25-50-25">25% - 50% - 25%</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="style_container">
-                    <div class="style_container_header">Cable Pattern And Material</div>
-                    <div class="style_row border_top" data-style-row="total">
-                        <div></div>
+                    <div class="style_container_header">Cable Pattern And Colors</div>
+                    <div class="style_row border_top" data-pattern-row="total">
+                        <div class="style_sub_row">
+                            <div class="style_sub_row_header">Strands</div>
+                            <div class="strands_btn_wrapper style_sub_row_content">
+                                <button class="strand_btn style_button">1</button>
+                                <button class="strand_btn style_button">2</button>
+                                <button class="strand_btn style_button">3</button>
+                                <button class="strand_btn style_button">4</button>
+                                <button class="strand_btn style_button">5</button>
+                            </div>
+                        </div>
+                        <div class="style_sub_row">
+                            <div class="style_sub_row_header">Material</div>
+                            <select name="na" id="na" class="style_sub_row_content style_drop">
+                                <option value="Paracord">Paracord</option>
+                            </select>
+                        </div>
+                        <div class="style_sub_row">
+                            <div class="style_sub_row_header">Pattern</div>
+                            <div class="style_sub_row_content">
+                                <button class="style_button select_btn">Flat Braid</button>
+                                <button class="style_button select_btn">Round Braid</button>
+                            </div>
+                        </div>
+                        <div class="style_sub_row">
+                            <div class="style_sub_row_header">Color 1</div>
+                            <div class="style_sub_row_content">
+                                <div class="color_selected_box">
+                                    <div class="color_list_square"></div>
+                                    <div class="color_list_name">BLACK</div>
+                                </div>
+                                <button class="style_button color_change_btn">Change Color</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="style_row border_top" data-style-row="output">
-                        <div></div>
+                        <div>
+
+                        </div>
                     </div>
                     <div class="style_row border_top" data-style-row="center">
-                        <div></div>
+                        <div>
+
+                        </div>
                     </div>
                     <div class="style_row border_top" data-style-row="input">
-                        <div></div>
-                    </div>
-                </div>
+                        <div>
 
-                <div class="style_container">
-                    <div class="style_container_header">Cable Colors</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="style_container">

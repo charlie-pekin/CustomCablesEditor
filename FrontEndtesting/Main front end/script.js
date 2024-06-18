@@ -125,6 +125,7 @@ for(countBtn of connectorCountButtons){
         const lengthOutputRow = document.querySelector("[data-length-row=output]");
         const lengthCenterRow = document.querySelector("[data-length-row=center]");
         const lengthInputRow = document.querySelector("[data-length-row=input]");
+        const patternTotalRow = document.querySelector("[data-pattern-row=total]");
         // const totalPadlockBTN = document.querySelector("[data-padlock=total]");
         // const totalPadlockSVG = document.querySelector("[data-padlock-svg=total");
         // const totalNumberWrapper = document.querySelector("[data-number-wrapper=total]");
@@ -139,6 +140,8 @@ for(countBtn of connectorCountButtons){
                 lengthOutputRow.classList.add("flex_hide");
                 lengthCenterRow.classList.add("flex_hide");
                 lengthInputRow.classList.add("flex_hide");
+
+                patternTotalRow.classList.remove("flex_hide");
                 // removeActivePadlocks();
                 // totalPadlockSVG.classList.add("active");
                 // totalNumberWrapper.classList.add("active");
@@ -150,6 +153,8 @@ for(countBtn of connectorCountButtons){
                 lengthOutputRow.classList.remove("flex_hide");
                 lengthInputRow.classList.remove("flex_hide");
                 lengthCenterRow.classList.add("flex_hide");
+
+                patternTotalRow.classList.add("flex_hide");
                 // YRatioRow.classList.remove("flex_hide");
                 // XRatioRow.classList.add("flex_hide");
                 // if(ActivePadlock=="center"){
@@ -165,6 +170,8 @@ for(countBtn of connectorCountButtons){
                 lengthOutputRow.classList.remove("flex_hide");
                 lengthInputRow.classList.remove("flex_hide");
                 lengthCenterRow.classList.remove("flex_hide");
+
+                patternTotalRow.classList.add("flex_hide");
                 // XRatioRow.classList.remove("flex_hide");
                 // YRatioRow.classList.add("flex_hide");
                 SplitTotal();
@@ -206,30 +213,6 @@ for(eachCellInsertBtn of connectorCellInsertBtn){
 
     });
 };
-
-
-// for(eachPadlockBtn of AllPadlockButtons){
-//     eachPadlockBtn.addEventListener("click",function(e){
-//         const btnClicked = e.currentTarget;
-//         const btnPadlock = btnClicked.querySelector("[data-padlock-svg]");
-//         const rowParent = btnClicked.parentNode;
-//         const number = rowParent.querySelector("[data-number-wrapper]");
-//         console.log(rowParent);
-//         removeActivePadlocks();
-//         btnPadlock.classList.add("active");
-//         number.classList.add("active");
-//         ActivePadlock=btnPadlock.getAttribute("data-padlock-svg");
-//         console.log(ActivePadlock);
-//     });
-// }
-// function removeActivePadlocks(){
-//     for(eachPadlockSVG of AllpadLockSVG){
-//         eachPadlockSVG.classList.remove("active");
-//     }
-//     for(eachlengthNumber of AllLengthWrappers){
-//         eachlengthNumber.classList.remove("active");
-//     }
-// }
 
 function InchToFeet(inch){
     let raw = inch/12;
