@@ -141,7 +141,7 @@ for(countBtn of connectorCountButtons){
                 lengthCenterRow.classList.add("flex_hide");
                 lengthInputRow.classList.add("flex_hide");
 
-                patternTotalRow.classList.remove("flex_hide");
+                patternTotalRow.classList.remove("new_hide");
                 // removeActivePadlocks();
                 // totalPadlockSVG.classList.add("active");
                 // totalNumberWrapper.classList.add("active");
@@ -154,7 +154,7 @@ for(countBtn of connectorCountButtons){
                 lengthInputRow.classList.remove("flex_hide");
                 lengthCenterRow.classList.add("flex_hide");
 
-                patternTotalRow.classList.add("flex_hide");
+                patternTotalRow.classList.add("new_hide");
                 // YRatioRow.classList.remove("flex_hide");
                 // XRatioRow.classList.add("flex_hide");
                 // if(ActivePadlock=="center"){
@@ -171,7 +171,7 @@ for(countBtn of connectorCountButtons){
                 lengthInputRow.classList.remove("flex_hide");
                 lengthCenterRow.classList.remove("flex_hide");
 
-                patternTotalRow.classList.add("flex_hide");
+                patternTotalRow.classList.add("new_hide");
                 // XRatioRow.classList.remove("flex_hide");
                 // YRatioRow.classList.add("flex_hide");
                 SplitTotal();
