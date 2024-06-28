@@ -768,7 +768,8 @@ button:hover{
     flex-direction: column;
     /* gap: 1vh; */
     overflow: hidden;
-    transition: all 0.4s ease-in-out;
+    /* transition: all 0.4s ease-in-out; */
+    padding-bottom: 2vh;
 }
 .style_sub_row{
     width: 100%;
@@ -776,16 +777,19 @@ button:hover{
     gap: 0.6vw;
     align-items: center;
     margin-top: 1.1vh;
+    transition: all 0.5s ease;
 }
-.style_sub_row_header{
-
+.style_row_header{
+    font-size: 2vw;
+    /* font-weight: bold; */
+    text-align: center;
 }
 .style_sub_row_content{
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1vw;
+    /* gap: 1vw; */
     height: 100%;
 }
 .style_sub_row_content:has(.select_btn){
@@ -873,7 +877,7 @@ button:hover{
     margin: 0px;
 }
 
-.new_hide * .style_sub_row_content *, .new_hide * .style_sub_row_content, .new_hide * .color_selected_box, .new_hide * .color_selected_box .color_list_square{
+.new_hide * .style_sub_row_content *, .new_hide * .style_sub_row_content, .new_hide * .color_selected_box, .new_hide * .color_selected_box .color_list_square, .new_hide .style_row_header{
     font-size: 0px;
     border-width: 0px;
     width: 0px;
