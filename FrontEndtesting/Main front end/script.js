@@ -32,7 +32,7 @@ let segmentMaxLength = 0;
 
 let totalMinLength = 0;
 
-
+const AllStrandButtons = document.querySelectorAll("[data-strand_num]");
 
 //onstart
 UpdateAltLengths(totalLength);
@@ -529,3 +529,37 @@ for (eachlengthNumberinput of AllLengthNumbers){
         ChangeLength(e.currentTarget);
     }
 )};
+
+for (eachStrandBtn of AllStrandButtons){
+    eachStrandBtn.addEventListener("click",function(e){
+        ShowColorPickers(this);
+    });
+}
+
+function ShowColorPickers(target){
+    const strand_num = Number(target.getAttribute("data-strand_num"));
+    const standRowParent = target.parentNode.parentNode.parentNode;
+    console.log(`Num of strands selected = ${strand_num}`);
+    SetActiveStands(target);
+    const AllColorPickers = standRowParent.querySelectorAll("[data-color_picker]");
+    console.log(AllColorPickers);
+    for (eachColorPicker of AllColorPickers){
+        console.log(eachColorPicker);
+        const colorPickerNum = Number(eachColorPicker.getAttribute("data-color_picker"));
+        if(colorPickerNum <= strand_num){
+            eachColorPicker.classList.remove("new_hide");
+        }
+        else{
+            eachColorPicker.classList.add("new_hide");
+        }
+    }
+}
+function SetActiveStands(target){
+    const strand_num = target.getAttribute("data-strand_num");
+    const btnWrapper = target.parentNode;
+    const wrapperBtns = btnWrapper.querySelectorAll("[data-strand_num]");
+    for (eachBtn of wrapperBtns){
+        eachBtn.classList.remove("active");
+    }
+    target.classList.add("active");
+}
