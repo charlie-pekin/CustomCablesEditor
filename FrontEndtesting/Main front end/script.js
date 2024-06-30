@@ -4,6 +4,8 @@ fetch("settings.json")
     .then(response => response.json)
     .then(data => console.log(data))
     .catch(error => console.error(error));
+// import data from './settings.json' assert { type: 'json' };
+// console.log(data);
 
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
