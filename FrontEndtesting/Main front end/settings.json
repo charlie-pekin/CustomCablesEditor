@@ -1,10 +1,16 @@
 {
     "strands":
-        {"strand_1": {"round": true, "flat": false},
-        "strand_2": {"round": true, "flat": false},
-        "strand_3": {"round": false, "flat": true},
-        "strand_4": {"round": true, "flat": false},
-        "strand_5": {"round": false, "flat": true},
-        "strand_6": {"round": true, "flat": true}}
+        {
+            "strand_1": {"round": true, "flat": false},
+            "strand_2": {"round": true, "flat": false},
+            "strand_3": {"round": false, "flat": true},
+            "strand_4": {"round": true, "flat": false},
+            "strand_5": {"round": false, "flat": true},
+            "strand_6": {"round": true, "flat": true}
+        },
+    "connectors":
+        {
+            "cid_1": {"category": "audio", "name": "TRS", "size": "6.35mm", "pins": 3, "gender": "male", "min_stands": "strand_1", "image_id": 1, "image_path": "img/TRS-6.35mm-3_Pole-male-side_view.svg"}
+        }
     
 }

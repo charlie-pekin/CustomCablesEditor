@@ -731,6 +731,7 @@ button:hover{
     overflow: hidden;
     /* transition: all 0.4s ease-in-out; */
     padding-bottom: 2vh;
+    padding-right: 1vw;
 }
 .style_sub_row{
     width: 100%;
@@ -801,7 +802,7 @@ button:hover{
     display: flex;
     border: 2px solid black;
     background-color: white;
-    width: 96%;
+    flex-grow: 1;
     align-items: center;
     justify-content: center;
     gap: 0.5vw;

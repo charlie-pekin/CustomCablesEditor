@@ -1,6 +1,7 @@
 
 import settingsJson from './settings.json' with { type: 'json' };
 console.log(settingsJson);
+console.log(Object.keys(settingsJson.connectors).length);
 
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
@@ -50,11 +51,36 @@ const patternInputRow = document.querySelector("[data-pattern-row=sec3]");
 
 const AllPatternBtns = document.querySelectorAll("[data-pattern-btn]");
 
+const outputA_Colors = document.querySelector("[data-connector_style-row=output_a]");
+const outputB_Colors = document.querySelector("[data-connector_style-row=output_b]");
+const inputA_Colors = document.querySelector("[data-connector_style-row=input_a]");
+const inputB_Colors = document.querySelector("[data-connector_style-row=input_b]");
+
+const junction_1 = document.querySelector("[data-junction-row=j1]");
+const junction_2 = document.querySelector("[data-junction-row=j2]");
+
 //onstart
 UpdateAltLengths(totalLength);
 UpdateAltLengths(outputLength);
 UpdateAltLengths(centerLength);
 UpdateAltLengths(inputLength);
+
+SetActiveStands(patternOutputRow.querySelector("[data-strand_num=strand_2]"));
+ShowColorPickers(patternOutputRow.querySelector("[data-strand_num=strand_2]"));
+SetPatternBtns(patternOutputRow.querySelector("[data-strand_num=strand_2]"));
+
+SetActiveStands(patternCenterRow.querySelector("[data-strand_num=strand_3]"));
+ShowColorPickers(patternCenterRow.querySelector("[data-strand_num=strand_3]"));
+SetPatternBtns(patternCenterRow.querySelector("[data-strand_num=strand_3]"));
+
+SetActiveStands(patternInputRow.querySelector("[data-strand_num=strand_2]"));
+ShowColorPickers(patternInputRow.querySelector("[data-strand_num=strand_2]"));
+SetPatternBtns(patternInputRow.querySelector("[data-strand_num=strand_2]"));
+
+function CreateConnectorCell(){
+
+}
+
 
 for(const selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
@@ -149,6 +175,12 @@ for(const countBtn of connectorCountButtons){
                 patternOutputRow.classList.add("new_hide");
                 patternInputRow.classList.add("new_hide");
                 SetCenterName();
+
+                outputB_Colors.classList.add("new_hide");
+                inputB_Colors.classList.add("new_hide");
+
+                junction_1.classList.add("new_hide");
+                junction_2.classList.add("new_hide");
                 break;
             case 1: //Y Cable (B1)
                 totalLength.parentNode.parentNode.classList.add("disable");
@@ -159,13 +191,20 @@ for(const countBtn of connectorCountButtons){
                 if(Yconfig == "output"){
                     patternInputRow.classList.add("new_hide");
                     patternOutputRow.classList.remove("new_hide");
+                    outputB_Colors.classList.remove("new_hide")
+                    inputB_Colors.classList.add("new_hide");
                 }
                 else if(Yconfig == "input"){
                     patternInputRow.classList.remove("new_hide");
                     patternOutputRow.classList.add("new_hide");
+                    outputB_Colors.classList.add("new_hide")
+                    inputB_Colors.classList.remove("new_hide");
                 }
                 SetCenterName(Yconfig);
                 SplitTotal();
+
+                junction_1.classList.remove("new_hide");
+                junction_2.classList.add("new_hide");
                 break;
             case 2: //X Cable (B2)
                 totalLength.parentNode.parentNode.classList.add("disable");
@@ -177,6 +216,12 @@ for(const countBtn of connectorCountButtons){
                 patternInputRow.classList.remove("new_hide");
                 SetCenterName();
                 SplitTotal();
+
+                outputB_Colors.classList.remove("new_hide");
+                inputB_Colors.classList.remove("new_hide");
+
+                junction_1.classList.remove("new_hide");
+                junction_2.classList.remove("new_hide");
                 break;
         }
     });
@@ -214,7 +259,7 @@ function SetYconfig(){
 for(const eachCellInsertBtn of connectorCellInsertBtn){
     let currentActiveBubble;
     eachCellInsertBtn.addEventListener("click", function(e){
-        for(eachBubble of connectorBubbles){
+        for(const eachBubble of connectorBubbles){
             if(eachBubble.classList.contains("connector_bubble_active")){
                 currentActiveBubble = eachBubble;
                 break;
@@ -575,7 +620,6 @@ function ShowColorPickers(target){
     const AllColorPickers = standRowParent.querySelectorAll("[data-color_picker]");
     console.log(AllColorPickers);
     for (const eachColorPicker of AllColorPickers){
-        console.log(eachColorPicker);
         const colorPickerNum = Number(eachColorPicker.getAttribute("data-color_picker"));
         if(colorPickerNum <= strand_num){
             eachColorPicker.classList.remove("new_hide");
@@ -606,11 +650,12 @@ function SetPatternBtns(target){
     console.log(`${strand_num}: Flat = ${flatJson} | Round = ${roundJson}`);
     if (flatJson == false){
         console.log("cable DOES NOT have a flat option");
-        if(flatBtn.classList.contains("active_red")){
+        if(flatBtn.classList.contains("active_red") == true || roundBtn.classList.contains("active_red") == false){
             flatBtn.classList.remove("active_red");
             roundBtn.classList.add("active_red");
             roundBtn.classList.remove("limit");
         }
+        
         flatBtn.classList.add("limit");
     }
     else{
@@ -630,7 +675,6 @@ function SetPatternBtns(target){
             }
         }
     }
-    
 }
 
 for (const eachbtn of AllPatternBtns){
