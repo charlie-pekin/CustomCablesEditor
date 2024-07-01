@@ -1,10 +1,14 @@
 {
     "strands":[
-      {"strand":1, "round":true, "flat":false},
-      {"strand":2, "round":true, "flat":false},
-      {"strand":3, "round":false, "flat":true},
-      {"strand":4, "round":true, "flat":false},
-      {"strand":5, "round":true, "flat":true},
-      {"strand":6, "round":true, "flat":true},
-    ]
+      {"strand": 1, "round": true, "flat": false},
+      {"strand": 2, "round": true, "flat": false},
+      {"strand": 3, "round": false, "flat": true},
+      {"strand": 4, "round": true, "flat": false},
+      {"strand": 5, "round": true, "flat": true},
+      {"strand": 6, "round": true, "flat": true}
+    ],
+    "newStrands":
+        {"strand_1": {"round": true, "flat": false},
+        "strand_2": {"round": true, "flat": false}}
+    
 }

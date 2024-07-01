@@ -1,11 +1,8 @@
 
-let settingsJSON;
-fetch("settings.json")
-    .then(response => response.json)
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-// import data from './settings.json' assert { type: 'json' };
-// console.log(data);
+import settingsJson from './settings.json' with { type: 'json' };
+console.log(settingsJson);
+console.log(settingsJson.newStrands.strand_1);
+console.log(`Strand 1 | round = ${settingsJson.newStrands["strand_1"].round} | flat = ${settingsJson.newStrands.strand_1.flat}`);
 
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
@@ -41,6 +38,7 @@ let segmentMinLength = 3;
 let segmentMaxLength = 0;
 
 let totalMinLength = 0;
+let currentTotalLength;
 
 const AllStrandButtons = document.querySelectorAll("[data-strand_num]");
 
@@ -58,30 +56,29 @@ UpdateAltLengths(outputLength);
 UpdateAltLengths(centerLength);
 UpdateAltLengths(inputLength);
 
-for(selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
+for(const selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
     selectBox.addEventListener("change", function(e){//add an event listener for each select box
-        for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
+        for(const bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
             bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
         };
-        // selectedBubble = document.getElementById(e.target.value);//find the matching select box and bubble by using the select box value and the bubble ID
-        selectedBubble = document.querySelector(`[data-bubble=${e.target.getAttribute("data-selector")}]`);
+        let selectedBubble = document.querySelector(`[data-bubble=${e.target.getAttribute("data-selector")}]`);
         selectedBubble.classList.add("connector_bubble_active");// add the active class
     });
 }
 
-for(selectBubble of connectorBubbles){
+for( const selectBubble of connectorBubbles){
     selectBubble.addEventListener("click", function(e){
-        for(bubble of connectorBubbles){
+        for(const bubble of connectorBubbles){
             bubble.classList.remove("connector_bubble_active");
         };
-        selectedBox = document.querySelector(`[data-selector=${e.currentTarget.getAttribute("data-bubble")}]`);
+        let selectedBox = document.querySelector(`[data-selector=${e.currentTarget.getAttribute("data-bubble")}]`);
         selectedBox.checked = true;
         e.currentTarget.classList.add("connector_bubble_active");
     });
 }
 
 
-for(countBtn of connectorCountButtons){
+for(const countBtn of connectorCountButtons){
     countBtn.addEventListener("click", function(e){
         let currentCountBtnID = e.currentTarget.getAttribute("data-count_connector");
         const segment = currentCountBtnID.split("_");
@@ -100,7 +97,7 @@ for(countBtn of connectorCountButtons){
         if(countTextbox.innerHTML == addText){
             countTextbox.innerHTML = removeText;
             selectorbox.checked = true;
-            for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
+            for(const bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
                 bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
             };
             rightBubblebox.classList.add("connector_bubble_active");
@@ -116,7 +113,7 @@ for(countBtn of connectorCountButtons){
             countTextbox.innerHTML = addText;
             let newSelectorbox = document.querySelector(`[data-selector=${segment[0]}_a]`);
             newSelectorbox.checked = true;
-            for(bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
+            for(const bubble of connectorBubbles){ //loopt through all bubbles and give the current bublle in the loop the name "bubble"
             bubble.classList.remove("connector_bubble_active"); // remove the active class for each bubble
             };
             leftBubblebox.classList.add("connector_bubble_active");
@@ -137,7 +134,9 @@ for(countBtn of connectorCountButtons){
         bubbleImageElement.src = "";
         bubbleTextElement.innerHTML = "";
         bubbleTextElement.classList.add("hidden");
-        bubbleDetailElement.getAttribute("data-bubble-connectorid").value = "";
+        console.log(bubbleDetailElement);
+        console.log(bubbleDetailElement.getAttribute("data-bubble-connectorid"));
+        bubbleDetailElement.setAttribute("data-bubble-connectorid","none");
         bubbleDetailElement.classList.add("hidden");
         SetYconfig();
         switch(Bconfig){
@@ -212,7 +211,7 @@ function SetYconfig(){
     console.log(`---Yconfig = ${Yconfig}---`);
 }
 
-for(eachCellInsertBtn of connectorCellInsertBtn){
+for(const eachCellInsertBtn of connectorCellInsertBtn){
     let currentActiveBubble;
     eachCellInsertBtn.addEventListener("click", function(e){
         for(eachBubble of connectorBubbles){
@@ -276,7 +275,7 @@ function ChangeLength(TARGET){ //TARGET = "length number" element, BUTTON = the 
     LengthButtons(TARGET,BUTTON);
     CorrectLengths(TARGET);
     
-    for(section of AllLengthNumbers){
+    for(const section of AllLengthNumbers){
         DisableLengthButtons(section,segmentMaxLength,segmentMinLength);
         UpdateAltLengths(section);
     };
@@ -293,7 +292,7 @@ function LengthButtons(TARGET,BUTTON){
     }
     else{
         wasBtnClicked  = true;
-        lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
+        let lengthChangeAmount = Number(BUTTON.getAttribute("data-change_amount"));
         lengthChangeDirection = BUTTON.getAttribute("data-length-direction");
 
         if(lengthChangeDirection == "increment"){ 
@@ -433,26 +432,26 @@ function DisableLengthButtons(numberInputTarget,Max,Min){
     let incrementBtNs = numberInputTarget.parentNode.parentNode.querySelectorAll("[data-length-direction=increment]");
     let decrementBTNS = numberInputTarget.parentNode.parentNode.querySelectorAll("[data-length-direction=decrement]");
     if (numberInputTarget.value <= Min){
-        for(decbtn of decrementBTNS){
+        for(const decbtn of decrementBTNS){
             decbtn.classList.add("limit");
         };
-        for(incbtn of incrementBtNs){
+        for(const incbtn of incrementBtNs){
             incbtn.classList.remove("limit");
         };
     }
     else if (numberInputTarget.value >= Max){
-        for(incbtn of incrementBtNs){
+        for(const incbtn of incrementBtNs){
             incbtn.classList.add("limit");
         };
-        for(decbtn of decrementBTNS){
+        for(const decbtn of decrementBTNS){
             decbtn.classList.remove("limit");
         };
     }
     else{
-        for(decbtn of decrementBTNS){
+        for(const decbtn of decrementBTNS){
             decbtn.classList.remove("limit");
         };
-        for(incbtn of incrementBtNs){
+        for(const incbtn of incrementBtNs){
             incbtn.classList.remove("limit");
         };
 
@@ -461,8 +460,8 @@ function DisableLengthButtons(numberInputTarget,Max,Min){
 
 function SplitTotal(){
     console.log("----------------------------");
-    totalHalf = 0; 
-    totalThird = 0; 
+    let totalHalf = 0; 
+    let totalThird = 0; 
     SetTotalMinLength();
     SetSegmentMaxLength();
     switch (Bconfig){
@@ -502,7 +501,7 @@ function SplitTotal(){
             console.log(`Split Total - INPUT = ${inputLength.value}`);
         break;
     };
-    for(section of AllLengthNumbers){
+    for(const section of AllLengthNumbers){
         DisableLengthButtons(section,segmentMaxLength,segmentMinLength);
         UpdateAltLengths(section);
     };
@@ -527,7 +526,7 @@ function GetOpposite(TARGET){
     return op;
 }
 
-for (eachIncrementBTN of allLenghtChangeBTNs){
+for (const eachIncrementBTN of allLenghtChangeBTNs){
     eachIncrementBTN.addEventListener("click",function(e){
         let incBTN = e.currentTarget;
         let incWrapper = incBTN.parentNode;
@@ -538,7 +537,7 @@ for (eachIncrementBTN of allLenghtChangeBTNs){
     }
 )};
 
-for (eachlengthNumberinput of AllLengthNumbers){
+for (const eachlengthNumberinput of AllLengthNumbers){
     eachlengthNumberinput.addEventListener("input",function(e){
         let currentnumWrapper = e.currentTarget.parentNode;
         // console.log(currentnumWrapper);
@@ -550,7 +549,7 @@ for (eachlengthNumberinput of AllLengthNumbers){
     }
 )};
 
-for (eachlengthNumberinput of AllLengthNumbers){
+for (const eachlengthNumberinput of AllLengthNumbers){
     eachlengthNumberinput.addEventListener("change",function(e){
         let currentnumWrapper = e.currentTarget.parentNode;
         // console.log(currentnumWrapper);
@@ -561,7 +560,7 @@ for (eachlengthNumberinput of AllLengthNumbers){
     }
 )};
 
-for (eachStrandBtn of AllStrandButtons){
+for (const eachStrandBtn of AllStrandButtons){
     eachStrandBtn.addEventListener("click",function(e){
         ShowColorPickers(this);
     });
@@ -574,7 +573,7 @@ function ShowColorPickers(target){
     SetActiveStands(target);
     const AllColorPickers = standRowParent.querySelectorAll("[data-color_picker]");
     console.log(AllColorPickers);
-    for (eachColorPicker of AllColorPickers){
+    for (const eachColorPicker of AllColorPickers){
         console.log(eachColorPicker);
         const colorPickerNum = Number(eachColorPicker.getAttribute("data-color_picker"));
         if(colorPickerNum <= strand_num){
@@ -589,7 +588,7 @@ function SetActiveStands(target){
     const strand_num = target.getAttribute("data-strand_num");
     const btnWrapper = target.parentNode;
     const wrapperBtns = btnWrapper.querySelectorAll("[data-strand_num]");
-    for (eachBtn of wrapperBtns){
+    for (const eachBtn of wrapperBtns){
         eachBtn.classList.remove("active");
     }
     target.classList.add("active");

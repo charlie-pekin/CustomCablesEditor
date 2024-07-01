@@ -528,47 +528,8 @@ button:hover{
     width: 2.2vw;
 }
 
-
-
 .large_length_btn{
     width: 2.2vw;
-}
-
-.padlock_btn:hover{
-    background-color: rgb(252, 145, 145);
-}
-.Padlock_svg{
-    position: relative;
-    width: 52%;
-    height: 100%;
-    overflow: visible;
-}
-
-.shackle{
-    transition: all 0.6s ease;
-    fill: white;
-}
-
-.keyhole{
-    transition: all 0.6s ease;
-    transform-origin: center 71%;
-}
-
-.lock_body{
-    fill: white;
-}
-
-.active .shackle{
-    transform: translateY(8px);
-    fill: rgb(252, 31, 31);
-}
-
-.active .keyhole{
-    rotate: 90deg;
-}
-
-.active .lock_body{
-    fill: rgb(252, 31, 31);
 }
 
 .length_number{
@@ -656,8 +617,8 @@ button:hover{
     
     /* pointer-events: none; */
 }
-.limit.increment, .limit.length_btn{
-    background-color: gray;
+.limit{
+    background-color: gray !important;
     opacity: 0.5;
     pointer-events: none;
 }
@@ -816,6 +777,7 @@ button:hover{
 }
 .style_button:hover, .style_drop:hover{
     background-color: rgb(252, 145, 145);
+    color: white;
 }
 .active.style_button{
     color: white;
@@ -877,7 +839,7 @@ button:hover{
     margin: 0px;
 }
 
-.new_hide * .style_sub_row_content *, .new_hide * .style_sub_row_content, .new_hide * .color_selected_box, .new_hide * .color_selected_box .color_list_square, .new_hide .style_row_header{
+.new_hide * .style_sub_row_content *, .new_hide .style_sub_row_content, .new_hide * .color_selected_box, .new_hide * .color_selected_box .color_list_square, .new_hide .style_row_header{
     font-size: 0px;
     border-width: 0px;
     width: 0px;
