@@ -779,7 +779,12 @@ button:hover{
     background-color: rgb(252, 145, 145);
     color: white;
 }
-.active.style_button{
+/* .active.style_button{
+    color: white;
+    box-shadow: 0px 0px 15px 0px red;
+    background-color: rgb(252, 145, 145);
+} */
+.active_red{
     color: white;
     box-shadow: 0px 0px 15px 0px red;
     background-color: rgb(252, 145, 145);

@@ -1,8 +1,6 @@
 
 import settingsJson from './settings.json' with { type: 'json' };
 console.log(settingsJson);
-console.log(settingsJson.newStrands.strand_1);
-console.log(`Strand 1 | round = ${settingsJson.newStrands["strand_1"].round} | flat = ${settingsJson.newStrands.strand_1.flat}`);
 
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
@@ -49,6 +47,8 @@ const lengthInputRow = document.querySelector("[data-length-row=input]");
 const patternOutputRow = document.querySelector("[data-pattern-row=sec1]");
 const patternCenterRow = document.querySelector("[data-pattern-row=sec2]");
 const patternInputRow = document.querySelector("[data-pattern-row=sec3]");
+
+const AllPatternBtns = document.querySelectorAll("[data-pattern-btn]");
 
 //onstart
 UpdateAltLengths(totalLength);
@@ -562,15 +562,16 @@ for (const eachlengthNumberinput of AllLengthNumbers){
 
 for (const eachStrandBtn of AllStrandButtons){
     eachStrandBtn.addEventListener("click",function(e){
+        SetActiveStands(this);
         ShowColorPickers(this);
+        SetPatternBtns(this);
     });
 }
 
 function ShowColorPickers(target){
-    const strand_num = Number(target.getAttribute("data-strand_num"));
+    const strand_num = Number(target.innerHTML);
     const standRowParent = target.parentNode.parentNode.parentNode;
     console.log(`Num of strands selected = ${strand_num}`);
-    SetActiveStands(target);
     const AllColorPickers = standRowParent.querySelectorAll("[data-color_picker]");
     console.log(AllColorPickers);
     for (const eachColorPicker of AllColorPickers){
@@ -585,11 +586,60 @@ function ShowColorPickers(target){
     }
 }
 function SetActiveStands(target){
-    const strand_num = target.getAttribute("data-strand_num");
     const btnWrapper = target.parentNode;
     const wrapperBtns = btnWrapper.querySelectorAll("[data-strand_num]");
     for (const eachBtn of wrapperBtns){
-        eachBtn.classList.remove("active");
+        eachBtn.classList.remove("active_red");
     }
-    target.classList.add("active");
+    target.classList.add("active_red");
+}
+function SetPatternBtns(target){
+    const strand_num = target.getAttribute("data-strand_num");
+    const strandsJson = settingsJson.strands;
+    const flatJson = strandsJson[strand_num].flat;
+    const roundJson = strandsJson[strand_num].round;
+
+
+    const standRowParent = target.parentNode.parentNode.parentNode;
+    const flatBtn = standRowParent.querySelector("[data-pattern-btn=flat]");
+    const roundBtn = standRowParent.querySelector("[data-pattern-btn=round]");
+    console.log(`${strand_num}: Flat = ${flatJson} | Round = ${roundJson}`);
+    if (flatJson == false){
+        console.log("cable DOES NOT have a flat option");
+        if(flatBtn.classList.contains("active_red")){
+            flatBtn.classList.remove("active_red");
+            roundBtn.classList.add("active_red");
+            roundBtn.classList.remove("limit");
+        }
+        flatBtn.classList.add("limit");
+    }
+    else{
+        console.log("cable does have a flat option");
+        flatBtn.classList.remove("limit");
+        if(roundJson == false){
+            console.log("cable DOES NOT have a round option");
+            roundBtn.classList.add("limit");
+            roundBtn.classList.remove("active_red");
+            flatBtn.classList.add("active_red");
+        }
+        else{
+            console.log("cable does have a round option");
+            roundBtn.classList.remove("limit");
+            if(flatBtn.classList.contains("active_red") == false && roundBtn.classList.contains("active_red") == false){
+                flatBtn.classList.add("active_red");
+            }
+        }
+    }
+    
+}
+
+for (const eachbtn of AllPatternBtns){
+    eachbtn.addEventListener("click", function(e){
+        const parent = this.parentNode;
+        const allpatternBtns = parent.querySelectorAll("[data-pattern-btn]");
+        for (const pb of allpatternBtns){
+            pb.classList.remove("active_red");
+        }
+        this.classList.add("active_red");
+    });
 }
