@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .workspace{
+        width: 20vw;
+        min-height: 10vw;
+        background-color: purple;
+        border: 2px solid red;
+        border-radius: 25px;
+    }
+    
+</style>
+<body>
+    <div class="workspace">
+        <template id="temp_1">
+            <div class="container" data-cont>
+                <h2 class="header" data-header>Header</h2>
+                <p class="stuff" data-stuff>Stuff</p>
+            </div>
+        </template>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(e){
+            // console.log(this);
+            const temp = document.getElementById("temp_1");
+            const content = temp.content.cloneNode(true);
+            console.log(content);
+            const container = content.querySelector("[data-cont]");
+            console.log(container);
+            const container_data = content
+        })
+    </script>
+</body>
+</html>
