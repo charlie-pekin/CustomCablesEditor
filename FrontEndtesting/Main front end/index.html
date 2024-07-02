@@ -340,8 +340,14 @@
         </div>
         <div class="cable_styling">
             <div class="side_title">Cable Styling </div>
-            <div class="style_scroll">
-                <div class="style_container">
+            <div class="style_tabs_wapper">
+                <div class="style_button tab_btn active_red" data-tab="length">Length</div>
+                <div class="style_button tab_btn"data-tab="cable_color">Cable Color</div>
+                <div class="style_button tab_btn" data-tab="connector">Connector</div>
+                <div class="style_button tab_btn new_hide" data-tab="junction">Junction</div>
+            </div>
+            <div class="style_scroll">             
+                <div class="style_container abs" data-child-tab="length">
                     <div class="style_container_header">Cable Length - Inches</div>
                     <div class="length_row border_top" data-length-row="total">
                         <div class="title_wrapper">
@@ -419,7 +425,7 @@
                         <div class="alt_length">Feet: <span class="length_feet" data-alt_length-feet="input">10</span> ft | Meters: <span class="length_meters" data-alt_length-meters="input">3.05</span> M</div>
                     </div>
                 </div>
-                <div class="style_container">
+                <div class="style_container abs hide_right" data-child-tab="cable_color">
                     <div class="style_container_header">Cable Pattern And Colors</div>
                     <div class="style_row border_top new_hide" data-pattern-row="sec1">
                         <div class="style_row_header">Output Colors</div>
@@ -666,7 +672,7 @@
                     </div>
                 </div>
 
-                <div class="style_container">
+                <div class="style_container abs hide_right" data-child-tab="connector">
                     <div class="style_container_header">Connector Style</div>
                     <div class="style_row border_top" data-connector_style-row="output_a">
                         <div class="style_row_header">Output A Colors</div>
@@ -741,7 +747,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="style_container">
+                <div class="style_container abs hide_right" data-child-tab="junction">
                     <div class="style_container_header">Junction Style</div>
                     <div class="style_row border_top new_hide" data-junction-row="j1">
                         <div class="style_row_header">Junction 1 Colors</div>

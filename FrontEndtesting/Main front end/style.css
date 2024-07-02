@@ -456,6 +456,7 @@ button:hover{
     padding: 5px;
     overflow-y: scroll;
     overflow-x: hidden;
+    position: relative;
 }
 
 .style_container{
@@ -466,6 +467,8 @@ button:hover{
     flex-direction: column;
     align-items: center;
     font-size: 1.4vw;
+    transition: transform  0.6s,opacity 1.5s ease;
+    /* transform 0.6s, opacity 1.5s cubic-bezier(0.2, 0.83, 0.2, 0.82) */
     /* overflow: hidden; */
     /* padding: 0.4vh 0.3vw; */
 }
@@ -766,6 +769,7 @@ button:hover{
 }
 .style_button{
     border: 2px solid red;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -833,13 +837,14 @@ button:hover{
     padding: 0px 0.5vw 0px 0.5vw;
     border-radius: 20px;
 }
-.new_hide{
+.new_hide, .new_hide.tab_btn{
     transform: scale(0);
     font-size: 0px;
     margin: 0px;
     padding: 0px;
     border-width: 0px;
     gap: 0px;
+    flex-grow: 0;
 }
 .new_hide .style_sub_row{
     margin: 0px;
@@ -852,5 +857,33 @@ button:hover{
     padding: 0px;
     height: 0px;
     gap: 0px;;
+}
+
+.style_tabs_wapper{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5vh 0.3vw 0.5vh 0vw;
+    gap: 0.35vw;
+    box-sizing: border-box;
+}
+.tab_btn{
+    font-size: 1.25vw;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    flex-grow: 1;
+}
+.abs{
+    position: absolute;
+    width: 97%;
+}
+.hide_left{
+    transform: translateX(-110%);
+    opacity: 0;
+}
+.hide_right{
+    transform: translateX(110%);
+    opacity: 0;
 }
 

@@ -10,7 +10,25 @@
         },
     "connectors":
         {
-            "cid_1": {"category": "audio", "name": "TRS", "size": "6.35mm", "pins": 3, "gender": "male", "min_stands": "strand_1", "image_id": 1, "image_path": "img/TRS-6.35mm-3_Pole-male-side_view.svg"}
+            "cid_1": 
+                {
+                    "category": "audio", 
+                    "name": "TRS", 
+                    "size": "6.35mm", 
+                    "pins": 3, 
+                    "gender": "male", 
+                    "min_stands": "strand_1", 
+                    "img":
+                        {
+                            "img_id": 1, 
+                            "img_path": "img/TRS-6.35mm-3_Pole-male-side_view.svg"
+                        },
+                    "d-img": 
+                        {
+                            "d-img_id": 1,
+                            "d-img_path": "none"
+                        }
+                }
         }
     
 }

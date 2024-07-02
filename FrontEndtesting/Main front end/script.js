@@ -59,6 +59,15 @@ const inputB_Colors = document.querySelector("[data-connector_style-row=input_b]
 const junction_1 = document.querySelector("[data-junction-row=j1]");
 const junction_2 = document.querySelector("[data-junction-row=j2]");
 
+const AllTabs = document.querySelectorAll("[data-tab]");
+const junctionTab =document.querySelector("[data-tab=junction]");
+const lengthTab =document.querySelector("[data-tab=length]");
+
+const lengthContainer = document.querySelector("[data-child-tab=length]");
+const cable_colorContainer = document.querySelector("[data-child-tab=cable_color]");
+const connectorContainer = document.querySelector("[data-child-tab=connector]");
+const junctionContainer = document.querySelector("[data-child-tab=junction]");
+
 //onstart
 UpdateAltLengths(totalLength);
 UpdateAltLengths(outputLength);
@@ -181,6 +190,12 @@ for(const countBtn of connectorCountButtons){
 
                 junction_1.classList.add("new_hide");
                 junction_2.classList.add("new_hide");
+
+                console.log(`junction is active = ${junctionTab.classList.contains("active_red")}`);
+                if(junctionTab.classList.contains("active_red")){
+                    updateTabs(lengthTab);
+                }
+                junctionTab.classList.add("new_hide");
                 break;
             case 1: //Y Cable (B1)
                 totalLength.parentNode.parentNode.classList.add("disable");
@@ -205,6 +220,8 @@ for(const countBtn of connectorCountButtons){
 
                 junction_1.classList.remove("new_hide");
                 junction_2.classList.add("new_hide");
+
+                junctionTab.classList.remove("new_hide");
                 break;
             case 2: //X Cable (B2)
                 totalLength.parentNode.parentNode.classList.add("disable");
@@ -222,6 +239,8 @@ for(const countBtn of connectorCountButtons){
 
                 junction_1.classList.remove("new_hide");
                 junction_2.classList.remove("new_hide");
+
+                junctionTab.classList.remove("new_hide");
                 break;
         }
     });
@@ -686,4 +705,68 @@ for (const eachbtn of AllPatternBtns){
         }
         this.classList.add("active_red");
     });
+}
+
+for (const eachTab of AllTabs){
+    eachTab.addEventListener("click",function(e){
+        updateTabs(this);
+    });
+}
+
+function updateTabs(tab){
+    const activeTab = tab.getAttribute("data-tab");
+        console.log(`Active Tab = ${activeTab}`);
+        for (const tabs of AllTabs){
+            tabs.classList.remove("active_red");
+        }
+        tab.classList.add("active_red");
+        switch(activeTab){
+            case "length":
+                console.log("container Length in focus");
+                SwapContainer(lengthContainer, "center");
+                SwapContainer(cable_colorContainer, "right");
+                SwapContainer(connectorContainer, "right");
+                SwapContainer(junctionContainer, "right");
+            break;
+            case "cable_color":
+                console.log("container cable_color in focus");
+                SwapContainer(lengthContainer, "left");
+                SwapContainer(cable_colorContainer, "center");
+                SwapContainer(connectorContainer, "right");
+                SwapContainer(junctionContainer, "right");
+            break;
+            case "connector":
+                console.log("container connector in focus");
+                SwapContainer(lengthContainer, "left");
+                SwapContainer(cable_colorContainer, "left");
+                SwapContainer(connectorContainer, "center");
+                SwapContainer(junctionContainer, "right");
+            break;
+            case "junction":
+                console.log("container junction in focus");
+                SwapContainer(lengthContainer, "left");
+                SwapContainer(cable_colorContainer, "left");
+                SwapContainer(connectorContainer, "left");
+                SwapContainer(junctionContainer, "center");
+            break;
+        }
+}
+function SwapContainer(element,location){
+    const lHide = "hide_left";
+    const rHide = "hide_right";
+    const CL = element.classList;
+    switch(location){
+        case "center":
+            CL.remove(lHide);
+            CL.remove(rHide);
+        break;
+        case "right":
+            CL.add(rHide)
+            CL.remove(lHide);
+        break;
+        case "left":
+            CL.remove(rHide);
+            CL.add(lHide);
+        break;
+    }
 }
