@@ -87,9 +87,7 @@ SetActiveStands(patternInputRow.querySelector("[data-strand_num=strand_2]"));
 ShowColorPickers(patternInputRow.querySelector("[data-strand_num=strand_2]"));
 SetPatternBtns(patternInputRow.querySelector("[data-strand_num=strand_2]"));
 
-function CreateConnectorCell(){
-
-}
+CreateConnectorCells(connectorJson);
 
 
 for(const selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
@@ -288,23 +286,22 @@ for(const eachCellInsertBtn of connectorCellInsertBtn){
         console.log(currentActiveBubble);
         activeBubbleConnectorSL = currentActiveBubble.getAttribute("data-bubble");
         console.log(activeBubbleConnectorSL);
-        let bubbleSegment = activeBubbleConnectorSL.split("_");
         let cellID = e.target.getAttribute("data-cell-insert");
 
-        let bubbleImageElement = document.querySelector(`[data-bubble-image=${activeBubbleConnectorSL}]`);
-        let bubbleTextElement = document.querySelector(`[data-bubble-text=${activeBubbleConnectorSL}]`);
-        let bubbleDetailElement = document.querySelector(`[data-bubble-detail=${activeBubbleConnectorSL}]`);
-        console.log(`[data-bubble-text=${activeBubbleConnectorSL}]`);
-        let cellImageElement = document.querySelector(`[data-cell-image=${cellID}]`);
-        let cellValues = document.querySelectorAll(`[data-cell-cid=${cellID}`);
-        let cellValueName = cellValues[1].getAttributeNode("value").value;
-        let cellValueSize = cellValues[2].getAttributeNode("value").value;
+        // let bubbleImageElement = document.querySelector(`[data-bubble-image=${activeBubbleConnectorSL}]`);
+        // let bubbleTextElement = document.querySelector(`[data-bubble-text=${activeBubbleConnectorSL}]`);
+        // let bubbleDetailElement = document.querySelector(`[data-bubble-detail=${activeBubbleConnectorSL}]`);
+        // console.log(`[data-bubble-text=${activeBubbleConnectorSL}]`);
+        // let cellImageElement = document.querySelector(`[data-cell-image=${cellID}]`);
+        // let cellValues = document.querySelectorAll(`[data-cell-cid=${cellID}`);
+        // let cellValueName = cellValues[1].getAttributeNode("value").value;
+        // let cellValueSize = cellValues[2].getAttributeNode("value").value;
 
-        bubbleImageElement.src = cellImageElement.src;
-        console.log(bubbleTextElement);
-        bubbleTextElement.innerHTML = cellValueName + ", " + cellValueSize;
-        bubbleTextElement.classList.remove("hidden");
-        bubbleDetailElement.classList.remove("hidden");
+        // bubbleImageElement.src = cellImageElement.src;
+        // console.log(bubbleTextElement);
+        // bubbleTextElement.innerHTML = cellValueName + ", " + cellValueSize;
+        // bubbleTextElement.classList.remove("hidden");
+        // bubbleDetailElement.classList.remove("hidden");
 
     });
 };
@@ -769,5 +766,23 @@ function SwapContainer(element,location){
             CL.remove(rHide);
             CL.add(lHide);
         break;
+    }
+}
+
+function CreateConnectorCells(Cjson){
+    const temp = document.getElementById("conenctor_template");
+    const resultsElement = document.getElementById("connector_results");
+    const content = temp.content.cloneNode(true);
+    const spans = content.querySelectorAll("[data-temp-target]");
+    console.log(spans);
+
+    console.log(`Number of Connectors in JSON = ${Object.keys(Cjson).length}`);
+
+    for(const currentSpan of spans){
+        console.log(currentSpan.attributes[0]);
+    }
+    
+    for (const keys in Cjson){
+
     }
 }
