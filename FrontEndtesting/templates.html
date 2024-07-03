@@ -44,8 +44,6 @@
         </template>
     </div>
     <script>
-        const array = ["top", "middle", "bottom", "stuff"];
-
         const obj = {
             container_1: {header: "TOP", stuff: "---top stuff---", data: 1},
             container_2: {header: "MIDDLE", stuff: "---middle stuff---", data: 2},
@@ -53,36 +51,32 @@
         }
 
         document.addEventListener('DOMContentLoaded',function(e){
-            // console.log(this);
+            const temp = document.getElementById("temp_1");
 
-            for (arrayItem in obj){
-                const temp = document.getElementById("temp_1");
+            for (objKey in obj){
+                const x = obj[objKey];
                 const content = temp.content.cloneNode(true);
-                const container = content.querySelector("[data-cont]");
-                container.setAttribute("data-cont",arrayItem.data);
 
-                const header  = content.querySelector("[]")
-                header.innerHTML  =  arrayItem.header;
+                SetData(content,"data-cont",x.data);
+                SetInnerHTML(content,"data-header",x.header);
+                SetInnerHTML(content,"data-stuff",x.stuff);
 
-                const stuff = content.getElementsByClassName("stuff");
-                stuff.innerHTML = arrayItem.stuff;
-
-                const workspace = document.getElementById("top");
-                // workspace.appendChild(content);
-
-                console.log(container);
-            }
-            // for (let i = 0; i <=  3; i++){
-            //     const temp = document.getElementById("temp_1");
-            //     const content = temp.content.cloneNode(true);
-            //     console.log(content);
-            //     const container = content.querySelector("[data-cont]");
-            //     container.setAttribute("data-cont",i);
-            //     console.log(container);
-            //     const workspace = document.getElementById("top");
-            //     workspace.appendChild(content);
-            // };       
+                document.getElementById("top").appendChild(content);
+            } 
         })
+
+        function GetTempElement(data,content){
+            content.querySelector(`[${data}]`);
+        }
+
+        function SetInnerHTML(content,data,key){
+            const x = content.querySelector(`[${data}]`);
+            x.innerHTML = key;
+        }
+        function SetData(content,data,key){
+            const x = content.querySelector(`[${data}]`);
+            x.setAttribute(data,key);
+        }
     </script>
 </body>
 </html>
