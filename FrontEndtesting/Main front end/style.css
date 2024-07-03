@@ -556,6 +556,7 @@ button:hover{
 
 .length_number[type=number] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 .active.number_wrapper{
     /* color: red; */
@@ -570,9 +571,7 @@ button:hover{
     background-color: orange !important;
     color: black;
 }
-/* .error.number_wrapper .length_number, .error.number_wrapper .length_inches{
-    color: white;
-} */
+
 .input_wrapper{
     display: flex;
     align-items: center;
@@ -673,14 +672,6 @@ button:hover{
     display: flex;
     width: 100%;
     box-sizing: border-box;
-}
-
-#input_length_section{
-    
-}
-
-#output_length_section{
-
 }
 
 .flex_hide{

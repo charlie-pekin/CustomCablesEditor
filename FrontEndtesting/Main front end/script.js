@@ -772,17 +772,22 @@ function SwapContainer(element,location){
 function CreateConnectorCells(Cjson){
     const temp = document.getElementById("conenctor_template");
     const resultsElement = document.getElementById("connector_results");
-    const content = temp.content.cloneNode(true);
-    const spans = content.querySelectorAll("[data-temp-target]");
-    console.log(spans);
-
-    console.log(`Number of Connectors in JSON = ${Object.keys(Cjson).length}`);
-
-    for(const currentSpan of spans){
-        console.log(currentSpan.attributes[0]);
-    }
     
-    for (const keys in Cjson){
-        console.log(keys);
+    for (const key in Cjson){
+        const content = temp.content.cloneNode(true);
+        console.log(key);
+        content.querySelector("[data-cell-cid]").setAttribute("data-cell-cid",key);
+        content.querySelector("[data-cell-category]").innerHTML = Cjson[key].category;
+        content.querySelector("[data-cell-name]").innerHTML = Cjson[key].name;
+        content.querySelector("[data-cell-size]").innerHTML = Cjson[key].size;
+        content.querySelector("[data-cell-pins]").innerHTML = Cjson[key].pins;
+        content.querySelector("[data-cell-gender]").innerHTML = Cjson[key].gender;
+
+        const imgEl = content.querySelector("[data-cell-image]");
+        console.log(imgEl);
+        const imgPath = `img/${Cjson[key].img_id}.svg`;
+        console.log(imgPath);
+        imgEl.setAttribute("src",imgPath);
+        resultsElement.appendChild(content);
     }
 }
