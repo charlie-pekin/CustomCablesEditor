@@ -87,7 +87,7 @@ SetActiveStands(patternInputRow.querySelector("[data-strand_num=strand_2]"));
 ShowColorPickers(patternInputRow.querySelector("[data-strand_num=strand_2]"));
 SetPatternBtns(patternInputRow.querySelector("[data-strand_num=strand_2]"));
 
-CreateConnectorCells(connectorJson);
+CreateConnectorCells(connectorJson.connectors);
 
 
 for(const selectBox of connectorSelectorBoxes){ //loop through all the select boxes and give the current box in the loop the name "selectBox"
@@ -783,6 +783,6 @@ function CreateConnectorCells(Cjson){
     }
     
     for (const keys in Cjson){
-
+        console.log(keys);
     }
 }
