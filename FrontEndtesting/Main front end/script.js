@@ -788,6 +788,8 @@ function CreateConnectorCells(Cjson){
         const imgPath = `img/${Cjson[key].img_id}.svg`;
         console.log(imgPath);
         imgEl.setAttribute("src",imgPath);
+
+        content.querySelector("[data-cell-insert]").setAttribute("data-cell-insert",key);
         resultsElement.appendChild(content);
     }
 }

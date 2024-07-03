@@ -11,6 +11,17 @@
                     "min_stands": "strand_1", 
                     "img_id": "img_1",
                     "d-img": "none"
+                },
+            "cid_2": 
+                {
+                    "category": "audio", 
+                    "name": "TS", 
+                    "size": "2.5mm", 
+                    "pins": 2, 
+                    "gender": "male", 
+                    "min_stands": "strand_1", 
+                    "img_id": "img_1",
+                    "d-img": "none"
                 }
         }
 }
