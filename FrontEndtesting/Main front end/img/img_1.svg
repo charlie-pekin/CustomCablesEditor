@@ -1,0 +1,12 @@
+<svg width="250" height="62" viewBox="0 0 250 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="img_1">
+<path id="Polygon 3" d="M95.2 30.8L210.7 4.12643V57.4736L95.2 30.8Z" fill="black"/>
+<g id="Rectangle 1">
+<rect width="11.2" height="61.6" fill="black"/>
+<rect width="11.2" height="61.6" fill="black" fill-opacity="0.2"/>
+</g>
+<rect id="Rectangle 2" x="5.6" y="5.60001" width="169.4" height="50.4" rx="1" fill="black"/>
+<rect id="Rectangle 5" x="161" y="5.60001" width="8.4" height="50.4" fill="#8D8D8D"/>
+<path id="Polygon 2" d="M210.8 3.9547C212.038 3.24017 213.562 3.24017 214.8 3.9547L235.049 15.6453C236.286 16.3598 237.049 17.6803 237.049 19.1094V42.4906C237.049 43.9197 236.286 45.2402 235.049 45.9547L214.8 57.6453C213.562 58.3598 212.038 58.3598 210.8 57.6453L190.551 45.9547C189.314 45.2402 188.551 43.9197 188.551 42.4906V19.1094C188.551 17.6803 189.314 16.3598 190.551 15.6453L210.8 3.9547Z" fill="black"/>
+</g>
+</svg>

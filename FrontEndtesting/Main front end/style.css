@@ -837,7 +837,7 @@ button:hover{
     padding: 0px 0.5vw 0px 0.5vw;
     border-radius: 20px;
 }
-.new_hide, .new_hide.tab_btn{
+.new_hide, .new_hide.tab_btn.style_button{
     transform: scale(0);
     font-size: 0px;
     margin: 0px;
@@ -868,11 +868,12 @@ button:hover{
     gap: 0.35vw;
     box-sizing: border-box;
 }
-.tab_btn{
+.style_button.tab_btn{
     font-size: 1.25vw;
     padding: 5px 0px 5px 0px;
     text-align: center;
     flex-grow: 1;
+    transition: box-shadow 0.3s, background-color 0.3s, color 0.3s, all 0.5s cubic-bezier(0.4, 0, 1, 1)
 }
 .abs{
     position: absolute;

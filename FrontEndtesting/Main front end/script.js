@@ -1,11 +1,12 @@
 
 import settingsJson from './settings.json' with { type: 'json' };
+import connectorJson from './connectors.json' with { type: 'json' };
 console.log(settingsJson);
-console.log(Object.keys(settingsJson.connectors).length);
+console.log(connectorJson);
 
 let connectorSelectorBoxes = document.getElementsByName("connector_selector_radio_group");
 let connectorBubbles = document.getElementsByClassName("connector_bubble");
-let bubbleContainers = document.getElementsByClassName("main_bubble_container");
+// let bubbleContainers = document.getElementsByClassName("main_bubble_container");
 let activeBubbleConnectorSL;
 
 const connectorCountButtons = document.getElementsByClassName("connector_count_button");
