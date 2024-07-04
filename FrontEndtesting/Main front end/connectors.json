@@ -3,24 +3,68 @@
         {
             "cid_1": 
                 {
-                    "category": "audio", 
+                    "category": "Audio", 
                     "name": "TS", 
                     "size": "2.5mm", 
                     "pins": 2, 
-                    "gender": "male", 
+                    "gender": "Male", 
                     "min_stands": "strand_1", 
                     "img_id": "img_1",
                     "d-img": "none"
                 },
             "cid_2": 
                 {
-                    "category": "audio", 
+                    "category": "Audio", 
                     "name": "TS", 
                     "size": "2.5mm", 
                     "pins": 2, 
-                    "gender": "male", 
+                    "gender": "Female", 
                     "min_stands": "strand_1", 
-                    "img_id": "img_1",
+                    "img_id": "img_2",
+                    "d-img": "none"
+                },
+            "cid_3": 
+                {
+                    "category": "Audio", 
+                    "name": "TRS", 
+                    "size": "2.5mm", 
+                    "pins": 3, 
+                    "gender": "Male", 
+                    "min_stands": "strand_1", 
+                    "img_id": "img_3",
+                    "d-img": "none"
+                },
+            "cid_4": 
+                {
+                    "category": "Audio", 
+                    "name": "TRS", 
+                    "size": "2.5mm", 
+                    "pins": 3, 
+                    "gender": "Female", 
+                    "min_stands": "strand_1", 
+                    "img_id": "img_2",
+                    "d-img": "none"
+                },
+            "cid_5": 
+                {
+                    "category": "Audio", 
+                    "name": "TRRS", 
+                    "size": "2.5mm", 
+                    "pins": 4, 
+                    "gender": "Male", 
+                    "min_stands": "strand_1", 
+                    "img_id": "img_4",
+                    "d-img": "none"
+                },
+            "cid_6": 
+                {
+                    "category": "Audio", 
+                    "name": "TRRS", 
+                    "size": "2.5mm", 
+                    "pins": 4, 
+                    "gender": "Female", 
+                    "min_stands": "strand_1", 
+                    "img_id": "img_2",
                     "d-img": "none"
                 }
         }
